@@ -1,8 +1,33 @@
 #include "Etat1aN.h"
 
-Etat0::Etat0()
+Etat0::Etat0(string n)
 {
-	//ctor
+	nom = n;
+}
+
+Etat0::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case VAR:
+			automate.reduction(0);
+			break;
+		case CONST:
+			automate.reduction(0);
+			break;
+		case ECRIRE:
+			automate.reduction(0);
+			break;
+		case LIRE:
+			automate.reduction(0);
+			break;
+		case ID:
+			automate.reduction(0);
+			break;
+		case END:
+			return true;
+	}
+	return false;
 }
 
 Etat0::~Etat0()
@@ -12,7 +37,27 @@ Etat0::~Etat0()
 //---------------------------------------------
 Etat1::Etat1()
 {
-	//ctor
+	switch (*s)
+	{
+		case VAR:
+			automate.reduction(0);
+			break;
+		case CONST:
+			automate.reduction(0);
+			break;
+		case ECRIRE:
+			automate.reduction(0);
+			break;
+		case LIRE:
+			automate.reduction(0);
+			break;
+		case ID:
+			automate.reduction(0);
+			break;
+		case END:
+			return true;
+	}
+	return false;
 }
 
 Etat1::~Etat1()
@@ -56,6 +101,16 @@ Etat5::Etat5()
 }
 
 Etat5::~Etat5()
+{
+	//dtor
+}
+//---------------------------------------------
+Etat6::Etat6()
+{
+	//ctor
+}
+
+Etat6::~Etat6()
 {
 	//dtor
 }
@@ -195,6 +250,16 @@ Etat19::Etat19()
 }
 
 Etat19::~Etat19()
+{
+	//dtor
+}
+//---------------------------------------------
+Etat20::Etat20()
+{
+	//ctor
+}
+
+Etat20::~Etat20()
 {
 	//dtor
 }
