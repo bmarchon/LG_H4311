@@ -192,12 +192,7 @@ class Etat13 : public Etat
 class Etat14 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat14();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat14(string nom);
->>>>>>> origin/master
 		virtual ~Etat14();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
@@ -209,12 +204,7 @@ class Etat14 : public Etat
 class Etat15 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat15();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat15(string nom);
->>>>>>> origin/master
 		virtual ~Etat15();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
@@ -226,12 +216,7 @@ class Etat15 : public Etat
 class Etat16 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat16();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat16(string nom);
->>>>>>> origin/master
 		virtual ~Etat16();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
@@ -243,12 +228,7 @@ class Etat16 : public Etat
 class Etat17 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat17();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat17(string nom);
->>>>>>> origin/master
 		virtual ~Etat17();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
@@ -260,12 +240,7 @@ class Etat17 : public Etat
 class Etat18 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat18();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat18(string nom);
->>>>>>> origin/master
 		virtual ~Etat18();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
@@ -277,12 +252,7 @@ class Etat18 : public Etat
 class Etat19 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat19();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat19(string nom);
->>>>>>> origin/master
 		virtual ~Etat19();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
@@ -294,12 +264,7 @@ class Etat19 : public Etat
 class Etat20 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat20();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat20(string nom);
->>>>>>> origin/master
 		virtual ~Etat20();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
