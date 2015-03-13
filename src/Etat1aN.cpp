@@ -267,7 +267,65 @@ Etat13::Etat13(string n)
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat13::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case VAR: //r17
+			automate.reduction(1);
+			break;
+		case CONST: //r17
+			automate.reduction(1);
+			break;
+		case ECRIRE: //r17
+			automate.reduction(1);
+			break;
+		case LIRE: //r17
+			automate.reduction(1);
+			break;
+		case AFFECT: //r17
+			automate.reduction(1);
+			break;
+		case VAL: //r17
+			automate.reduction(1);
+			break;
+		case ID: //r17
+			automate.reduction(1);
+			break;
+		case PO: //r17
+			automate.reduction(1);
+			break;
+		case PF: //r17
+			automate.reduction(1);
+			break;
+		case PLUS: //r17
+			automate.reduction(1);
+			break;
+		case MOINS: //r17
+			automate.reduction(1);
+			break;
+		case FOIS: //r17
+			automate.reduction(1);
+			break;
+		case DIVISE: //r17
+			automate.reduction(1);
+			break;
+		case EG: //r17
+			automate.reduction(1);
+			break;
+		case V: //r17
+			automate.reduction(1);
+			break;
+		case PV: //r17
+			automate.reduction(1);
+			break;
+		case END: //r17
+			automate.reduction(1);
+			break;
+	}
+	return false;
+}
 Etat13::~Etat13()
 {
 	//dtor
