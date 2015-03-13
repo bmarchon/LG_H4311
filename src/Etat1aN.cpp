@@ -231,16 +231,16 @@ bool Etat12::transition(Automate &automate, Symbole *s)
 		case PF: //r16
 			automate.reduction(1);
 			break;
-		case +: //r16
+		case PLUS: //r16
 			automate.reduction(1);
 			break;
-		case -: //r16
+		case MOINS: //r16
 			automate.reduction(1);
 			break;
-		case *: //r16
+		case FOIS: //r16
 			automate.reduction(1);
 			break;
-		case /: //r16
+		case DIVISE: //r16
 			automate.reduction(1);
 			break;
 		case EG: //r16
