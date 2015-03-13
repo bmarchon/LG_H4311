@@ -1,50 +1,26 @@
-#include "Reader.h"
+#include "AnalyseurLexical.h"
 
 
-Reader::Reader()
+AnalyseurLexical::AnalyseurLexical()
 {
 	//ctor
 }
 
-Reader::~Reader()
+AnalyseurLexical::~AnalyseurLexical()
 {
 	//dtor
 }
 
-char Reader::next() {
-	if (filetext.size() != 0)
-		return filetext.at(0);
-	else
-		return '$';
-}
 
-char Reader::shift() {
-	char res = next();
+Symbole AnalyseurLexical::next()
+{
 	
-	if (filetext.size() != 0)
-		filetext.erase (0,1);
-	return res;
-}
+};
 
-void Reader::lire(string filename) {
+Symbole AnalyseurLexical::next()
+{
 	
-	fstream file (filename.c_str());
-	
-	if (file) {
-		// get length of file:
-		file.seekg (0, file.end);
-		int length = file.tellg();
-		file.seekg (0, file.beg);
-
-		char * buffer = new char [length];
-		// read data as a block:
-		file.read (buffer,length);
-		 
-		file.close();
-		filetext = string(buffer);
-		delete[] buffer;
-	}
-}
+};
 
 bool isId (string input){
 	
@@ -60,15 +36,12 @@ bool isNum (string input){
 	return boost::regex_match(input, results, e);
 }
 
-
-// pour tester le reader  
+/*
+// pour tester le AnalyseurLexical  
 int main (){
-	Reader * r = new Reader();
+	AnalyseurLexical * r = new AnalyseurLexical();
 	
-	r->lire("../../tmp/test.txt");
-	cout << r->next() << endl;
-	cout << r->shift()  << endl;
-	cout << r->next() << endl;
+	
 	
 	cout << isId("a4Gfeze8") << endl; //true
 	cout << isId("4Gfeze8") << endl; //false
@@ -89,3 +62,4 @@ int main (){
 	delete r;
 	return 0;
 }
+*/
