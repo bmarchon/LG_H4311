@@ -153,12 +153,7 @@ class Etat11 : public Etat
 class Etat12 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat12();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat12(string nom);
->>>>>>> origin/master
 		virtual ~Etat12();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
@@ -170,12 +165,7 @@ class Etat12 : public Etat
 class Etat13 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat13();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat13(string nom);
->>>>>>> origin/master
 		virtual ~Etat13();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;

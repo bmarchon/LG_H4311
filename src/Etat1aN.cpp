@@ -165,23 +165,23 @@ Etat11::Etat11(string n)
 	//ctor
 }
 //fonction de transition
-bool Etat0::transition(Automate &automate, Symbole *s)
+bool Etat11::transition(Automate &automate, Symbole *s)
 {
 	switch (*s)
 	{
 		case PF: //r13
 			automate.reduction(3);
 			break;
-		case +: //r13
+		case PLUS: //r13
 			automate.reduction(3);
 			break;
-		case -: //r13
+		case MOINS: //r13
 			automate.reduction(3);
 			break;
-		case *: //d22
+		case FOIS: //d22
 			automate.decalage(s, new Etat22);
 			break;
-		case /: //d23
+		case DIVISE: //d23
 			automate.decalage(s, new Etat23);
 			break;
 		case PV: //r13
@@ -200,7 +200,7 @@ Etat12::Etat12(string n)
 	//ctor
 }
 //fonction de transition
-bool Etat0::transition(Automate &automate, Symbole *s)
+bool Etat12::transition(Automate &automate, Symbole *s)
 {
 	switch (*s)
 	{
