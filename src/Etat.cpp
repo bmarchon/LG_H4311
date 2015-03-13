@@ -5,12 +5,17 @@ Etat::Etat(string nom)
 	//ctor
 }
 
+Etat::Etat()
+{
+	//ctor
+}
+
 Etat::~Etat()
 {
 	//dtor
 }
 
-Etat::transition(Automate & automate, Symbole * s)
+bool Etat::transition(Automate & automate, Symbole * s)
 {
-
+	return false;
 }

@@ -26,7 +26,6 @@ PHONY:$(CLEAN)
 $(EXE):$(OBJ)
 	$(ECHO) "Edition des liens"
 	$(EDL) $(EDLFLAGS) $(LIBPATH) -o $(EXE) $(OBJ) $(LIBS)
-	$(ECHO) "coucou"
 	chmod 770 $(OBJ) $(INT) $(REAL)
 	chmod 771 $(EXE)
 

@@ -1,18 +1,23 @@
 #ifndef ETAT1AN_H
 #define ETAT1AN_H
+#include "Etat.h"
+#include "Automate.h"
+#include "Symbole.h"
+#include <string>
 
+using namespace std;
 
-class Etat0 : public Etat
+class Etat0: public Etat
 {
 	public:
-		Etat0();
+		Etat0(string n);
 		virtual ~Etat0();
 		bool transition(Automate & automate, Symbole * s);
 	protected:
 	private:
 };
 //-------------------------------------------
-class Etat1 : public Etat
+class Etat1: public Etat
 {
 	public:
 		Etat1();
@@ -21,7 +26,7 @@ class Etat1 : public Etat
 	private:
 };
 //-------------------------------------------
-class Etat2 : public Etat
+class Etat2: public Etat
 {
 	public:
 		Etat2();
@@ -30,7 +35,7 @@ class Etat2 : public Etat
 	private:
 };
 //-------------------------------------------
-class Etat3 : public Etat
+class Etat3: public Etat
 {
 	public:
 		Etat3();

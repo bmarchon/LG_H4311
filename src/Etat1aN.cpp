@@ -5,7 +5,7 @@ Etat0::Etat0(string n)
 	nom = n;
 }
 
-Etat0::transition(Automate &automate, Symbole *s)
+bool Etat0::transition(Automate &automate, Symbole *s)
 {
 	switch (*s)
 	{
