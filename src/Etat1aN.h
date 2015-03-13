@@ -20,7 +20,7 @@ class Etat0: public Etat
 class Etat1: public Etat
 {
 	public:
-		Etat1();
+		Etat1(string nom);
 		virtual ~Etat1();
 	protected:
 	private:

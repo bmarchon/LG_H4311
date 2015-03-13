@@ -17,5 +17,5 @@ Etat::~Etat()
 
 bool Etat::transition(Automate & automate, Symbole * s)
 {
-	return false;
+	//return false;
 }
