@@ -2,6 +2,7 @@
 #define ETAT_H
 #include <string>
 #include "Automate.h"
+#inlcude "Symbole.h"
 using namespace std;
 
 
