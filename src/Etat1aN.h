@@ -2,16 +2,17 @@
 #define ETAT1AN_H
 
 
-class Etat0
+class Etat0 : public Etat
 {
 	public:
 		Etat0();
 		virtual ~Etat0();
+		bool transition(Automate & automate, Symbole * s);
 	protected:
 	private:
 };
 //-------------------------------------------
-class Etat1
+class Etat1 : public Etat
 {
 	public:
 		Etat1();
@@ -20,7 +21,7 @@ class Etat1
 	private:
 };
 //-------------------------------------------
-class Etat2
+class Etat2 : public Etat
 {
 	public:
 		Etat2();
@@ -29,7 +30,7 @@ class Etat2
 	private:
 };
 //-------------------------------------------
-class Etat3
+class Etat3 : public Etat
 {
 	public:
 		Etat3();
@@ -38,7 +39,7 @@ class Etat3
 	private:
 };
 //-------------------------------------------
-class Etat4
+class Etat4 : public Etat
 {
 	public:
 		Etat4();
@@ -47,7 +48,7 @@ class Etat4
 	private:
 };
 //-------------------------------------------
-class Etat5
+class Etat5 : public Etat
 {
 	public:
 		Etat5();
@@ -56,7 +57,7 @@ class Etat5
 	private:
 };
 //-------------------------------------------
-class Etat6
+class Etat6 : public Etat
 {
 	public:
 		Etat6();
@@ -65,7 +66,7 @@ class Etat6
 	private:
 };
 //-------------------------------------------
-class Etat7
+class Etat7 : public Etat
 {
 	public:
 		Etat7();
@@ -74,7 +75,7 @@ class Etat7
 	private:
 };
 //-------------------------------------------
-class Etat8
+class Etat8 : public Etat
 {
 	public:
 		Etat8();
@@ -83,7 +84,7 @@ class Etat8
 	private:
 };
 //-------------------------------------------
-class Etat9
+class Etat9 : public Etat
 {
 	public:
 		Etat9();
@@ -92,7 +93,7 @@ class Etat9
 	private:
 };
 //-------------------------------------------
-class Etat10
+class Etat10 : public Etat
 {
 	public:
 		Etat10();
@@ -101,7 +102,7 @@ class Etat10
 	private:
 };
 //-------------------------------------------
-class Etat11
+class Etat11 : public Etat
 {
 	public:
 		Etat11();
@@ -110,7 +111,7 @@ class Etat11
 	private:
 };
 //-------------------------------------------
-class Etat12
+class Etat12 : public Etat
 {
 	public:
 		Etat12();
@@ -119,7 +120,7 @@ class Etat12
 	private:
 };
 //-------------------------------------------
-class Etat13
+class Etat13 : public Etat
 {
 	public:
 		Etat13();
@@ -128,7 +129,7 @@ class Etat13
 	private:
 };
 //-------------------------------------------
-class Etat14
+class Etat14 : public Etat
 {
 	public:
 		Etat14();
@@ -137,7 +138,7 @@ class Etat14
 	private:
 };
 //-------------------------------------------
-class Etat15
+class Etat15 : public Etat
 {
 	public:
 		Etat15();
@@ -146,7 +147,7 @@ class Etat15
 	private:
 };
 //-------------------------------------------
-class Etat16
+class Etat16 : public Etat
 {
 	public:
 		Etat16();
@@ -155,7 +156,7 @@ class Etat16
 	private:
 };
 //-------------------------------------------
-class Etat17
+class Etat17 : public Etat
 {
 	public:
 		Etat17();
@@ -164,7 +165,7 @@ class Etat17
 	private:
 };
 //-------------------------------------------
-class Etat18
+class Etat18 : public Etat
 {
 	public:
 		Etat18();
@@ -173,7 +174,7 @@ class Etat18
 	private:
 };
 //-------------------------------------------
-class Etat19
+class Etat19 : public Etat
 {
 	public:
 		Etat19();
@@ -182,7 +183,7 @@ class Etat19
 	private:
 };
 //-------------------------------------------
-class Etat20
+class Etat20 : public Etat
 {
 	public:
 		Etat20();
@@ -191,7 +192,7 @@ class Etat20
 	private:
 };
 //-------------------------------------------
-class Etat21
+class Etat21 : public Etat
 {
 	public:
 		Etat21();
@@ -200,7 +201,7 @@ class Etat21
 	private:
 };
 //-------------------------------------------
-class Etat22
+class Etat22 : public Etat
 {
 	public:
 		Etat22();
@@ -209,7 +210,7 @@ class Etat22
 	private:
 };
 //-------------------------------------------
-class Etat23
+class Etat23 : public Etat
 {
 	public:
 		Etat23();
@@ -218,7 +219,7 @@ class Etat23
 	private:
 };
 //-------------------------------------------
-class Etat24
+class Etat24 : public Etat
 {
 	public:
 		Etat24();
@@ -227,7 +228,7 @@ class Etat24
 	private:
 };
 //-------------------------------------------
-class Etat25
+class Etat25 : public Etat
 {
 	public:
 		Etat25();
@@ -236,7 +237,7 @@ class Etat25
 	private:
 };
 //-------------------------------------------
-class Etat26
+class Etat26 : public Etat
 {
 	public:
 		Etat26();
@@ -245,7 +246,7 @@ class Etat26
 	private:
 };
 //-------------------------------------------
-class Etat27
+class Etat27 : public Etat
 {
 	public:
 		Etat27();
@@ -254,7 +255,7 @@ class Etat27
 	private:
 };
 //-------------------------------------------
-class Etat28
+class Etat28 : public Etat
 {
 	public:
 		Etat28();
@@ -263,7 +264,7 @@ class Etat28
 	private:
 };
 //-------------------------------------------
-class Etat29
+class Etat29 : public Etat
 {
 	public:
 		Etat29();
@@ -272,7 +273,7 @@ class Etat29
 	private:
 };
 //-------------------------------------------
-class Etat30
+class Etat30 : public Etat
 {
 	public:
 		Etat30();
@@ -281,7 +282,7 @@ class Etat30
 	private:
 };
 //-------------------------------------------
-class Etat31
+class Etat31 : public Etat
 {
 	public:
 		Etat31();
@@ -290,7 +291,7 @@ class Etat31
 	private:
 };
 //-------------------------------------------
-class Etat32
+class Etat32 : public Etat
 {
 	public:
 		Etat32();
@@ -299,7 +300,7 @@ class Etat32
 	private:
 };
 //-------------------------------------------
-class Etat33
+class Etat33 : public Etat
 {
 	public:
 		Etat33();
@@ -308,7 +309,7 @@ class Etat33
 	private:
 };
 //-------------------------------------------
-class Etat34
+class Etat34 : public Etat
 {
 	public:
 		Etat34();
@@ -317,7 +318,7 @@ class Etat34
 	private:
 };
 //-------------------------------------------
-class Etat35
+class Etat35 : public Etat
 {
 	public:
 		Etat35();
@@ -326,7 +327,7 @@ class Etat35
 	private:
 };
 //-------------------------------------------
-class Etat36
+class Etat36 : public Etat
 {
 	public:
 		Etat36();
@@ -335,7 +336,7 @@ class Etat36
 	private:
 };
 //-------------------------------------------
-class Etat37
+class Etat37 : public Etat
 {
 	public:
 		Etat37();
@@ -344,7 +345,7 @@ class Etat37
 	private:
 };
 //-------------------------------------------
-class Etat38
+class Etat38 : public Etat
 {
 	public:
 		Etat38();
@@ -353,7 +354,7 @@ class Etat38
 	private:
 };
 //-------------------------------------------
-class Etat39
+class Etat39 : public Etat
 {
 	public:
 		Etat39();
@@ -362,7 +363,7 @@ class Etat39
 	private:
 };
 //-------------------------------------------
-class Etat40
+class Etat40 : public Etat
 {
 	public:
 		Etat40();
@@ -371,7 +372,7 @@ class Etat40
 	private:
 };
 //-------------------------------------------
-class Etat41
+class Etat41 : public Etat
 {
 	public:
 		Etat41();
@@ -380,7 +381,7 @@ class Etat41
 	private:
 };
 //-------------------------------------------
-class Etat42
+class Etat42 : public Etat
 {
 	public:
 		Etat42();
@@ -389,7 +390,7 @@ class Etat42
 	private:
 };
 //-------------------------------------------
-class Etat43
+class Etat43 : public Etat
 {
 	public:
 		Etat43();
@@ -398,7 +399,7 @@ class Etat43
 	private:
 };
 //-------------------------------------------
-class Etat44
+class Etat44 : public Etat
 {
 	public:
 		Etat44();

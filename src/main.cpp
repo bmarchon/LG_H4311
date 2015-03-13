@@ -1,12 +1,7 @@
-#include "main.hpp"
-
-
-void DisplayHelp()
+#include "main.h"
+#include <iostream>
+#include <stdio.h>
+int main( int argc, const char* argv[] )
 {
-	//std::cout << "usage: bla bla";
-}
-
-void DisplayVersion()
-{
-	std::cout << programName << " " << version << std::endl;
+	printf( "\nHello World\n\n" );
 }

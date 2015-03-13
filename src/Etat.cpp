@@ -1,11 +1,12 @@
 #include "Etat.h"
 
-Etat::Etat()
+Etat::Etat(string nom)
 {
-	//ctor
 }
 
 Etat::~Etat()
 {
 	//dtor
 }
+
+Etat::transi
