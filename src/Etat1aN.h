@@ -141,12 +141,7 @@ class Etat10 : public Etat
 class Etat11 : public Etat
 {
 	public:
-<<<<<<< HEAD
-		Etat11();
-		bool Etat0::transition(Automate &automate, Symbole *s)
-=======
 		Etat11(string nom);
->>>>>>> origin/master
 		virtual ~Etat11();
 		bool transition(Automate & automate, Symbole * s);
 		void print() const;
