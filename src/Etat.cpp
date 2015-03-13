@@ -2,6 +2,7 @@
 
 Etat::Etat(string nom)
 {
+	//ctor
 }
 
 Etat::~Etat()
@@ -9,4 +10,7 @@ Etat::~Etat()
 	//dtor
 }
 
-Etat::transi
+Etat::transition(Automate & automate, Symbole * s)
+{
+
+}

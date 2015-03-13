@@ -40,10 +40,10 @@ Etat1::Etat1()
 	switch (*s)
 	{
 		case VAR:
-			automate.reduction(0);
+			automate.decalage(s, new Etat1);
 			break;
 		case CONST:
-			automate.reduction(0);
+			automate.decalage(s, new Etat);
 			break;
 		case ECRIRE:
 			automate.reduction(0);
