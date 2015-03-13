@@ -169,7 +169,32 @@ Etat11::Etat11()
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat0::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case PF: //r13
+			automate.reduction(3);
+			break;
+		case +: //r13
+			automate.reduction(3);
+			break;
+		case -: //r13
+			automate.reduction(3);
+			break;
+		case *: //d22
+			automate.decalage(s, new Etat22);
+			break;
+		case /: //d23
+			automate.decalage(s, new Etat23);
+			break;
+		case PV: //r13
+			automate.reduction(3);
+			break;
+	}
+	return false;
+}
 Etat11::~Etat11()
 {
 	//dtor
@@ -179,7 +204,65 @@ Etat12::Etat12()
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat0::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case VAR: //r16
+			automate.reduction(1);
+			break;
+		case CONST: //r16
+			automate.reduction(1);
+			break;
+		case ECRIRE: //r16
+			automate.reduction(1);
+			break;
+		case LIRE: //r16
+			automate.reduction(1);
+			break;
+		case AFFECT: //r16
+			automate.reduction(1);
+			break;
+		case VAL: //r16
+			automate.reduction(1);
+			break;
+		case ID: //r16
+			automate.reduction(1);
+			break;
+		case PO: //r16
+			automate.reduction(1);
+			break;
+		case PF: //r16
+			automate.reduction(1);
+			break;
+		case +: //r16
+			automate.reduction(1);
+			break;
+		case -: //r16
+			automate.reduction(1);
+			break;
+		case *: //r16
+			automate.reduction(1);
+			break;
+		case /: //r16
+			automate.reduction(1);
+			break;
+		case EG: //r16
+			automate.reduction(1);
+			break;
+		case V: //r16
+			automate.reduction(1);
+			break;
+		case PV: //r16
+			automate.reduction(1);
+			break;
+		case END: //r16
+			automate.reduction(1);
+			break;
+	}
+	return false;
+}
 Etat12::~Etat12()
 {
 	//dtor

@@ -111,6 +111,7 @@ class Etat11 : public Etat
 {
 	public:
 		Etat11();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat11();
 	protected:
 	private:
@@ -120,6 +121,7 @@ class Etat12 : public Etat
 {
 	public:
 		Etat12();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat12();
 	protected:
 	private:
@@ -129,6 +131,7 @@ class Etat13 : public Etat
 {
 	public:
 		Etat13();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat13();
 	protected:
 	private:
@@ -138,6 +141,7 @@ class Etat14 : public Etat
 {
 	public:
 		Etat14();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat14();
 	protected:
 	private:
@@ -147,6 +151,7 @@ class Etat15 : public Etat
 {
 	public:
 		Etat15();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat15();
 	protected:
 	private:
@@ -156,6 +161,7 @@ class Etat16 : public Etat
 {
 	public:
 		Etat16();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat16();
 	protected:
 	private:
@@ -165,6 +171,7 @@ class Etat17 : public Etat
 {
 	public:
 		Etat17();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat17();
 	protected:
 	private:
@@ -174,6 +181,7 @@ class Etat18 : public Etat
 {
 	public:
 		Etat18();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat18();
 	protected:
 	private:
@@ -183,6 +191,7 @@ class Etat19 : public Etat
 {
 	public:
 		Etat19();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat19();
 	protected:
 	private:
@@ -192,6 +201,7 @@ class Etat20 : public Etat
 {
 	public:
 		Etat20();
+		bool Etat0::transition(Automate &automate, Symbole *s)
 		virtual ~Etat20();
 	protected:
 	private:
