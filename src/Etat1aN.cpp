@@ -402,7 +402,23 @@ Etat15::Etat15(string n)
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat15::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case VAL: //d14
+			automate.decalage(s, new Etat14)
+			break;
+		case ID: //d13
+			automate.reduction(1, new Etat13);
+			break;
+		case PO: //d15
+			automate.reduction(1, new Etat15);
+			break;
+	}
+	return false;
+}
 Etat15::~Etat15()
 {
 	//dtor
