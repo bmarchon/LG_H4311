@@ -454,7 +454,65 @@ Etat17::Etat17(string n)
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat17::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case VAR: //r19
+			automate.reduction(3, F);
+			break;
+		case CONST: //r19
+			automate.reduction(3, F);
+			break;
+		case ECRIRE: //r19
+			automate.reduction(3, F);
+			break;
+		case LIRE: //r19
+			automate.reduction(3, F);
+			break;
+		case AFFECT: //r19
+			automate.reduction(3, F);
+			break;
+		case VAL: //r19
+			automate.reduction(3, F);
+			break;
+		case ID: //r19
+			automate.reduction(3, F);
+			break;
+		case PO: //r19
+			automate.reduction(3, F);
+			break;
+		case PF: //r19
+			automate.reduction(3, F);
+			break;
+		case PLUS: //r19
+			automate.reduction(3, F);
+			break;
+		case MOINS: //r19
+			automate.reduction(3, F);
+			break;
+		case FOIS: //r19
+			automate.reduction(3, F);
+			break;
+		case DIVISE: //r19
+			automate.reduction(3, F);
+			break;
+		case EG: //r19
+			automate.reduction(3, F);
+			break;
+		case V: //r19
+			automate.reduction(3, F);
+			break;
+		case PV: //r19
+			automate.reduction(3, F);
+			break;
+		case END: //r19
+			automate.reduction(3, F);
+			break;
+	}
+	return false;
+}
 Etat17::~Etat17()
 {
 	//dtor
