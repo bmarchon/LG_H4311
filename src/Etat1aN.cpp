@@ -437,7 +437,7 @@ bool Etat16::transition(Automate &automate, Symbole *s)
 			automate.decalage(s, new Etat17);
 			break;
 		case PLUS: //d18
-			automate.dacalage(s, new Etat18);
+			automate.decalage(s, new Etat18);
 			break;
 		case MOINS: //d15
 			automate.decalage(s, new Etat15);
@@ -522,7 +522,65 @@ Etat18::Etat18(string n)
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat18::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case VAR: //r18
+			automate.reduction(1, F);
+			break;
+		case CONST: //r18
+			automate.reduction(1, F);
+			break;
+		case ECRIRE: //r18
+			automate.reduction(1, F);
+			break;
+		case LIRE: //r18
+			automate.reduction(1, F);
+			break;
+		case AFFECT: //r18
+			automate.reduction(1, F);
+			break;
+		case VAL: //r18
+			automate.reduction(1, F);
+			break;
+		case ID: //r18
+			automate.reduction(1, F);
+			break;
+		case PO: //r18
+			automate.reduction(1, F);
+			break;
+		case PF: //r18
+			automate.reduction(1, F);
+			break;
+		case PLUS: //r18
+			automate.reduction(1, F);
+			break;
+		case MOINS: //r18
+			automate.reduction(1, F);
+			break;
+		case FOIS: //r18
+			automate.reduction(1, F);
+			break;
+		case DIVISE: //r18
+			automate.reduction(1, F);
+			break;
+		case EG: //r18
+			automate.reduction(1, F);
+			break;
+		case V: //r18
+			automate.reduction(1, F);
+			break;
+		case PV: //r18
+			automate.reduction(1, F);
+			break;
+		case END: //r18
+			automate.reduction(1, F);
+			break;
+	}
+	return false;
+}
 Etat18::~Etat18()
 {
 	//dtor
@@ -532,7 +590,32 @@ Etat19::Etat19(string n)
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat19::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case PF: //r14
+			automate.reduction(1, E);
+			break;
+		case PLUS: //r14
+			automate.reduction(1, E);
+			break;
+		case MOINS: //r14
+			automate.reduction(1, E);
+			break;
+		case FOIS: //d22
+			automate.decalage(s, new Etat22);
+			break;
+		case DIVISE: //d23
+			automate.decalage(s, new Etat23);
+			break;
+		case PV: //r14
+			automate.reduction(1, E);
+			break;
+	}
+	return false;
+}
 Etat19::~Etat19()
 {
 	//dtor
@@ -542,7 +625,23 @@ Etat20::Etat20(string n)
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat20::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case VAL: //d14
+			automate.decalage(s, new Etat14);
+			break;
+		case ID: //d13
+			automate.decalage(s, new Etat13);
+			break;
+		case PO: //d15
+			automate.decalage(s, new Etat15);
+			break;
+	}
+	return false;
+}
 Etat20::~Etat20()
 {
 	//dtor
