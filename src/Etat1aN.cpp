@@ -411,10 +411,10 @@ bool Etat15::transition(Automate &automate, Symbole *s)
 			automate.decalage(s, new Etat14)
 			break;
 		case ID: //d13
-			automate.reduction(1, new Etat13);
+			automate.decalage(s, new Etat13);
 			break;
 		case PO: //d15
-			automate.reduction(1, new Etat15);
+			automate.decalage(s, new Etat15);
 			break;
 	}
 	return false;
@@ -428,7 +428,23 @@ Etat16::Etat16(string n)
 {
 	//ctor
 }
-
+//fonction de transition
+bool Etat16::transition(Automate &automate, Symbole *s)
+{
+	switch (*s)
+	{
+		case PF: //d17
+			automate.decalage(s, new Etat17);
+			break;
+		case PLUS: //d18
+			automate.dacalage(s, new Etat18);
+			break;
+		case MOINS: //d15
+			automate.decalage(s, new Etat15);
+			break;
+	}
+	return false;
+}
 Etat16::~Etat16()
 {
 	//dtor
