@@ -15,8 +15,9 @@ class Reader
 		Reader();
 		virtual ~Reader();
 		void lire(string inputname);
-		char next();
-		char shift();
+		string getFileText();
+		/*char next();
+		char shift();*/
 	private:
 		string filetext;
 };
