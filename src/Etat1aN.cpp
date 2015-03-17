@@ -652,6 +652,64 @@ Etat21::Etat21(string n)
 	//ctor
 }
 
+bool Etat21::transition(Automate &automate, Symbole *s)
+{
+   /* switch (s->getType())
+	{
+        case Symbole::VAR: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::CONST: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::ECRIRE: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::LIRE: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::AFFECT: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::VAL: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::ID: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::PO: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::PF: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::PLUS: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::MOINS: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::FOIS: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::DIVISE: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::EG: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::V: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::PV: //r15
+			automate.reduction(1, T);
+			break;
+        case Symbole::END: //r15
+			automate.reduction(1, T);
+			break;
+    }*/
+	return false;
+}
 Etat21::~Etat21()
 {
 	//dtor
@@ -661,7 +719,64 @@ Etat22::Etat22(string n)
 {
 	//ctor
 }
-
+bool Etat22::transition(Automate &automate, Symbole *s)
+{
+   /* switch (s->getType())
+	{
+        case Symbole::VAR: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::CONST: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::ECRIRE: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::LIRE: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::AFFECT: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::VAL: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::ID: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::PO: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::PF: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::PLUS: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::MOINS: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::FOIS: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::DIVISE: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::EG: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::V: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::PV: //r22
+			automate.reduction(1, M);
+			break;
+        case Symbole::END: //r22
+			automate.reduction(1, M);
+			break;
+    }*/
+	return false;
+}
 Etat22::~Etat22()
 {
 	//dtor
@@ -671,6 +786,64 @@ Etat23::Etat23(string n)
 {
 	//ctor
 }
+bool Etat23::transition(Automate &automate, Symbole *s)
+{
+   /* switch (s->getType())
+	{
+        case Symbole::VAR: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::CONST: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::ECRIRE: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::LIRE: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::AFFECT: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::VAL: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::ID: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::PO: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::PF: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::PLUS: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::MOINS: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::FOIS: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::DIVISE: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::EG: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::V: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::PV: //r23
+			automate.reduction(1, M);
+			break;
+        case Symbole::END: //r23
+			automate.reduction(1, M);
+			break;
+    }*/
+	return false;
+}
 
 Etat23::~Etat23()
 {
@@ -679,7 +852,18 @@ Etat23::~Etat23()
 //---------------------------------------------
 Etat24::Etat24(string n)
 {
-	//ctor
+	//ctor	
+}
+bool Etat24::transition(Automate &automate, Symbole *s)
+{
+   /* 
+    switch (s->getType())
+	{
+	case Symbole::VAL: //d25
+			automate.decalage(s, new Etat25());
+			}
+	*/
+	return false;
 }
 
 Etat24::~Etat24()
@@ -692,6 +876,18 @@ Etat25::Etat25(string n)
 	//ctor
 }
 
+bool Etat25::transition(Automate &automate, Symbole *s)
+{
+   /* 
+    switch (s->getType())
+	{
+	case Symbole::PV: //d26
+			automate.decalage(s, new Etat26());
+			}
+	*/
+	return false;
+}
+
 Etat25::~Etat25()
 {
 	//dtor
@@ -700,6 +896,65 @@ Etat25::~Etat25()
 Etat26::Etat26(string n)
 {
 	//ctor
+}
+
+bool Etat26::transition(Automate &automate, Symbole *s)
+{
+   /* switch (s->getType())
+	{
+        case Symbole::VAR: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::CONST: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::ECRIRE: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::LIRE: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::AFFECT: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::VAL: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::ID: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::PO: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::PF: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::PLUS: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::MOINS: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::FOIS: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::DIVISE: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::EG: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::V: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::PV: //r11
+			automate.reduction(1, I);
+			break;
+        case Symbole::END: //r11
+			automate.reduction(1, I);
+			break;
+    }*/
+	return false;
 }
 
 Etat26::~Etat26()
@@ -712,6 +967,18 @@ Etat27::Etat27(string n)
 	//ctor
 }
 
+bool Etat27::transition(Automate &automate, Symbole *s)
+{
+   /* 
+    switch (s->getType())
+	{
+	case Symbole::PV: //d28
+			automate.decalage(s, new Etat28());
+			}
+	*/
+	return false;
+}
+
 Etat27::~Etat27()
 {
 	//dtor
@@ -720,6 +987,65 @@ Etat27::~Etat27()
 Etat28::Etat28(string n)
 {
 	//ctor
+}
+
+bool Etat28::transition(Automate &automate, Symbole *s)
+{
+   /* switch (s->getType())
+	{
+        case Symbole::VAR: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::CONST: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::ECRIRE: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::LIRE: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::AFFECT: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::VAL: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::ID: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::PO: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::PF: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::PLUS: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::MOINS: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::FOIS: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::DIVISE: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::EG: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::V: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::PV: //r10
+			automate.reduction(1, I);
+			break;
+        case Symbole::END: //r10
+			automate.reduction(1, I);
+			break;
+    }*/
+	return false;
 }
 
 Etat28::~Etat28()
@@ -736,11 +1062,83 @@ Etat29::~Etat29()
 {
 	//dtor
 }
+bool Etat29::transition(Automate &automate, Symbole *s)
+{
+   /* switch (s->getType())
+	{
+        case Symbole::VAR: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::CONST: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::ECRIRE: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::LIRE: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::AFFECT: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::VAL: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::ID: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::PO: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::PF: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::PLUS: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::MOINS: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::FOIS: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::DIVISE: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::EG: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::V: //r6
+			automate.reduction(1, LV);
+			break;
+        case Symbole::PV: //r16
+			automate.reduction(1, LV);
+			break;
+    }*/
+	return false;
+}
+
 //---------------------------------------------
 Etat30::Etat30(string n)
 {
 	//ctor
 }
+
+bool Etat30::transition(Automate &automate, Symbole *s)
+{
+   /* 
+    switch (s->getType())
+	{
+	case Symbole::V: //d32
+			automate.decalage(s, new Etat32());
+			}
+	case Symbole::PV: //d31
+			automate.decalage(s, new Etat31());
+			}
+	*/
+	return false;
+}
+
 
 Etat30::~Etat30()
 {
@@ -751,6 +1149,63 @@ Etat31::Etat31(string n)
 {
 	//ctor
 }
+
+bool Etat31::transition(Automate &automate, Symbole *s)
+{
+   /* switch (s->getType())
+	{
+        case Symbole::VAR: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::CONST: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::ECRIRE: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::LIRE: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::AFFECT: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::VAL: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::ID: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::PO: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::PF: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::PLUS: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::MOINS: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::FOIS: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::DIVISE: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::EG: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::V: //r2
+			automate.reduction(1, D);
+			break;
+        case Symbole::PV: //r16
+			automate.reduction(1, D);
+			break;
+    }*/
+	return false;
+}
+
 
 Etat31::~Etat31()
 {
