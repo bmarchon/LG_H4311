@@ -95,7 +95,7 @@ TODO : build symbols with their real value in getSymbole!
 
 */
 
-
+/*
 // pour tester le AnalyseurLexical  
 int main ()
 {
@@ -110,6 +110,7 @@ int main ()
 	delete r;
 	return 0;
 }
+*/
 
 /*
 char Reader::next() {

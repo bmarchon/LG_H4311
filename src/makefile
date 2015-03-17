@@ -1,9 +1,9 @@
 COMP=g++
-CPPFLAGS=# -DMAP
+CPPFLAGS=-std=c++11 # -DMAP
 EXE=lut
 CLEAN=clean
 CLEANO=cleano
-NOM=main Reader Symbole Etat Simple Variable Constante Programme ListeDeclaration ListeInstruction Instruction Declaration Affect Lire Ecrire DecVariable DecConstante Etat1aN
+NOM=main Reader Symbole Etat Simple Variable Constante Programme ListeDeclaration ListeInstruction Instruction Declaration Affect Lire Ecrire DecVariable DecConstante Etat1aN AnalyseurLexical
 INT=$(addsuffix .h, $(NOM))
 REAL=$(addsuffix .cpp, $(NOM))
 OBJ=$(addsuffix .o, $(NOM))
@@ -13,7 +13,7 @@ RM=rm
 ECHO=@echo
 EDLFLAGS=
 RMFLAGS=-f
-LIBS=#libs/libtp.a -lncurses -ltcl
+LIBS=#libs/libtp.a -lncurses -ltcl -boost_regex
 LIBPATH=#-L
 INCPATH=#-I libs/
  
