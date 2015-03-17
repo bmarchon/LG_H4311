@@ -10,8 +10,8 @@ Symbole::~Symbole()
 	//dtor
 }
 
-Symbole::Type Symbole::getClasse();
+Symbole::Type Symbole::getType()
 {
-    return 2;
+    return type;
 }
 
