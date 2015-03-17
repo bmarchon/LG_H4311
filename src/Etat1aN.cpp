@@ -204,8 +204,8 @@ bool Etat12::transition(Automate &automate, Symbole *s)
 {
 	switch (*s)
 	{
-		case VAR: //r16
-			automate.reduction(1, T);
+                case VAR: //r16
+                        automate.reduction(1, T);
 			break;
 		case CONST: //r16
 			automate.reduction(1, T);
