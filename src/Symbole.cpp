@@ -9,3 +9,9 @@ Symbole::~Symbole()
 {
 	//dtor
 }
+
+Symbole::Type Symbole::getClasse();
+{
+    return 2;
+}
+
