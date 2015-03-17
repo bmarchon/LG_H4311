@@ -1,13 +1,16 @@
 #include "Symbole.h"
 
-
+Symbole::Symbole(Symboles type)
+{
+	this->type = type;
+}
 
 Symbole::~Symbole()
 {
 	//dtor
 }
 
-Symbole::Type Symbole::getType()
+Symboles Symbole::getType()
 {
     return type;
 }
