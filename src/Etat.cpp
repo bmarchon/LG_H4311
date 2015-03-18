@@ -1,21 +1,24 @@
 #include "Etat.h"
 
-Etat::Etat(string nom)
-{
-	//ctor
-}
 
 Etat::Etat()
 {
-	//ctor
+    //ctor
 }
+
+Etat::Etat(string nom)
+{
+    this->nom = nom;
+}
+
+
 
 Etat::~Etat()
 {
 	//dtor
 }
 
-bool Etat::transition(Automate & automate, Symbole * s)
+/*bool Etat::transition(Automate & automate, Symbole * s)
 {
 	//return false;
-}
+}*/

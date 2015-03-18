@@ -5,6 +5,7 @@
 #include <iostream>     // std::cout
 #include <fstream>      // std::ifstream
 #include <regex>
+#include <boost/regex.hpp>
 
 using namespace std;
 
@@ -14,7 +15,9 @@ class Reader
 		Reader();
 		virtual ~Reader();
 		void lire(string inputname);
-		string getFileText();
+		char next();
+		char shift();
+        string getFileText();
 	private:
 		string filetext;
 };

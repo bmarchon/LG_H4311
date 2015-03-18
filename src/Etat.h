@@ -1,17 +1,17 @@
 #ifndef ETAT_H
 #define ETAT_H
 #include <string>
-#include "Automate.h"
+
 #include "Symbole.h"
 using namespace std;
-
+class Automate;
 
 class Etat
 {
 	protected:
 		string nom;
 	public:
-		Etat();
+        Etat();
 		Etat(string nom);
 		virtual ~Etat();
 		void print() const;

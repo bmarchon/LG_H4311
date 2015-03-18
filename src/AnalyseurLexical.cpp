@@ -64,7 +64,7 @@ Symbole * AnalyseurLexical::getSymbole()
 
 	//skip blanks at the beginning if any
 	boost::match_results<string::const_iterator> results;
-	while (boost::regex_search(text, results, boost::regex ("^ "))) {
+    while (boost::regex_search(text, results, boost::regex ("^ "))) {
 		text.erase(0, 1);
 	}
 
@@ -75,7 +75,7 @@ Symbole * AnalyseurLexical::getSymbole()
 		return new Symbole(END);
 	}
 
-	for( auto regPair : regexes)
+    for( auto regPair : regexes)
 	{
 
 		if(boost::regex_search(text, results, regPair.second)) 
