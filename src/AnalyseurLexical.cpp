@@ -20,7 +20,7 @@ static pair<Symboles, boost::regex>regexes [] =
 	make_pair(EG, boost::regex ("^=") ),
 	make_pair(V, boost::regex ("^,") ),
 	make_pair(AFFECT, boost::regex("^:=")),
-	make_pair(ID, boost::regex ("^[a-zA-Z][a-zA-Z0-9]*") )
+	make_pair(ID, boost::regex ("^[a-zA-Z][a-zA-Z0-9]*") ) //has to be at the end (otherwise can be ambiguous with key words: lire, ecrire, var, const)
 	
 } ;
 
@@ -48,11 +48,9 @@ Symbole * AnalyseurLexical::next()
 	return currentSym;
 }
 
-Symbole  * AnalyseurLexical::shift()
+void AnalyseurLexical::shift()
 {
-	Symbole * current = currentSym;
 	currentSym = getSymbole();
-	return current;
 }
 
 
@@ -64,10 +62,6 @@ Symbole * AnalyseurLexical::getSymbole()
 	{
 		return currentSym;
 	}
-
-	cout << text << endl;
-
-	
 
 	//skip blanks at the beginning if any
 	boost::match_results<string::const_iterator> results;
@@ -89,10 +83,10 @@ Symbole * AnalyseurLexical::getSymbole()
 		{
 			//regex matches
 			string match = string(results[0]);
+			//remove matching part from stream
 			text.erase(0,match.size());
 
 			Symbole * res;
-			//cout << match << endl;
 			if(regPair.first == VAL)
 			{
 				res = new Val(atof(match.c_str()));
@@ -116,21 +110,39 @@ Symbole * AnalyseurLexical::getSymbole()
 
 
 
-
+/*
 // pour tester le AnalyseurLexical  
 int main ()
 {
 	
 	AnalyseurLexical * r = new AnalyseurLexical("../tmp/test.txt");
-
-	for(int i = 0 ; i < 20 ; i++)
+	
+	while(r->next() != NULL && r->next()->getType() != END)
 	{
-		if(r->shift() != NULL)
+		Symbole * s = r->next();
+
+		if(s != NULL)
 		{
-			cout << r->shift()->afficherType() << endl;
+			cout << s->afficherType();
+			Symboles type  = s->getType();
+			if(type == VAL)
+			{
+				Val* val = (Val*) s;
+				cout << " = " << val->valeur();
+			}
+			else if(type == ID)
+			{
+				Identifiant* id = (Identifiant*) s;
+				cout << " = " << id->valeur();
+			}
+			cout << endl;
+
+			r->shift();
 		}
-	}
+		
+	}	
 
 	delete r;
 	return 0;
 }
+*/
