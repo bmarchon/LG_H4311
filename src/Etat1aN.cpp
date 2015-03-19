@@ -877,55 +877,55 @@ bool Etat21::transition(Automate &automate, Symbole *s)
    /* switch (s->getType())
     {
         case Symbole::VAR: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::CONST: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::ECRIRE: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::LIRE: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::AFFECT: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::VAL: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::ID: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::PO: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::PF: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::PLUS: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::MOINS: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::FOIS: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::DIVISE: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::EG: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::V: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::PV: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
         case Symbole::END: //r15
-            automate.reduction(1, T);
+            automate.reduction(3, T);
             break;
     }*/
     return false;
