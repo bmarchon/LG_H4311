@@ -1,7 +1,10 @@
 #include "main.h"
 #include <iostream>
 #include <stdio.h>
+
+
 int main( int argc, const char* argv[] )
 {
-	printf( "\nHello World\n\n" );
+	cout << programName << " " << version << endl;
+	return 0;
 }

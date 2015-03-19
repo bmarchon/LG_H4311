@@ -1,11 +1,11 @@
 #ifndef DECLARATION_H
 #define DECLARATION_H
+#include "Symbole.h"
 
-
-class Declaration
+class Declaration : public Symbole
 {
 	public:
-		Declaration();
+        Declaration(): Symbole(D){}
 		virtual ~Declaration();
 	protected:
 	private:
