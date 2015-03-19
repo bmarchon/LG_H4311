@@ -339,7 +339,19 @@ Etat10::~Etat10() {}
 // fonction de transition Etat 10
 bool Etat10::transition(Automate &automate, Symbole *s)
 {
-    return false;
+    switch (s->getType())
+	{
+        case  VAL:
+            automate.decalage(s, new Etat14("Etat 14"));
+			break;
+        case  ID:
+            automate.decalage(s, new Etat13("Etat 13"));
+			break;
+        case  PO:
+            automate.decalage(s, new Etat15("Etat 15"));
+			break;
+	}
+	return false;
 }
 
 //---------------------------------------------
@@ -616,7 +628,7 @@ bool Etat15::transition(Automate &automate, Symbole *s)
 			automate.decalage(s, new Etat13("Etat 14"));
 			break;
         case  PO: //d15
-			automate.decalage(s, new Etat15);
+			automate.decalage(s, new Etat15("Etat 15"));
 			break;
     }*/
 	return false;
@@ -639,13 +651,13 @@ bool Etat16::transition(Automate &automate, Symbole *s)
     /*switch (s->getType())
 	{
         case  PF: //d17
-			automate.decalage(s, new Etat17);
+			automate.decalage(s, new Etat17("Etat 17"));
 			break;
         case  PLUS: //d18
-			automate.decalage(s, new Etat18);
+			automate.decalage(s, new Etat18("Etat 18"));
 			break;
-        case  MOINS: //d15
-			automate.decalage(s, new Etat15);
+        case  MOINS: //d43
+			automate.decalage(s, new Etat43("Etat 43"));
 			break;
     }*/
 	return false;
@@ -819,10 +831,10 @@ bool Etat19::transition(Automate &automate, Symbole *s)
 			automate.reduction(1, E);
 			break;
         case  FOIS: //d22
-			automate.decalage(s, new Etat22);
+			automate.decalage(s, new Etat22("Etat 22"));
 			break;
         case  DIVISE: //d23
-			automate.decalage(s, new Etat23);
+			automate.decalage(s, new Etat23("Etat 23"));
 			break;
         case  PV: //r14
 			automate.reduction(1, E);
@@ -1090,9 +1102,9 @@ bool Etat24::transition(Automate &automate, Symbole *s)
    /*
     switch (s->getType())
     {
-    case Symbole::VAL: //d25
-            automate.decalage(s, new Etat25());
-            }
+		case VAL: //d25
+            automate.decalage(s, new Etat25("Etat 25"));
+    }
     */
     return false;
 }
@@ -1114,9 +1126,9 @@ bool Etat25::transition(Automate &automate, Symbole *s)
    /*
     switch (s->getType())
     {
-    case Symbole::PV: //d26
+		case PV: //d26
             automate.decalage(s, new Etat26());
-            }
+    }
     */
     return false;
 }
