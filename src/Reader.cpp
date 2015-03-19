@@ -65,7 +65,7 @@ bool isNum (string input){
 	return boost::regex_match(input, results, e);
 }
 
-
+/*
 // pour tester le reader  
 int main (){
 	Reader * r = new Reader();
@@ -94,3 +94,4 @@ int main (){
 	delete r;
 	return 0;
 }
+*/

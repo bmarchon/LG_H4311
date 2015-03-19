@@ -3,7 +3,9 @@
 
 #include <string>
 
-const std::string programName = "Interpreter lutin";
-const char* version = "1.0";
+using namespace std;
+
+const string programName = "Interpreter lutin";
+const string version = "1.0";
 
 #endif // MAIN_H

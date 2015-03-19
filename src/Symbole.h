@@ -21,9 +21,6 @@ class Symbole
         Symboles getType();
 
 	protected:
-        //int ident;
-
-	private:
         Symboles type;
 };
 
