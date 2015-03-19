@@ -4,11 +4,11 @@
 //regexes for all terminal symbols
 static pair<Symboles, boost::regex>regexes [] =
 {
+	
 	make_pair(VAR, boost::regex ("^var ") ),
 	make_pair(CONST, boost::regex ("^const ") ),
 	make_pair(VAL, boost::regex ("^[0-9]+(\\.[0-9]+)?") ),
 	make_pair(ECRIRE, boost::regex ("^ecrire ") ),
-	make_pair(ID, boost::regex ("^[a-zA-Z][a-zA-Z0-9]*") ),
 	make_pair(LIRE, boost::regex ("^lire ") ),
 	make_pair(PF, boost::regex ("^\\)") ),
 	make_pair(PLUS, boost::regex ("^\\+") ),
@@ -18,7 +18,10 @@ static pair<Symboles, boost::regex>regexes [] =
 	make_pair(PV, boost::regex ("^;") ),
 	make_pair(PO, boost::regex ("^\\(") ),
 	make_pair(EG, boost::regex ("^=") ),
-	make_pair(V, boost::regex ("^,") )
+	make_pair(V, boost::regex ("^,") ),
+	make_pair(AFFECT, boost::regex("^:=")),
+	make_pair(ID, boost::regex ("^[a-zA-Z][a-zA-Z0-9]*") )
+	
 } ;
 
 
@@ -62,6 +65,10 @@ Symbole * AnalyseurLexical::getSymbole()
 		return currentSym;
 	}
 
+	cout << text << endl;
+
+	
+
 	//skip blanks at the beginning if any
 	boost::match_results<string::const_iterator> results;
     while (boost::regex_search(text, results, boost::regex ("^ "))) {
@@ -70,9 +77,9 @@ Symbole * AnalyseurLexical::getSymbole()
 
 	if(text.size() == 0)
 	{
-		//end of file reached
-		endReached = true;
-		return new Symbole(END);
+			//end of file reached
+			endReached = true;
+			return new Symbole(END);
 	}
 
     for( auto regPair : regexes)
@@ -81,21 +88,34 @@ Symbole * AnalyseurLexical::getSymbole()
 		if(boost::regex_search(text, results, regPair.second)) 
 		{
 			//regex matches
-			text.erase(0,string(results[0]).size());
-			return new Symbole(regPair.first);
+			string match = string(results[0]);
+			text.erase(0,match.size());
+
+			Symbole * res;
+			if(regPair.first == VAL)
+			{
+				res = new Val(atof(match.c_str()));
+			}
+			else if(regPair.first == ID)
+			{
+				res = new Identifiant(match);
+			}
+			else
+			{
+				res = new SymboleSimple(regPair.first);
+			}
+
+			return res;
 		}
 	}
+		cout << "erreur lexicale au caractère: " << text << endl;
 		return NULL; //error
 }
 
 
-/*
-TODO : build symbols with their real value in getSymbole!
 
 
-*/
 
-/*
 // pour tester le AnalyseurLexical  
 int main ()
 {
@@ -104,27 +124,12 @@ int main ()
 
 	for(int i = 0 ; i < 20 ; i++)
 	{
-		cout << r->shift()->getType() << endl;
+		if(r->shift() != NULL)
+		{
+			cout << r->shift()->afficherType() << endl;
+		}
 	}
 
 	delete r;
 	return 0;
 }
-*/
-
-/*
-char Reader::next() {
-	if (filetext.size() != 0)
-		return filetext.at(0);
-	else
-		return '$';
-}
-
-char Reader::shift() {
-	char res = next();
-	
-	if (filetext.size() != 0)
-		filetext.erase (0,1);
-	return res;
-}*/
-

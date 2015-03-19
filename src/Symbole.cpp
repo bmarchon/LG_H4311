@@ -15,3 +15,7 @@ Symboles Symbole::getType()
     return type;
 }
 
+string Symbole::afficherType()
+{
+	return types[this->type];
+}

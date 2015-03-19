@@ -7,9 +7,14 @@
 #include <list>
 
 #include "Symbole.h"
+#include "SymboleSimple.h"
+#include "Identifiant.h"
+#include "Val.h"
 #include "Reader.h"
 
 using namespace std;
+
+
 
 class AnalyseurLexical
 {
