@@ -8,7 +8,7 @@ Etat::Etat()
 
 Etat::Etat(string nom)
 {
-    this->nom = nom;
+    //this->nom = nom;
 }
 
 
@@ -18,7 +18,7 @@ Etat::~Etat()
 	//dtor
 }
 
-/*bool Etat::transition(Automate & automate, Symbole * s)
+bool Etat::transition(Automate & automate, Symbole * s)
 {
 	//return false;
-}*/
+}
