@@ -1195,144 +1195,179 @@ Etat30::~Etat30()
 //---------------------------------------------
 Etat31::Etat31(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat31::~Etat31()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat31::transition(Automate &automate, Symbole *s)
-{
-
+{	//r2
+    automate.reduction(4, new Declaration);
+    return true;
 }
 
 //---------------------------------------------
 Etat32::Etat32(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat32::~Etat32()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat32::transition(Automate &automate, Symbole *s)
 {
-
+    switch(s->getType()){
+        case  ID: //d33
+            automate.decalage(s, new Etat33("E33"));
+            automate.getAnalyseurLexical()->next();
+    }
+    return false;
 }
 //---------------------------------------------
 Etat33::Etat33(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat33::~Etat33()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat33::transition(Automate &automate, Symbole *s)
-{
-
+{	//r5
+    //automate.reduction(3, LV);
+    return true;
 }
 
 //---------------------------------------------
 Etat34::Etat34(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat34::~Etat34()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat34::transition(Automate &automate, Symbole *s)
 {
-
+    switch(s->getType()){
+        case  V: //d36
+            automate.decalage(s, new Etat36("E36"));
+            automate.getAnalyseurLexical()->next();
+             break;
+        case PV: //d35
+            automate.decalage(s, new Etat35("E35"));
+            automate.getAnalyseurLexical()->next();
+            break;
+    }
+    return false;
 }
 //---------------------------------------------
 Etat35::Etat35(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat35::~Etat35()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat35::transition(Automate &automate, Symbole *s)
-{
-
+{	//r3
+    automate.reduction(4, new Declaration);
+    return true;
 }
 
 //---------------------------------------------
 Etat36::Etat36(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat36::~Etat36()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat36::transition(Automate &automate, Symbole *s)
 {
-
+    switch(s->getType()){
+        case  ID: //d37
+            automate.decalage(s, new Etat37("E37"));
+            automate.getAnalyseurLexical()->next();
+    }
+    return false;
 }
 
 //---------------------------------------------
 Etat37::Etat37(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat37::~Etat37()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat37::transition(Automate &automate, Symbole *s)
 {
-
+    switch(s->getType()){
+        case  EG: //d38
+            automate.decalage(s, new Etat38("E38"));
+            automate.getAnalyseurLexical()->next();
+    }
+    return false;
 }
 
 //---------------------------------------------
 Etat38::Etat38(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat38::~Etat38()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat38::transition(Automate &automate, Symbole *s)
 {
-
+    switch(s->getType()){
+        case  VAL: //d39
+            automate.decalage(s, new Etat39("E39"));
+            automate.getAnalyseurLexical()->next();
+    }
+    return false;
 }
 
 //---------------------------------------------
 Etat39::Etat39(string n)
 {
-	//ctor
+    //ctor
 }
 
 Etat39::~Etat39()
 {
-	//dtor
+    //dtor
 }
 
 bool Etat39::transition(Automate &automate, Symbole *s)
-{
-    return false;
+{	//r7
+    //automate.reduction(5, LC);
+    return true;
 }
+
 
 //---------------------------------------------
 Etat40::Etat40(string n)
