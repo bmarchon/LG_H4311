@@ -1,223 +1,359 @@
 #include "Etat1aN.h"
 #include "Declaration.h"
+
+// ctor Etat0
 Etat0::Etat0(string n)
 {
 	nom = n;
 }
 
+// dtor Etat 0
+Etat0::~Etat0() {}
+
+// fonction de transition Etat 0
 bool Etat0::transition(Automate &automate, Symbole *s)
 {
     switch (s->getType())
 	{
         case  VAR:
-            automate.reduction(0, s);
+            automate.reduction(0, D);
 			break;
         case  CONST:
-            automate.reduction(0, s);
+            automate.reduction(0, D);
 			break;
         case  ECRIRE:
-            automate.reduction(0, s);
+            automate.reduction(0, D);
 			break;
         case  LIRE:
-            automate.reduction(0, s);
+            automate.reduction(0, D);
 			break;
         case  ID:
-            automate.reduction(0, s);
+            automate.reduction(0, D);
 			break;
         case  END:
-			return true;
+            automate.reduction(0, D);
 	}
 	return false;
 }
 
-Etat0::~Etat0()
-{
-	//dtor
-}
 //---------------------------------------------
+
+// ctor Etat 1
 Etat1::Etat1(string n)
 {
 	nom = n;
 }
 
-Etat1::~Etat1()
-{
-	//dtor
-}
+// dtor Etat 1
+Etat1::~Etat1() {}
 
+// fonction de transition Etat 1
 bool Etat1::transition(Automate &automate, Symbole *s)
 {
     switch (s->getType())
 	{
         case  VAR:
-			automate.decalage(s, new Etat4("etat4"));
+			automate.decalage(s, new Etat4("Etat 4"));
 			break;
         case  CONST:
-			automate.decalage(s, new Etat3("etat3"));
+			automate.decalage(s, new Etat3("Etat 3"));
 			break;
         case  ECRIRE:
-            automate.reduction(0, s);
+            automate.reduction(0, I);
 			break;
         case  LIRE:
-            automate.reduction(0, s);
+            automate.reduction(0, I);
 			break;
         case  ID:
-            automate.reduction(0, s);
+            automate.reduction(0, I);
+			break;
+        case  END:
+            automate.reduction(0, I);
+	}
+	return false;
+}
+
+//---------------------------------------------
+
+// ctor Etat 2
+Etat2::Etat2(string n)
+{
+	nom = n;
+}
+
+// dtor Etat 2
+Etat2::~Etat2() {}
+
+// fonction de transition Etat 2
+bool Etat2::transition(Automate &automate, Symbole *s)
+{
+    switch (s->getType())
+	{
+        case  ECRIRE:
+            automate.decalage(s, new Etat5("Etat 5"));
+			break;
+        case  LIRE:
+            automate.decalage(s, new Etat6("Etat 6"));
+			break;
+        case  ID:
+            automate.decalage(s, new Etat7("Etat 7"));
 			break;
         case  END:
 			return true;
 	}
 	return false;
 }
-//---------------------------------------------
-Etat2::Etat2(string n)
-{
-	//ctor
-}
-
-Etat2::~Etat2()
-{
-	//dtor
-}
-
-bool Etat2::transition(Automate &automate, Symbole *s)
-{
-    return false;
-}
 
 //---------------------------------------------
+
+// ctor Etat 3
 Etat3::Etat3(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat3::~Etat3()
-{
-	//dtor
-}
+// dtor Etat 3
+Etat3::~Etat3() {}
+
+// fonction de transition Etat 3
 bool Etat3::transition(Automate &automate, Symbole *s)
 {
-    return false;
+    switch (s->getType())
+	{
+        case  ID:
+            automate.decalage(s, new Etat40("Etat 40"));
+			break;
+	}
+	return false;
 }
 
 //---------------------------------------------
+
+// ctor Etat 4
 Etat4::Etat4(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat4::~Etat4()
-{
-	//dtor
-}
+// dtor Etat 4
+Etat4::~Etat4() {}
 
+// fonction de transition Etat 4
 bool Etat4::transition(Automate &automate, Symbole *s)
 {
-    return false;
+    switch (s->getType())
+	{
+        case  ID:
+            automate.decalage(s, new Etat29("Etat 29"));
+			break;
+	}
+	return false;
 }
 
 //---------------------------------------------
+
+// ctor Etat 5
 Etat5::Etat5(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat5::~Etat5()
-{
-	//dtor
-}
+// dtor Etat 5
+Etat5::~Etat5() {}
 
+// fonction de transition Etat 5
 bool Etat5::transition(Automate &automate, Symbole *s)
 {
-    return false;
+    switch (s->getType())
+	{
+        case  VAL:
+            automate.decalage(s, new Etat14("Etat 14"));
+			break;
+        case  ID:
+            automate.decalage(s, new Etat13("Etat 13"));
+			break;
+        case  PO:
+            automate.decalage(s, new Etat15("Etat 15"));
+			break;
+	}
+	return false;
 }
 
 //---------------------------------------------
+
+// ctor Etat 6
 Etat6::Etat6(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat6::~Etat6()
-{
-	//dtor
-}
+// dtor Etat 6
+Etat6::~Etat6() {}
 
+// fonction de transition Etat 6
 bool Etat6::transition(Automate &automate, Symbole *s)
 {
-    return false;
+    switch (s->getType())
+	{
+        case  ID:
+            automate.decalage(s, new Etat27("Etat 27"));
+			break;
+	}
+	return false;
 }
 
 //---------------------------------------------
+
+// ctor Etat 7
 Etat7::Etat7(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat7::~Etat7()
-{
-	//dtor
-}
+// dtor Etat 7
+Etat7::~Etat7() {}
 
+// fonction de transition Etat 7
 bool Etat7::transition(Automate &automate, Symbole *s)
 {
-    return false;
+    switch (s->getType())
+	{
+        case  AFFECT:
+            automate.decalage(s, new Etat24("Etat 24"));
+			break;
+	}
+	return false;
 }
 
-
 //---------------------------------------------
+
+// ctor Etat 8
 Etat8::Etat8(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat8::~Etat8()
-{
-	//dtor
-}
+// dtor Etat 8
+Etat8::~Etat8() {}
 
+// fonction de transition Etat 8
 bool Etat8::transition(Automate &automate, Symbole *s)
 {
-    return false;
+    switch (s->getType())
+	{
+        case  PLUS:
+            automate.decalage(s, new Etat18("Etat 18"));
+			break;
+        case  MOINS:
+            automate.decalage(s, new Etat43("Etat 43"));
+			break;
+        case  PV:
+            automate.decalage(s, new Etat9("Etat 9"));
+			break;
+	}
+	return false;
 }
+
 //---------------------------------------------
+
+// ctor Etat 9
 Etat9::Etat9(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat9::~Etat9()
-{
-	//dtor
-}
+// dtor Etat 9
+Etat9::~Etat9() {}
 
+// fonction de transition Etat 9
 bool Etat9::transition(Automate &automate, Symbole *s)
 {
-    return false;
+   switch (s->getType())
+	{
+        case  VAR:
+            automate.reduction(4, I);
+			break;
+        case  CONST:
+			automate.reduction(4, I);
+			break;
+        case  ECRIRE:
+			automate.reduction(4, I);
+			break;
+        case  LIRE: 
+			automate.reduction(4, I);
+			break;
+        case  AFFECT: 
+			automate.reduction(4, I);
+			break;
+        case  VAL: 
+			automate.reduction(4, I);
+			break;
+        case  ID: 
+			automate.reduction(4, I);
+			break;
+        case  PO: 
+			automate.reduction(4, I);
+			break;
+        case  PF: 
+			automate.reduction(4, I);
+			break;
+        case  PLUS: 
+			automate.reduction(4, I);
+			break;
+        case  MOINS: 
+			automate.reduction(4, I);
+			break;
+        case  FOIS: 
+			automate.reduction(4, I);
+			break;
+        case  DIVISE: 
+			automate.reduction(4, I);
+			break;
+        case  EG: 
+			automate.reduction(4, I);
+			break;
+        case  V: 
+			automate.reduction(4, I);
+			break;
+        case  PV: 
+			automate.reduction(4, I);
+			break;
+        case  END: 
+			automate.reduction(4, I);
+			break;
+    }
+	return false;
 }
 
 //---------------------------------------------
+
+// ctor Etat 10
 Etat10::Etat10(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat10::~Etat10()
-{
-	//dtor
-}
+// dtor Etat 10
+Etat10::~Etat10() {}
 
+// fonction de transition Etat 10
 bool Etat10::transition(Automate &automate, Symbole *s)
 {
     return false;
 }
 
 //---------------------------------------------
+
+// ctor Etat 11
 Etat11::Etat11(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 11
+Etat11::~Etat11() {}
+
+// fonction de transition Etat 11
 bool Etat11::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -232,10 +368,10 @@ bool Etat11::transition(Automate &automate, Symbole *s)
 			automate.reduction(3, E);
 			break;
         case  FOIS: //d22
-			automate.decalage(s, new Etat22);
+			automate.decalage(s, new Etat22("Etat 22"));
 			break;
         case  DIVISE: //d23
-			automate.decalage(s, new Etat23);
+			automate.decalage(s, new Etat23("Etat 23"));
 			break;
         case  PV: //r13
 			automate.reduction(3, E);
@@ -243,16 +379,19 @@ bool Etat11::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat11::~Etat11()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 12
 Etat12::Etat12(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 12
+Etat12::~Etat12() {}
+
+// fonction de transition Etat 12
 bool Etat12::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -311,16 +450,19 @@ bool Etat12::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat12::~Etat12()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 13
 Etat13::Etat13(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 13
+Etat13::~Etat13() {}
+
+// fonction de transition Etat 13
 bool Etat13::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -379,15 +521,19 @@ bool Etat13::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat13::~Etat13()
-{
-	//dtor
-}//---------------------------------------------
+
+//---------------------------------------------
+
+// ctor Etat 14
 Etat14::Etat14(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 14
+Etat14::~Etat14() {}
+
+// fonction de transition Etat 14
 bool Etat14::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -446,25 +592,28 @@ bool Etat14::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat14::~Etat14()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 15
 Etat15::Etat15(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 15
+Etat15::~Etat15() {}
+
+// fonction de transition Etat 15
 bool Etat15::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
 	{
         case  VAL: //d14
-            automate.decalage(s, new Etat14);
+            automate.decalage(s, new Etat14("Etat 14"));
 			break;
         case  ID: //d13
-			automate.decalage(s, new Etat13);
+			automate.decalage(s, new Etat13("Etat 14"));
 			break;
         case  PO: //d15
 			automate.decalage(s, new Etat15);
@@ -472,16 +621,19 @@ bool Etat15::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat15::~Etat15()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 16
 Etat16::Etat16(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 16
+Etat16::~Etat16() {}
+
+// fonction de transition Etat 16
 bool Etat16::transition(Automate &automate, Symbole *s)
 {
     /*switch (s->getType())
@@ -498,16 +650,19 @@ bool Etat16::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat16::~Etat16()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 17
 Etat17::Etat17(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 17
+Etat17::~Etat17() {}
+
+// fonction de transition Etat 17
 bool Etat17::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -566,16 +721,19 @@ bool Etat17::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat17::~Etat17()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 18
 Etat18::Etat18(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 18
+Etat18::~Etat18() {}
+
+// fonction de transition Etat 18
 bool Etat18::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -634,16 +792,19 @@ bool Etat18::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat18::~Etat18()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 19
 Etat19::Etat19(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 19
+Etat19::~Etat19() {}
+
+// fonction de transition Etat 19
 bool Etat19::transition(Automate &automate, Symbole *s)
 {
     /*switch (s->getType())
@@ -669,16 +830,19 @@ bool Etat19::transition(Automate &automate, Symbole *s)
     }*/
 	return false;
 }
-Etat19::~Etat19()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 20
 Etat20::Etat20(string n)
 {
-	//ctor
+	nom = n;
 }
-//fonction de transition
+
+// dtor Etat 20
+Etat20::~Etat20() {}
+
+// fonction de transition Etat 20
 bool Etat20::transition(Automate &automate, Symbole *s)
 {
     switch (s->getType())
@@ -695,11 +859,19 @@ bool Etat20::transition(Automate &automate, Symbole *s)
 	}
 	return false;
 }
-Etat20::~Etat20()
-{
-	//dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 21
+Etat21::Etat21(string n)
+{
+	nom = n;
+}
+
+// dtor Etat 21
+Etat21::~Etat21() {}
+
+// fonction de transition Etat 21
 bool Etat21::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -758,15 +930,19 @@ bool Etat21::transition(Automate &automate, Symbole *s)
     }*/
     return false;
 }
-Etat21::~Etat21()
-{
-    //dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 22
 Etat22::Etat22(string n)
 {
-    //ctor
+	nom = n;
 }
+
+// dtor Etat 22
+Etat22::~Etat22() {}
+
+// fonction de transition Etat 22
 bool Etat22::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -825,15 +1001,19 @@ bool Etat22::transition(Automate &automate, Symbole *s)
     }*/
     return false;
 }
-Etat22::~Etat22()
-{
-    //dtor
-}
+
 //---------------------------------------------
+
+// ctor Etat 23
 Etat23::Etat23(string n)
 {
-    //ctor
+	nom = n;
 }
+
+// dtor Etat 23
+Etat23::~Etat23() {}
+
+// fonction de transition Etat 23
 bool Etat23::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -893,15 +1073,18 @@ bool Etat23::transition(Automate &automate, Symbole *s)
     return false;
 }
 
-Etat23::~Etat23()
-{
-    //dtor
-}
 //---------------------------------------------
+
+// ctor Etat 24
 Etat24::Etat24(string n)
 {
-    //ctor
+	nom = n;
 }
+
+// dtor Etat 24
+Etat24::~Etat24() {}
+
+// fonction de transition Etat 24
 bool Etat24::transition(Automate &automate, Symbole *s)
 {
    /*
@@ -914,16 +1097,18 @@ bool Etat24::transition(Automate &automate, Symbole *s)
     return false;
 }
 
-Etat24::~Etat24()
-{
-    //dtor
-}
 //---------------------------------------------
+
+// ctor Etat 25
 Etat25::Etat25(string n)
 {
-    //ctor
+	nom = n;
 }
 
+// dtor Etat 25
+Etat25::~Etat25() {}
+
+// fonction de transition Etat 25
 bool Etat25::transition(Automate &automate, Symbole *s)
 {
    /*
@@ -936,16 +1121,18 @@ bool Etat25::transition(Automate &automate, Symbole *s)
     return false;
 }
 
-Etat25::~Etat25()
-{
-    //dtor
-}
 //---------------------------------------------
+
+// ctor Etat 26
 Etat26::Etat26(string n)
 {
-    //ctor
+	nom = n;
 }
 
+// dtor Etat 26
+Etat26::~Etat26() {}
+
+// fonction de transition Etat 26
 bool Etat26::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -1005,16 +1192,18 @@ bool Etat26::transition(Automate &automate, Symbole *s)
     return false;
 }
 
-Etat26::~Etat26()
-{
-    //dtor
-}
 //---------------------------------------------
+
+// ctor Etat 27
 Etat27::Etat27(string n)
 {
-    //ctor
+	nom = n;
 }
 
+// dtor Etat 27
+Etat27::~Etat27() {}
+
+// fonction de transition Etat 27
 bool Etat27::transition(Automate &automate, Symbole *s)
 {
    /*
@@ -1027,16 +1216,18 @@ bool Etat27::transition(Automate &automate, Symbole *s)
     return false;
 }
 
-Etat27::~Etat27()
-{
-    //dtor
-}
 //---------------------------------------------
+
+// ctor Etat 28
 Etat28::Etat28(string n)
 {
-    //ctor
+	nom = n;
 }
 
+// dtor Etat 28
+Etat28::~Etat28() {}
+
+// fonction de transition Etat 28
 bool Etat28::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -1096,20 +1287,18 @@ bool Etat28::transition(Automate &automate, Symbole *s)
     return false;
 }
 
-Etat28::~Etat28()
-{
-    //dtor
-}
 //---------------------------------------------
+
+// ctor Etat 29
 Etat29::Etat29(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat29::~Etat29()
-{
-    //dtor
-}
+// dtor Etat 29
+Etat29::~Etat29() {}
+
+// fonction de transition Etat 29
 bool Etat29::transition(Automate &automate, Symbole *s)
 {
    /* switch (s->getType())
@@ -1167,11 +1356,17 @@ bool Etat29::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 30
 Etat30::Etat30(string n)
 {
-    //ctor
+	nom = n;
 }
 
+// dtor Etat 30
+Etat30::~Etat30() {}
+
+// fonction de transition Etat 30
 bool Etat30::transition(Automate &automate, Symbole *s)
 {
    /*
@@ -1187,22 +1382,18 @@ bool Etat30::transition(Automate &automate, Symbole *s)
     return false;
 }
 
-
-Etat30::~Etat30()
-{
-    //dtor
-}
 //---------------------------------------------
+
+// ctor Etat 31
 Etat31::Etat31(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat31::~Etat31()
-{
-    //dtor
-}
+// dtor Etat 31
+Etat31::~Etat31() {}
 
+// fonction de transition Etat 31
 bool Etat31::transition(Automate &automate, Symbole *s)
 {	//r2
     automate.reduction(4, new Declaration);
@@ -1210,16 +1401,17 @@ bool Etat31::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 32
 Etat32::Etat32(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat32::~Etat32()
-{
-    //dtor
-}
+// dtor Etat 32
+Etat32::~Etat32() {}
 
+// fonction de transition Etat 32
 bool Etat32::transition(Automate &automate, Symbole *s)
 {
     switch(s->getType()){
@@ -1229,17 +1421,19 @@ bool Etat32::transition(Automate &automate, Symbole *s)
     }
     return false;
 }
+
 //---------------------------------------------
+
+// ctor Etat 33
 Etat33::Etat33(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat33::~Etat33()
-{
-    //dtor
-}
+// dtor Etat 33
+Etat33::~Etat33() {}
 
+// fonction de transition Etat 33
 bool Etat33::transition(Automate &automate, Symbole *s)
 {	//r5
     //automate.reduction(3, LV);
@@ -1247,16 +1441,17 @@ bool Etat33::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 34
 Etat34::Etat34(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat34::~Etat34()
-{
-    //dtor
-}
+// dtor Etat 34
+Etat34::~Etat34() {}
 
+// fonction de transition Etat 34
 bool Etat34::transition(Automate &automate, Symbole *s)
 {
     switch(s->getType()){
@@ -1271,17 +1466,19 @@ bool Etat34::transition(Automate &automate, Symbole *s)
     }
     return false;
 }
+
 //---------------------------------------------
+
+// ctor Etat 35
 Etat35::Etat35(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat35::~Etat35()
-{
-    //dtor
-}
+// dtor Etat 35
+Etat35::~Etat35() {}
 
+// fonction de transition Etat 35
 bool Etat35::transition(Automate &automate, Symbole *s)
 {	//r3
     automate.reduction(4, new Declaration);
@@ -1289,16 +1486,17 @@ bool Etat35::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 36
 Etat36::Etat36(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat36::~Etat36()
-{
-    //dtor
-}
+// dtor Etat 36
+Etat36::~Etat36() {}
 
+// fonction de transition Etat 36
 bool Etat36::transition(Automate &automate, Symbole *s)
 {
     switch(s->getType()){
@@ -1310,16 +1508,17 @@ bool Etat36::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 37
 Etat37::Etat37(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat37::~Etat37()
-{
-    //dtor
-}
+// dtor Etat 37
+Etat37::~Etat37() {}
 
+// fonction de transition Etat 37
 bool Etat37::transition(Automate &automate, Symbole *s)
 {
     switch(s->getType()){
@@ -1331,16 +1530,17 @@ bool Etat37::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 38
 Etat38::Etat38(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat38::~Etat38()
-{
-    //dtor
-}
+// dtor Etat 38
+Etat38::~Etat38() {}
 
+// fonction de transition Etat 38
 bool Etat38::transition(Automate &automate, Symbole *s)
 {
     switch(s->getType()){
@@ -1352,36 +1552,35 @@ bool Etat38::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 39
 Etat39::Etat39(string n)
 {
-    //ctor
+	nom = n;
 }
 
-Etat39::~Etat39()
-{
-    //dtor
-}
+// dtor Etat 39
+Etat39::~Etat39() {}
 
+// fonction de transition Etat 39
 bool Etat39::transition(Automate &automate, Symbole *s)
 {	//r7
     //automate.reduction(5, LC);
     return true;
 }
 
-
 //---------------------------------------------
+
+// ctor Etat 40
 Etat40::Etat40(string n)
 {
-
+	nom = n;
 }
 
-Etat40::~Etat40()
-{
-	//dtor
-}
+// dtor Etat 40
+Etat40::~Etat40() {}
 
-
-
+// fonction de transition Etat 40
 bool Etat40::transition(Automate &automate, Symbole *s)
 {
     switch(s->getType())
@@ -1393,16 +1592,17 @@ bool Etat40::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 41
 Etat41::Etat41(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat41::~Etat41()
-{
-	//dtor
-}
+// dtor Etat 41
+Etat41::~Etat41() {}
 
+// fonction de transition Etat 41
 bool Etat41::transition(Automate &automate, Symbole *s)
 {
     switch(s->getType()){
@@ -1414,16 +1614,17 @@ bool Etat41::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 42
 Etat42::Etat42(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat42::~Etat42()
-{
-	//dtor
-}
+// dtor Etat 42
+Etat42::~Etat42() {}
 
+// fonction de transition Etat 42
 bool Etat42::transition(Automate &automate, Symbole *s)
 {
     automate.reduction(3, new Declaration);
@@ -1431,32 +1632,35 @@ bool Etat42::transition(Automate &automate, Symbole *s)
 }
 
 //---------------------------------------------
+
+// ctor Etat 43
 Etat43::Etat43(string n)
 {
-	//ctor
+	nom = n;
 }
 
-Etat43::~Etat43()
-{
-	//dtor
-}
+// dtor Etat 43
+Etat43::~Etat43() {}
 
+// fonction de transition Etat 43
 bool Etat43::transition(Automate &automate, Symbole *s)
 {
     //automate.reduction(1, A);
     return true;
 }
+
 //---------------------------------------------
+
+// ctor Etat 44
 Etat44::Etat44(string ns)
 {
-	//ctor
+	nom = n;
 }
 
-Etat44::~Etat44()
-{
-	//dtor
-}
+// dtor Etat 44
+Etat44::~Etat44() {}
 
+// fonction de transition Etat 44
 bool Etat44::transition(Automate &automate, Symbole *s)
 {
     return true;
