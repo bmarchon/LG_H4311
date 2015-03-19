@@ -650,7 +650,7 @@ bool Etat25::transition(Automate &automate, Symbole *s)
     switch (s->getType())
     {
 		case PV: //d26
-            automate.decalage(s, new Etat26());
+            automate.decalage(s, new Etat26("Etat 26"));
     }
     */
     return false;
