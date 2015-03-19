@@ -92,6 +92,7 @@ Symbole * AnalyseurLexical::getSymbole()
 			text.erase(0,match.size());
 
 			Symbole * res;
+			//cout << match << endl;
 			if(regPair.first == VAL)
 			{
 				res = new Val(atof(match.c_str()));
