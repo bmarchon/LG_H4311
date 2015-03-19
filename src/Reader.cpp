@@ -26,6 +26,7 @@ void Reader::lire(string filename) {
 		//delete all line breaks
 		replace( filetext.begin(), filetext.end(), '\n', ' ');
 		replace( filetext.begin(), filetext.end(), '\r', ' ');
+		replace( filetext.begin(), filetext.end(), '\t', ' ');
 		cout << "file read correctly" << endl;
 	}else{
 		cout << "file error : " << filename << endl;
