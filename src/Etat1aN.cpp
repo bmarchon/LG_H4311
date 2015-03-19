@@ -99,7 +99,7 @@ bool Etat2::transition(Automate &automate, Symbole *s)
             automate.decalage(s, new Etat7("Etat 7"));
 			break;
         case  END:
-			return true;
+			return false;
 	}
 	return false;
 }
@@ -730,7 +730,9 @@ Etat29::~Etat29() {}
 // fonction de transition Etat 29
 bool Etat29::transition(Automate &automate, Symbole *s)
 {
-	automate.reduction(1, LV);
+	if (s != END) {
+		automate.reduction(1, LV);
+	}
     return false;
 }
 
@@ -775,8 +777,11 @@ Etat31::~Etat31() {}
 
 // fonction de transition Etat 31
 bool Etat31::transition(Automate &automate, Symbole *s)
-{	//r2
-    automate.reduction(4, D);
+{	
+	if (s != END) {
+		//r2
+		automate.reduction(4, D);
+	}
     return false;
 }
 
@@ -794,9 +799,10 @@ Etat32::~Etat32() {}
 // fonction de transition Etat 32
 bool Etat32::transition(Automate &automate, Symbole *s)
 {
-    switch(s->getType()){
+    switch(s->getType())
+    {
         case  ID: //d33
-            automate.decalage(s, new Etat33("E33"));
+            automate.decalage(s, new Etat33("Etat 33"));
             automate.getAnalyseurLexical()->next();
     }
     return false;
@@ -815,9 +821,12 @@ Etat33::~Etat33() {}
 
 // fonction de transition Etat 33
 bool Etat33::transition(Automate &automate, Symbole *s)
-{	//r5
-    //automate.reduction(3, LV);
-    return true;
+{
+	if (s != END) {
+		//r5
+		automate.reduction(3, LV);
+	}
+    return false;
 }
 
 //---------------------------------------------
@@ -834,13 +843,14 @@ Etat34::~Etat34() {}
 // fonction de transition Etat 34
 bool Etat34::transition(Automate &automate, Symbole *s)
 {
-    switch(s->getType()){
+    switch(s->getType())
+    {
         case  V: //d36
-            automate.decalage(s, new Etat36("E36"));
+            automate.decalage(s, new Etat36("Etat 36"));
             automate.getAnalyseurLexical()->next();
              break;
         case PV: //d35
-            automate.decalage(s, new Etat35("E35"));
+            automate.decalage(s, new Etat35("Etat 35"));
             automate.getAnalyseurLexical()->next();
             break;
     }
@@ -861,8 +871,8 @@ Etat35::~Etat35() {}
 // fonction de transition Etat 35
 bool Etat35::transition(Automate &automate, Symbole *s)
 {	//r3
-    automate.reduction(4, new Declaration);
-    return true;
+    automate.reduction(4, D);
+    return false;
 }
 
 //---------------------------------------------
@@ -879,9 +889,10 @@ Etat36::~Etat36() {}
 // fonction de transition Etat 36
 bool Etat36::transition(Automate &automate, Symbole *s)
 {
-    switch(s->getType()){
+    switch(s->getType())
+    {
         case  ID: //d37
-            automate.decalage(s, new Etat37("E37"));
+            automate.decalage(s, new Etat37("Etat 37"));
             automate.getAnalyseurLexical()->next();
     }
     return false;
@@ -901,9 +912,10 @@ Etat37::~Etat37() {}
 // fonction de transition Etat 37
 bool Etat37::transition(Automate &automate, Symbole *s)
 {
-    switch(s->getType()){
+    switch(s->getType())
+    {
         case  EG: //d38
-            automate.decalage(s, new Etat38("E38"));
+            automate.decalage(s, new Etat38("Etat 38"));
             automate.getAnalyseurLexical()->next();
     }
     return false;
@@ -923,9 +935,10 @@ Etat38::~Etat38() {}
 // fonction de transition Etat 38
 bool Etat38::transition(Automate &automate, Symbole *s)
 {
-    switch(s->getType()){
+    switch(s->getType())
+    {
         case  VAL: //d39
-            automate.decalage(s, new Etat39("E39"));
+            automate.decalage(s, new Etat39("Etat 39"));
             automate.getAnalyseurLexical()->next();
     }
     return false;
@@ -945,8 +958,8 @@ Etat39::~Etat39() {}
 // fonction de transition Etat 39
 bool Etat39::transition(Automate &automate, Symbole *s)
 {	//r7
-    //automate.reduction(5, LC);
-    return true;
+    automate.reduction(5, LC);
+    return false;
 }
 
 //---------------------------------------------
@@ -966,7 +979,7 @@ bool Etat40::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  EG:
-            automate.decalage(s, new Etat41("E41"));
+            automate.decalage(s, new Etat41("Etat 41"));
     }
     return false;
 }
@@ -985,9 +998,10 @@ Etat41::~Etat41() {}
 // fonction de transition Etat 41
 bool Etat41::transition(Automate &automate, Symbole *s)
 {
-    switch(s->getType()){
+    switch(s->getType())
+    {
         case  VAL:
-            automate.decalage(s, new Etat42("E42"));
+            automate.decalage(s, new Etat42("Etat 42"));
             automate.getAnalyseurLexical()->next();
     }
     return false;
@@ -1007,8 +1021,8 @@ Etat42::~Etat42() {}
 // fonction de transition Etat 42
 bool Etat42::transition(Automate &automate, Symbole *s)
 {
-    automate.reduction(3, new Declaration);
-    return true;
+    automate.reduction(3, LC);
+    return false;
 }
 
 //---------------------------------------------
@@ -1025,8 +1039,8 @@ Etat43::~Etat43() {}
 // fonction de transition Etat 43
 bool Etat43::transition(Automate &automate, Symbole *s)
 {
-    //automate.reduction(1, A);
-    return true;
+    automate.reduction(1, A);
+    return false;
 }
 
 //---------------------------------------------
@@ -1043,5 +1057,5 @@ Etat44::~Etat44() {}
 // fonction de transition Etat 44
 bool Etat44::transition(Automate &automate, Symbole *s)
 {
-    return true;
+    return false;
 }
