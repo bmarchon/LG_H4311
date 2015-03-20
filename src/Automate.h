@@ -15,12 +15,20 @@ class Automate
         bool analyse();
         AnalyseurLexical *getAnalyseurLexical();
 		virtual ~Automate();
+		void testTableauanalyseeeeee();
 	protected:
         AnalyseurLexical *aLexical;
         stack<Etat *> etats;
         stack<Symbole *> symboles;
 		struct analyseSymbole {
-			Symbole s;
+			analyseSymbole(Symbole * s)
+			{
+				this->s = s;
+				this->affecte = false;
+				this->utilise = false;
+			}
+			
+			Symbole * s;
 			bool affecte;
 			bool utilise;
 		};
