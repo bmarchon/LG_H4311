@@ -8,15 +8,16 @@ class Automate;
 
 class Etat
 {
-	protected:
-		string nom;
 	public:
-        Etat();
-		Etat(string nom);
+		Etat(int nombreEtat);
+		int getNombreEtat(); 
 		virtual ~Etat();
 		void print() const;
 		virtual bool transition(Automate & automate, Symbole * s) = 0;
+	protected:
+		
 	private:
+		int nombreEtat;
 };
 
 #endif // ETAT_H

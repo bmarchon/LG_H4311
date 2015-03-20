@@ -1,17 +1,14 @@
 #include "Etat.h"
 
-
-Etat::Etat()
+Etat::Etat(int nombreEtat)
 {
-    //ctor
+    this->nombreEtat = nombreEtat;
 }
 
-Etat::Etat(string nom)
+int Etat::getNombreEtat()
 {
-    //this->nom = nom;
+	return nombreEtat;
 }
-
-
 
 Etat::~Etat()
 {
