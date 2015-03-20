@@ -5,11 +5,11 @@
 static pair<Symboles, boost::regex>regexes [] =
 {
 	
-	make_pair(VAR, boost::regex ("^var ") ),
-	make_pair(CONST, boost::regex ("^const ") ),
+	make_pair(VAR, boost::regex ("^var\\s") ),
+	make_pair(CONST, boost::regex ("^const\\s") ),
 	make_pair(VAL, boost::regex ("^[0-9]+(\\.[0-9]+)?") ),
-	make_pair(ECRIRE, boost::regex ("^ecrire ") ),
-	make_pair(LIRE, boost::regex ("^lire ") ),
+	make_pair(ECRIRE, boost::regex ("^ecrire\\s") ),
+	make_pair(LIRE, boost::regex ("^lire\\s") ),
 	make_pair(PF, boost::regex ("^\\)") ),
 	make_pair(PLUS, boost::regex ("^\\+") ),
 	make_pair(MOINS, boost::regex ("^-") ),
@@ -25,7 +25,6 @@ static pair<Symboles, boost::regex>regexes [] =
 } ;
 
 
-
 AnalyseurLexical::AnalyseurLexical(string filename)
 {
 	Reader reader ;
@@ -35,18 +34,19 @@ AnalyseurLexical::AnalyseurLexical(string filename)
 	endReached = false;
 }
 
+
 AnalyseurLexical::~AnalyseurLexical()
 {
 	//dtor
 }
 
 
-
-
+// jamais utilisé !! peut-etre inutile!!
 Symbole * AnalyseurLexical::next()
 {
 	return currentSym;
 }
+
 
 Symbole  * AnalyseurLexical::shift()
 {

@@ -1,9 +1,11 @@
 #include "Automate.h"
+using namespace std;
 
 
 Automate::Automate()
 {
 	//ctor
+	
 }
 
 

@@ -732,9 +732,7 @@ Etat29::~Etat29() {}
 // fonction de transition Etat 29
 bool Etat29::transition(Automate &automate, Symbole *s)
 {
-	if (s->getType() != END) {
-		//automate.reduction(1, LV);
-	}
+	//automate.reduction(1, LV);
     return false;
 }
 
@@ -780,10 +778,8 @@ Etat31::~Etat31() {}
 // fonction de transition Etat 31
 bool Etat31::transition(Automate &automate, Symbole *s)
 {	
-	if (s->getType() != END) {
-		//r2
-		//automate.reduction(4, D);
-	}
+	//r2
+	//automate.reduction(4, D);
     return false;
 }
 
@@ -824,10 +820,8 @@ Etat33::~Etat33() {}
 // fonction de transition Etat 33
 bool Etat33::transition(Automate &automate, Symbole *s)
 {
-	if (s->getType() != END) {
-		//r5
-		//automate.reduction(3, LV);
-	}
+	//r5
+	//automate.reduction(3, LV);
     return false;
 }
 

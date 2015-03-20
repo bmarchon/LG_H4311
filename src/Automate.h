@@ -19,6 +19,12 @@ class Automate
         AnalyseurLexical *aLexical;
         stack<Etat *> etats;
         stack<Symbole *> symboles;
+		struct analyseSymbole {
+			Symbole s;
+			bool affecte;
+			bool utilise;
+		};
+		vector<analyseSymbole> tableauAnalyseStatique;  
 	private:
 };
 
