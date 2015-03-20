@@ -5,8 +5,9 @@
 class ExprAdd : public ExprBinaire
 {
 	public:
-        ExprAdd(): ExprBinaire(){}
+        ExprAdd(): ExprBinaire(EXPR){}
 		virtual ~ExprAdd();
+		double eval();
 	protected:
 	private:
 };

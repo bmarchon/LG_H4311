@@ -5,7 +5,7 @@
 class Expression : public Symbole
 {
 	public:
-        Expression(): Symbole(EXPR){}
+        Expression(Symboles type): Symbole(type){}
 		virtual ~Expression();
 		virtual double eval() = 0;
 	protected:

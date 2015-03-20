@@ -5,8 +5,9 @@
 class ExprBinaire : public Expression
 {
 	public:
-        ExprBinaire(): Expression(){}
+        ExprBinaire(Symboles type): Expression(type){}
 		virtual ~ExprBinaire();
+		double eval();
 	protected:
 	private:
 };

@@ -5,8 +5,9 @@
 class ExprMult : public ExprBinaire
 {
 	public:
-        ExprMult(): ExprBinaire(){}
+        ExprMult(): ExprBinaire(EXPR){}
 		virtual ~ExprMult();
+		double eval();
 	protected:
 	private:
 };
