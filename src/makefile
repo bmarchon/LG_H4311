@@ -3,7 +3,7 @@ CPPFLAGS=-std=c++11 # -DMAP
 EXE=lut
 CLEAN=clean
 CLEANO=cleano
-NOM=main Reader Symbole Etat Variable Constante Programme ListeDeclaration ListeInstruction Instruction Declaration SymboleSimple Lire Ecrire DecVariable DecConstante Etat1aN AnalyseurLexical Automate Identifiant Val
+NOM=main Reader Symbole Etat Variable Constante Programme ListeDeclaration ListeInstruction Instruction Declaration SymboleSimple Lire Ecrire DecVariable DecConstante Etat1aN AnalyseurLexical Automate Identifiant Val ExprBinaire Expression ExprAdd ExprMult
 INT=$(addsuffix .h, $(NOM))
 REAL=$(addsuffix .cpp, $(NOM))
 OBJ=$(addsuffix .o, $(NOM))
