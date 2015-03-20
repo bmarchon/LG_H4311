@@ -6,10 +6,10 @@
 
 using namespace std;
 
-typedef enum {P, D, I, VAR, CONST,VAL, ECRIRE, LIRE, ID, END, PF, PLUS, MOINS, FOIS, DIVISE, PV, PO, EG, V, AFFECT} Symboles;
+typedef enum {P, D, I, EXPR, VAR, CONST,VAL, ECRIRE, LIRE, ID, END, PF, PLUS, MOINS, FOIS, DIVISE, PV, PO, EG, V, AFFECT} Symboles;
 
 static const string types[] = {
-		"P", "D", "I", "VAR", "CONST","VAL", "ECRIRE", "LIRE", "ID", "END", "PF", "PLUS", "MOINS", "FOIS", "DIVISE", "PV", "PO", "EG", "V", "AFFECT"
+		"P", "D", "I", "EXPR", "VAR", "CONST","VAL", "ECRIRE", "LIRE", "ID", "END", "PF", "PLUS", "MOINS", "FOIS", "DIVISE", "PV", "PO", "EG", "V", "AFFECT"
 
 		}; 
 

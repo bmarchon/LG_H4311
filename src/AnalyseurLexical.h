@@ -14,15 +14,13 @@
 
 using namespace std;
 
-
-
 class AnalyseurLexical
 {
 	public:
 		AnalyseurLexical(string filename);
 		virtual ~AnalyseurLexical();
-		Symbole * next(); //returns next symbol to read
-		Symbole * shift(); //returns and consumes next symbol to read
+		Symbole * next(); //returns next symbol to read, WARNING: can be NULL if lexical error
+		void shift(); //consumes current symbol
 		
 
 	private:
