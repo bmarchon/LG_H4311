@@ -10,6 +10,7 @@ class ExprAdd : public ExprBinaire
 		double eval();
 	protected:
 	private:
+		Symboles operateur;
 };
 
 #endif // EXPRADD_H

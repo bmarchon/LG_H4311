@@ -10,6 +10,7 @@ class ExprMult : public ExprBinaire
 		double eval();
 	protected:
 	private:
+		Symboles operateur;
 };
 
 #endif // EXPRMULT_H

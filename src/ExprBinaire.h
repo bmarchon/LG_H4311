@@ -9,6 +9,8 @@ class ExprBinaire : public Expression
 		virtual ~ExprBinaire();
 		double eval();
 	protected:
+		Expression * expr1;
+		Expression * expr2;
 	private:
 };
 

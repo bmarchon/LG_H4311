@@ -10,6 +10,7 @@ class ExprPar : public Expression
 		double eval();
 	protected:
 	private:
+		Expression * expression;
 };
 
 #endif // EXPRPAR_H

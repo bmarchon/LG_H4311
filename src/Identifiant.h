@@ -2,16 +2,17 @@
 #define IDENTIFIANT_H
 
 #include <string>
-#include "Symbole.h"
+#include "Expression.h"
 
 using namespace std;
 
-class Identifiant : public Symbole
+class Identifiant : public Expression
 {
 	public:
 	Identifiant(string idVal);
 	virtual ~Identifiant();
 	string valeur();
+	double eval();
 
 	protected:
 	private:
