@@ -1,8 +1,13 @@
 #include "ListeConstantes.h"
 
-ListeConstantes::ListeConstantes():Symbole(LC)
+ListeConstantes::ListeConstantes(Identifiant *id):Symbole(LC)
 {
+    listeConstantes.push_back(id);
+}
 
+void ListeConstantes::ajouterConstante(Identifiant *id)
+{
+    listeConstantes.push_back(id);
 }
 
 ListeConstantes::~ListeConstantes()

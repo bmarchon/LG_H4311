@@ -6,9 +6,11 @@ class Instruction : public Symbole
 {
 	public:
         Instruction() : Symbole(I){}
+        void setInstruction(Instruction *instr);
 		virtual ~Instruction();
 
 	protected:
+        Instruction *instruction;
 	private:
 };
 

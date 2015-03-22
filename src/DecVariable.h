@@ -6,10 +6,10 @@
 class DecVariable : public Declaration
 {
 	public:
-        DecVariable();
+        DecVariable(ListeVariables *lv);
         virtual ~DecVariable();
 	protected:
-        ListeVariables *lv;
+        ListeVariables *listeVariables;
 	private:
 };
 

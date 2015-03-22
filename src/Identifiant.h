@@ -15,13 +15,14 @@ class Identifiant : public Expression
 
 	virtual ~Identifiant();
 	string valeur();
-    Val getValeurNum();
+    void setValeurNum(Val *valNum);
+    Val *getValeurNum();
     double eval(const map<string, double> &valeurs);
 
 	protected:
 	private:
 	string idVal;
-    Val valNum;
+    Val *valNum;
 };
 
 #endif // IDENTIFIANT_H

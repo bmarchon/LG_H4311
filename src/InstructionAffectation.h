@@ -6,12 +6,12 @@
 class InstructionAffectation : public Instruction
 {
 public:
-    InstructionAffectation();
+    InstructionAffectation(Identifiant *id, Expression *expr);
     ~InstructionAffectation();
 
 protected:
-    //Identifiant identifiant;
-    Expression *exp;
+    Identifiant *identifiant;
+    Expression *expression;
 };
 
 #endif // INSTRUCTIONAFFECTATION_H

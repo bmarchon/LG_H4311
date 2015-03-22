@@ -1,17 +1,17 @@
 #ifndef EXPRADD_H
 #define EXPRADD_H
 #include "ExprBinaire.h"
-#include "OpreateurAdditif.h"
+#include "OperateurAdditif.h"
 class ExprAdd : public ExprBinaire
 {
 	public:
-        ExprAdd(Symbole *exprGauche, Symbole *opAdd, Symbole *exprDroite);
+        ExprAdd(Expression *exprGauche, OperateurAdditif *opAdd, Expression *exprDroite);
 		virtual ~ExprAdd();
         double eval(const map<string, double> &valeurs);
 
 	protected:
 	private:
-        Symbole *opAdditif;
+        OperateurAdditif *opAdditif;
 };
 
 #endif // EXPRADD_H

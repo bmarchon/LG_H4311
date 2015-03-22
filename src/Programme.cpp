@@ -2,7 +2,7 @@
 
 
 
-Programme::Programme(Symbole *dec, Symbole *instr):Symbole(I)
+Programme::Programme(Symbole *dec, Symbole *instr):Symbole(P)
 {
 
     declarations = dec;

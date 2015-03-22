@@ -5,7 +5,7 @@
 class ExprPar : public Expression
 {
 	public:
-        ExprPar(): Expression(EXPR){}
+        ExprPar(Expression *expr, Symboles type);
 		virtual ~ExprPar();
         double eval(const map<string, double> &valeurs);
 	protected:

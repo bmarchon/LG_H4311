@@ -1,7 +1,7 @@
 #include "ExprAdd.h"
 
 
-ExprAdd::ExprAdd(Symbole *exprGauche, Symbole *opAdd, Symbole *exprDroite):ExprBinaire(EXPR, exprGauche, exprDroite)
+ExprAdd::ExprAdd(Expression *exprGauche, OperateurAdditif *opAdd, Expression *exprDroite):ExprBinaire(EXPR, exprGauche, exprDroite)
 {
     opAdditif = opAdd;
 }

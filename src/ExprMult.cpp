@@ -1,7 +1,7 @@
 #include "ExprMult.h"
 
 
-ExprMult::ExprMult(Symboles type, Symbole *exprGauche,Symbole *operateur, Symbole *exprDroite):ExprBinaire(type, exprGauche, exprDroite)
+ExprMult::ExprMult(Symboles type, Expression *exprGauche,OperateurMultiplicatif *operateur, Expression *exprDroite):ExprBinaire(type, exprGauche, exprDroite)
 {
     this->operateur = operateur;
 }
@@ -14,5 +14,9 @@ ExprMult::~ExprMult()
 
 double ExprMult::eval(const map<string, double> &valeurs)
 {
-	return 0.0;
+    if(operateur->getType() == FOIS)
+    {
+        //return exprGauche->eval(NULL) * exprDroite->eval(NULL);
+        return 0.0;
+    }
 }

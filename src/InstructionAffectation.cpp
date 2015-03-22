@@ -1,8 +1,9 @@
 #include "InstructionAffectation.h"
 
-InstructionAffectation::InstructionAffectation()
+InstructionAffectation::InstructionAffectation(Identifiant *id, Expression *expr):Instruction()
 {
-
+    identifiant = id;
+    expression = expr;
 }
 
 InstructionAffectation::~InstructionAffectation()

@@ -53,12 +53,14 @@ bool Automate::reduction(int nbEtat, Symbole *s)
     return false;
     */
 
-    for(int i = 1; i<nbEtat; i++){
+    for(int i = 1; i<nbEtat+1; i++){
         etats.pop();
     }
-    symboles.push(s);
+    //symboles.push(s);
 
-    //etats.top()->transition(*this, aLexical->next());
+    etats.top()->transition(*this, s);
+    cout << "reduction" << endl;
+    etats.top()->print();
     return false;
 
 }
@@ -67,7 +69,7 @@ bool Automate::decalage(Symbole *s, Etat *etat){
 
     etats.push(etat);
     symboles.push(s);
-    aLexical->shift();
+
     return false;
 }
 
@@ -77,20 +79,13 @@ bool Automate::analyse(){
     cout <<  aLexical->next()->getType() << endl;
     //while(aLexical->next()->getType() != END)
     //{
-     etats.top()->transition(*this, aLexical->next());
-     cout << etats.size() << endl;
      etats.top()->print();
-     etats.top()->transition(*this, aLexical->next());
-     cout << etats.size() << endl;
-     etats.top()->print();
-     etats.top()->transition(*this, aLexical->next());
-     cout << etats.size() << endl;
-     etats.top()->print();
+     while(!etats.top()->transition(*this, aLexical->next()))
+     {
+          etats.top()->print();
+     }
 
 
-
-
-    cout << "le fichier est syntaxiquement correcte." << endl;
 
     return true;
 }

@@ -21,3 +21,11 @@ double Val::valeur()
 {
     return this->doubleVal;
 }
+
+/*
+Val& Val::operator = (const Val &valeur)
+{
+    this->doubleVal = valeur->valeur();
+    return *this;
+}
+*/
