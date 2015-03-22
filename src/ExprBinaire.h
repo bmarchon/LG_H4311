@@ -6,11 +6,13 @@ class ExprBinaire : public Expression
 {
 	public:
         ExprBinaire(Symboles type): Expression(type){}
+        ExprBinaire(Symboles type, Symbole *exprDroite, Symbole *exprGauche);
 		virtual ~ExprBinaire();
-		double eval();
+        double eval(const map<string, double> &valeurs);
+
 	protected:
-		Expression * expr1;
-		Expression * expr2;
+        Symbole * exprGauche;
+        Symbole * exprDroite;
 	private:
 };
 

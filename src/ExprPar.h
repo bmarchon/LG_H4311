@@ -7,7 +7,7 @@ class ExprPar : public Expression
 	public:
         ExprPar(): Expression(EXPR){}
 		virtual ~ExprPar();
-		double eval();
+        double eval(const map<string, double> &valeurs);
 	protected:
 	private:
 		Expression * expression;

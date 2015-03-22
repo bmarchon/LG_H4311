@@ -1,13 +1,15 @@
 #ifndef DECVARIABLE_H
 #define DECVARIABLE_H
-
-
-class DecVariable
+#include "Declaration.h"
+#include "Symbole.h"
+#include "ListeVariables.h"
+class DecVariable : public Declaration
 {
 	public:
-		DecVariable();
-		virtual ~DecVariable();
+        DecVariable();
+        virtual ~DecVariable();
 	protected:
+        ListeVariables *lv;
 	private:
 };
 

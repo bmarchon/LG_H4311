@@ -1,12 +1,13 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
+#include "Symbole.h"
 
-
-class Instruction
+class Instruction : public Symbole
 {
 	public:
-		Instruction();
+        Instruction() : Symbole(I){}
 		virtual ~Instruction();
+
 	protected:
 	private:
 };

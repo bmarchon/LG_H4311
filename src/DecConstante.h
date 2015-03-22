@@ -1,12 +1,13 @@
 #ifndef DECCONSTANTE_H
 #define DECCONSTANTE_H
+#include "Declaration.h"
 
-
-class DecConstante
+class DecConstante : public Declaration
 {
 	public:
-		DecConstante();
+        DecConstante() : Declaration(){}
 		virtual ~DecConstante();
+
 	protected:
 	private:
 };

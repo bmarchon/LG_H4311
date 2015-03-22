@@ -1,50 +1,65 @@
 #include "Automate.h"
 #include <string.h>
-
+#include "Etat1aN.h"
+#include <iostream>
+using namespace std;
 Automate::Automate()
 {
-	//ctor
-	struct analyseSymbole test(new SymboleSimple(VAR));
-	tableauAnalyseStatique.push_back(test);  
+    //ctor
+    struct analyseSymbole test(new SymboleSimple(VAR));
+    tableauAnalyseStatique.push_back(test);
 }
 
-void Automate::testTableauanalyseeeeee(){
-	cout << tableauAnalyseStatique[0].s->afficherType() << "coucou" << endl;
+Automate::Automate(AnalyseurLexical *aL)
+{
+    aLexical = aL;
 }
+
+
+void Automate::testTableauanalyseeeeee(){
+    cout << tableauAnalyseStatique[0].s->afficherType() << "coucou" << endl;
+}
+
+
+
+
 
 
 bool Automate::reduction(int nbEtat, Symbole *s)
 {
-	stack<Symbole *> cache = symboles;
-	switch(etats.top()->getNombreEtat())
+    /*stack<Symbole *> cache = symboles;
+    switch(etats.top()->getNombreEtat())
     {
         case 2:
-			cache.pop();
-			while(cache.top()->getType() != VAR) {
-				if (cache.top()->getType() == ID)
-				{
-					tableauAnalyseStatique.push_back(analyseSymbole(cache.top()));
-					cache.pop(); //is fucking void!
-				}
-			}
-			break;
+            cache.pop();
+            while(cache.top()->getType() != VAR) {
+                if (cache.top()->getType() == ID)
+                {
+                    tableauAnalyseStatique.push_back(analyseSymbole(cache.top()));
+                    cache.pop(); //is fucking void!
+                }
+            }
+            break;
         case 3:
-			break;
+            break;
         case 9:
-			break;
+            break;
         case 10:
-			break;
+            break;
         case 11:
-			break;
+            break;
 
     }
     return false;
-	
+    */
+
     for(int i = 1; i<nbEtat; i++){
         etats.pop();
     }
-    //etats.top()->transition(this, s);
-    return true;
+    symboles.push(s);
+
+    //etats.top()->transition(*this, aLexical->next());
+    return false;
 
 }
 
@@ -52,20 +67,62 @@ bool Automate::decalage(Symbole *s, Etat *etat){
 
     etats.push(etat);
     symboles.push(s);
-    return true;
+    aLexical->shift();
+    return false;
 }
 
 
 bool Automate::analyse(){
+    etats.push(new Etat0);
+    cout <<  aLexical->next()->getType() << endl;
+    //while(aLexical->next()->getType() != END)
+    //{
+     etats.top()->transition(*this, aLexical->next());
+     cout << etats.size() << endl;
+     etats.top()->print();
+     etats.top()->transition(*this, aLexical->next());
+     cout << etats.size() << endl;
+     etats.top()->print();
+     etats.top()->transition(*this, aLexical->next());
+     cout << etats.size() << endl;
+     etats.top()->print();
+
+
+
+
+    cout << "le fichier est syntaxiquement correcte." << endl;
+
     return true;
 }
 
- AnalyseurLexical * Automate::getAnalyseurLexical()
- {
-	return aLexical;
- }
+AnalyseurLexical * Automate::getAnalyseurLexical()
+{
+    return aLexical;
+}
+
+Symbole *Automate::getDernierSymbole()
+{
+    Symbole *s = symboles.top();
+    symboles.pop();
+    return s;
+
+}
+
+void Automate::pushEtat(Etat *etat)
+{
+    etats.push(etat);
+}
+
+void Automate::consommer()
+{
+    aLexical->shift();
+}
+void Automate::popSymbole()
+{
+    symboles.pop();
+}
 
 Automate::~Automate()
 {
-	//dtor
+    //dtor
 }

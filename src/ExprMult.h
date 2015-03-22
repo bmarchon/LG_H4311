@@ -5,12 +5,13 @@
 class ExprMult : public ExprBinaire
 {
 	public:
-        ExprMult(): ExprBinaire(EXPR){}
+        ExprMult(Symboles type, Symbole *expressionGauche,Symbole *operateur, Symbole *expressionDroite);
 		virtual ~ExprMult();
-		double eval();
+        double eval(const map<string, double> &valeurs);
+
 	protected:
 	private:
-		Symboles operateur;
+        Symbole *operateur;
 };
 
 #endif // EXPRMULT_H

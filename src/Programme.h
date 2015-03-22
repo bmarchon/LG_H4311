@@ -1,13 +1,19 @@
 #ifndef PROGRAMME_H
 #define PROGRAMME_H
 
+#include "Symbole.h"
 
-class Programme
+class Programme : public Symbole
 {
 	public:
-		Programme();
+        Programme();
+        Programme(Symbole *dec, Symbole *instr);
 		virtual ~Programme();
+
 	protected:
+        Symbole *declarations;
+        Symbole *instructions;
+
 	private:
 };
 

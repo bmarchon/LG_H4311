@@ -1,14 +1,18 @@
 #include "Etat.h"
+#include <iostream>
+using namespace std;
 
-Etat::Etat(int nombreEtat)
+Etat::Etat()
 {
-    this->nombreEtat = nombreEtat;
+    //ctor
 }
 
-int Etat::getNombreEtat()
+Etat::Etat(int num)
 {
-	return nombreEtat;
+    this->num = num;
 }
+
+
 
 Etat::~Etat()
 {
@@ -18,4 +22,9 @@ Etat::~Etat()
 bool Etat::transition(Automate & automate, Symbole * s)
 {
 	//return false;
+}
+
+void Etat::print() const
+{
+    cout << num << endl;
 }

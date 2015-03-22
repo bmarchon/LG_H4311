@@ -1,5 +1,6 @@
 #include "Val.h"
 
+Val::Val():Expression(VAL){}
 Val::Val(double valeur) : Expression(VAL)
 {
 	 //ctor
@@ -11,11 +12,12 @@ Val::~Val()
 	//dtor
 }
 
-double Val::eval()
+double Val::eval(const map<string, double> &valeurs)
 {
 	return this->doubleVal;
 }
-/*
-double Val::eval() {
-	return 4.0;
-}*/
+
+double Val::valeur()
+{
+    return this->doubleVal;
+}

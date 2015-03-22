@@ -5,7 +5,7 @@ ExprPar::~ExprPar()
 	//dtor
 }
 
-double ExprPar::eval()
+double ExprPar::eval(const map<string, double> &valeurs)
 {
 	return 0.0;
 }
