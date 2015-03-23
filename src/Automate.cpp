@@ -80,7 +80,8 @@ bool Automate::analyse(){
     //while(aLexical->next()->getType() != END)
     //{
      etats.top()->print();
-     while(!etats.top()->transition(*this, aLexical->next()))
+     int i =0;
+     while(!etats.top()->transition(*this, aLexical->next()) & (i++) < 50)
      {
           etats.top()->print();
      }
