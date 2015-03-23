@@ -14,7 +14,6 @@ class Val : public Expression
 	double valeur();
     //Val& operator = (const Val &valeur);
     double eval(const map<string, double> &valeurs);
-
 	protected:
 	private:
 	double doubleVal;

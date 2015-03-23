@@ -388,7 +388,6 @@ bool Etat10::transition(Automate &automate, Symbole *s)
             automate.decalage(s, new Etat12);
             break;
         default:
-            cout << s->getType();
             //gestion des erreurs
             break;
 	}
@@ -456,9 +455,8 @@ Etat12::~Etat12() {}
 // fonction de transition Etat 12
 bool Etat12::transition(Automate &automate, Symbole *s)
 {
-    Expression * facteur = (Expression *)automate.getDernierSymbole();
-    facteur->setType(T);
-    automate.reduction(1, facteur);
+    Symbole * facteur = automate.getDernierSymbole();
+    //automate.reduction(1, new Identifiant(T, facteur));
 
 
 	return false;
@@ -478,9 +476,8 @@ Etat13::~Etat13() {}
 // fonction de transition Etat 13
 bool Etat13::transition(Automate &automate, Symbole *s)
 {
-    Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
-    identifiant->setType(F);
-    automate.reduction(1,identifiant);
+    //Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
+    //automate.reduction(1, new Identifiant(F,2));
 
 	return false;
 }
@@ -499,10 +496,7 @@ Etat14::~Etat14() {}
 // fonction de transition Etat 14
 bool Etat14::transition(Automate &automate, Symbole *s)
 {
-    Val *valeur = (Val *) automate.getDernierSymbole();
-    valeur->setType(F);
-    cout << "valeur " << valeur->valeur() << endl;
-    automate.reduction(1,valeur);
+    //automate.reduction(1, F);
 	return false;
 }
 
@@ -642,16 +636,14 @@ Etat19::~Etat19() {}
 // fonction de transition Etat 19
 bool Etat19::transition(Automate &automate, Symbole *s)
 {
-    Expression *expr;
     switch (s->getType())
 	{
         case  PF: //r14
         case  PLUS:
         case  MOINS:
         case  PV:
-            expr = (Expression *) automate.getDernierSymbole();
-            expr->setType(EXPR);
-            automate.reduction(1, expr);
+            //Expression *expr = (Expression *) automate.getDernierSymbole();
+            //automate.reduction(1, E);
 			break;
         case  FOIS: //d22
 			automate.decalage(s, new Etat22());
@@ -836,17 +828,6 @@ bool Etat25::transition(Automate &automate, Symbole *s)
 		case PV: //d26
             automate.decalage(s, new Etat26());
             automate.consommer();
-            break;
-        case PLUS:
-            automate.decalage(s, new Etat18);
-            automate.consommer();
-            break;
-        case MOINS:
-            automate.decalage(s, new Etat43);
-            automate.consommer();
-            break;
-        case A:
-            automate.decalage(s, new Etat10);
             break;
         default:
             //gestion des erreurs

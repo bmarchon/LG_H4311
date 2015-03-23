@@ -22,7 +22,6 @@ class Symbole
         //Symbole::Type getType();
         //operator int() const { return ident;}
         Symboles getType();
-        void setType(Symboles t){type = t;}
         virtual string afficherType();
 
 	protected:

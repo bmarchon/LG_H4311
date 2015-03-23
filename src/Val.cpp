@@ -17,7 +17,6 @@ double Val::eval(const map<string, double> &valeurs)
 	return this->doubleVal;
 }
 
-
 double Val::valeur()
 {
     return this->doubleVal;
