@@ -6,7 +6,7 @@ class OperateurAdditif : public Symbole
 {
 public:
 
-    OperateurAdditif(char op): Symbole(M), operateur(op){}
+    OperateurAdditif(char op): Symbole(A), operateur(op){}
     ~OperateurAdditif();
 protected:
     char operateur;
