@@ -4,6 +4,7 @@
 #include <string>
 #include "Expression.h"
 #include "Val.h"
+#include <map>
 using namespace std;
 
 class Identifiant : public Expression

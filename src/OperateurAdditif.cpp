@@ -7,3 +7,8 @@ OperateurAdditif::~OperateurAdditif()
 
 }
 
+char OperateurAdditif::getChar()
+{
+	return operateur;
+}
+

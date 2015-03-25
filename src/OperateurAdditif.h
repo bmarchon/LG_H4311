@@ -8,7 +8,8 @@ public:
 
     OperateurAdditif(char op): Symbole(A), operateur(op){}
     ~OperateurAdditif();
-protected:
+    char getChar();
+private:
     char operateur;
 };
 

@@ -14,9 +14,21 @@ ExprMult::~ExprMult()
 
 double ExprMult::eval(const map<string, double> &valeurs)
 {
-    if(operateur->getType() == FOIS)
-    {
-        //return exprGauche->eval(NULL) * exprDroite->eval(NULL);
-        return 0.0;
-    }
+    double res;	
+	switch(operateur->getType())
+	{
+		case FOIS:
+			res = exprGauche->eval(valeurs) * exprDroite->eval(valeurs);
+			break;
+		case DIVISE:
+			if(exprDroite->eval(valeurs) != 0.0)
+			{
+				res = exprGauche->eval(valeurs) / exprDroite->eval(valeurs);
+			}
+			break;
+		default :
+			res = 0.0;
+			//cout << "error: " + opAdditif->getChar() + " is not a valid additive operator" << endl;
+	}
+	return res;
 }

@@ -1,9 +1,9 @@
 COMP=g++
-CPPFLAGS=-std=c++11 # -DMAP
+CPPFLAGS=-std=c++11 -g # -DMAP
 EXE=lut
 CLEAN=clean
 CLEANO=cleano
-NOM=main Reader Symbole Etat Variable Constante Programme ListeDeclaration ListeInstruction Instruction Declaration SymboleSimple Lire Ecrire DecVariable DecConstante Etat1aN AnalyseurLexical Automate Identifiant Val ExprBinaire Expression ExprAdd ExprMult ExprPar InstructionLecture ListeConstantes InstructionEcriture ListeVariables OperateurAdditif OperateurMultiplicatif
+NOM=main Reader Symbole Etat Variable Constante Programme ListeDeclaration ListeInstruction Instruction Declaration SymboleSimple DecVariable DecConstante Etat1aN AnalyseurLexical Automate Identifiant Val ExprBinaire Expression ExprAdd ExprMult ExprPar InstructionLecture ListeConstantes InstructionEcriture ListeVariables OperateurAdditif OperateurMultiplicatif InstructionAffectation
 INT=$(addsuffix .h, $(NOM))
 REAL=$(addsuffix .cpp, $(NOM))
 OBJ=$(addsuffix .o, $(NOM))
@@ -29,13 +29,11 @@ PHONY:$(CLEAN)
 	$(ECHO) "Compilation de $<"
 	$(COMP) $(CPPFLAGS) $(INCPATH) -c $<
 
-
-
 $(CLEAN):
 	$(ECHO) "Nettoyage"
-	$(RM) $(RMFLAGS) $(OBJ) $(EXE) core *exe.stackdump
+	$(RM) $(RMFLAGS) $(OBJ) $(EXE) core $(EXE)*stackdump
 
 
 $(CLEANO):
 	$(ECHO) "Nettoyage"
-	$(RM) $(RMFLAGS) $(OBJ) core *exe.stackdump
+	$(RM) $(RMFLAGS) $(OBJ) core $(EXE)*stackdump

@@ -2,14 +2,20 @@
 #define INSTRUCTIONECRITURE_H
 #include "Instruction.h"
 #include "Expression.h"
+
+#include <iostream>
+
+using namespace std;
+
 class InstructionEcriture : public Instruction
 {
 public:
-    InstructionEcriture(Symbole *exp){expression = exp ;}
+    InstructionEcriture(Expression *exp){expression = exp ;}
     ~InstructionEcriture();
+    void executer(map<string, double> &valeurs);
 
 protected:
-    Symbole *expression;
+    Expression *expression;
 };
 
 #endif // INSTRUCTIONECRITURE_H

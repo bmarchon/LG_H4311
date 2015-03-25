@@ -25,8 +25,13 @@ string Identifiant::valeur()
 
 double Identifiant::eval(const map<string, double> &valeurs)
 {
-    //return valNum->eval();
-    return 0.0;
+    if(valeurs.find(idVal) != valeurs.end())
+    {
+        return valeurs.find(idVal)->second;
+    }else{
+        return 0.0;
+    }
+    
 }
 
 void Identifiant::setValeurNum(Val *valNum)
