@@ -1,8 +1,9 @@
 #include "DecVariable.h"
 
-DecVariable::DecVariable()
+
+DecVariable::DecVariable(ListeVariables *lv):Declaration()
 {
-	//ctor
+    listeVariables = lv;
 }
 
 DecVariable::~DecVariable()

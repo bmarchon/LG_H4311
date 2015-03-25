@@ -1,16 +1,19 @@
 #ifndef VAL_H
 #define VAL_H
 
-#include "Symbole.h"
 
+#include "Expression.h"
 using namespace std;
 
-class Val : public Symbole
+class Val : public Expression
 {
 	public:
+    Val();
 	Val(double valeur);
 	virtual ~Val();
 	double valeur();
+    //Val& operator = (const Val &valeur);
+    double eval(const map<string, double> &valeurs);
 
 	protected:
 	private:

@@ -1,9 +1,11 @@
 #include "DecConstante.h"
 
-DecConstante::DecConstante()
+DecConstante::DecConstante(ListeConstantes *lc):Declaration()
 {
-	//ctor
+    declaration = lc;
 }
+
+
 
 DecConstante::~DecConstante()
 {

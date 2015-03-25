@@ -9,10 +9,10 @@ class Automate;
 class Etat
 {
 	protected:
-		string nom;
+        int num;
 	public:
         Etat();
-		Etat(string nom);
+        Etat(int num);
 		virtual ~Etat();
 		void print() const;
 		virtual bool transition(Automate & automate, Symbole * s) = 0;

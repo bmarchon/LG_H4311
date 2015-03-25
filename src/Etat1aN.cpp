@@ -1,10 +1,25 @@
 #include "Etat1aN.h"
 #include "Declaration.h"
-
+#include "Instruction.h"
+#include "ExprBinaire.h"
+#include "ExprPar.h"
+#include "InstructionEcriture.h"
+#include "InstructionAffectation.h"
+#include "InstructionLecture.h"
+#include "Programme.h"
+#include "ExprAdd.h"
+#include "ExprMult.h"
+#include "ListeVariables.h"
+#include "ListeConstantes.h"
+#include "OperateurMultiplicatif.h"
+#include "OperateurAdditif.h"
+#include "DecVariable.h"
+#include "DecConstante.h"
+#include "Val.h"
 // ctor Etat0
-Etat0::Etat0(string n)
+Etat0::Etat0() : Etat(0)
 {
-	nom = n;
+
 }
 
 // dtor Etat 0
@@ -16,23 +31,22 @@ bool Etat0::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  VAR:
-            //automate.reduction(0, D);
-			break;
         case  CONST:
-            //automate.reduction(0, D);
-			break;
         case  ECRIRE:
-            //automate.reduction(0, D);
-			break;
         case  LIRE:
-            //automate.reduction(0, D);
-			break;
         case  ID:
-            //automate.reduction(0, D);
-			break;
         case  END:
-            //automate.reduction(0, D);
+            automate.reduction(0, new Declaration);
+
             break;
+        case D:
+            automate.decalage(s, new Etat1);
+            break;
+
+        default:
+            // génerer une erreur
+            break;
+
 	}
 	return false;
 }
@@ -40,9 +54,9 @@ bool Etat0::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 1
-Etat1::Etat1(string n)
+Etat1::Etat1() : Etat (1)
 {
-	nom = n;
+
 }
 
 // dtor Etat 1
@@ -54,23 +68,26 @@ bool Etat1::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  VAR:
-			automate.decalage(s, new Etat4("Etat 4"));
+			automate.decalage(s, new Etat4());
+            automate.consommer();
 			break;
         case  CONST:
-			automate.decalage(s, new Etat3("Etat 3"));
+			automate.decalage(s, new Etat3());
+            automate.consommer();
 			break;
         case  ECRIRE:
-            //automate.reduction(0, I);
-			break;
         case  LIRE:
-            //automate.reduction(0, I);
-			break;
         case  ID:
-            //automate.reduction(0, I);
-			break;
         case  END:
-            //automate.reduction(0, I);
+            automate.reduction(0, new Instruction);
             break;
+        case I:
+            automate.decalage(s, new Etat2);
+            break;
+        default:
+            // génerer une erreur
+            break;
+
 	}
 	return false;
 }
@@ -78,9 +95,9 @@ bool Etat1::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 2
-Etat2::Etat2(string n)
+Etat2::Etat2() : Etat (2)
 {
-	nom = n;
+
 }
 
 // dtor Etat 2
@@ -89,19 +106,32 @@ Etat2::~Etat2() {}
 // fonction de transition Etat 2
 bool Etat2::transition(Automate &automate, Symbole *s)
 {
+    Instruction *instruction;
+    Declaration *declaration;
+    Programme *p;
     switch (s->getType())
 	{
         case  ECRIRE:
-            automate.decalage(s, new Etat5("Etat 5"));
+            automate.decalage(s, new Etat5());
+            automate.consommer();
 			break;
         case  LIRE:
-            automate.decalage(s, new Etat6("Etat 6"));
+            automate.decalage(s, new Etat6());
+            automate.consommer();
 			break;
         case  ID:
-            automate.decalage(s, new Etat7("Etat 7"));
+            automate.decalage(s, new Etat7());
+            automate.consommer();
 			break;
         case  END:
-			return false;
+            instruction = (Instruction *)automate.getDernierSymbole();
+            declaration = (Declaration *)automate.getDernierSymbole();
+            p = new Programme(declaration, instruction);
+            cout << "Programme valide" << endl;
+            return true;
+        default:
+            // génerer une erreur
+            break;
 	}
 	return false;
 }
@@ -109,9 +139,9 @@ bool Etat2::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 3
-Etat3::Etat3(string n)
+Etat3::Etat3() : Etat (3)
 {
-	nom = n;
+
 }
 
 // dtor Etat 3
@@ -123,8 +153,15 @@ bool Etat3::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  ID:
-            automate.decalage(s, new Etat40("Etat 40"));
+            automate.decalage(s, new Etat40());
+            automate.consommer();
 			break;
+        case LC:
+            automate.decalage(s,new Etat34);
+            break;
+        default:
+            // génerer une erreur
+            break;
 	}
 	return false;
 }
@@ -132,9 +169,9 @@ bool Etat3::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 4
-Etat4::Etat4(string n)
+Etat4::Etat4() : Etat (4)
 {
-	nom = n;
+
 }
 
 // dtor Etat 4
@@ -146,8 +183,15 @@ bool Etat4::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  ID:
-            automate.decalage(s, new Etat29("Etat 29"));
+            automate.decalage(s, new Etat29());
+            automate.consommer();
 			break;
+        case LV:
+            automate.decalage(s, new Etat30());
+            break;
+        default:
+            // génerer une erreur
+            break;
 	}
 	return false;
 }
@@ -155,9 +199,9 @@ bool Etat4::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 5
-Etat5::Etat5(string n)
+Etat5::Etat5() : Etat (5)
 {
-	nom = n;
+
 }
 
 // dtor Etat 5
@@ -169,14 +213,29 @@ bool Etat5::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  VAL:
-            automate.decalage(s, new Etat14("Etat 14"));
+            automate.decalage(s, new Etat14());
+            automate.consommer();
 			break;
         case  ID:
-            automate.decalage(s, new Etat13("Etat 13"));
+            automate.decalage(s, new Etat13());
+            automate.consommer();
 			break;
         case  PO:
-            automate.decalage(s, new Etat15("Etat 15"));
+            automate.decalage(s, new Etat15());
+            automate.consommer();
 			break;
+        case EXPR:
+            automate.decalage(s, new Etat8);
+            break;
+        case T:
+            automate.decalage(s, new Etat19);
+            break;
+        case F:
+            automate.decalage(s, new Etat12);
+            break;
+        default:
+            //gestion des erreurs
+            break;
 	}
 	return false;
 }
@@ -184,9 +243,9 @@ bool Etat5::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 6
-Etat6::Etat6(string n)
+Etat6::Etat6() : Etat (6)
 {
-	nom = n;
+
 }
 
 // dtor Etat 6
@@ -198,8 +257,12 @@ bool Etat6::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  ID:
-            automate.decalage(s, new Etat27("Etat 27"));
+            automate.decalage(s, new Etat27());
+            automate.consommer();
 			break;
+        default:
+            // génerer une erreur
+            break;
 	}
 	return false;
 }
@@ -207,9 +270,9 @@ bool Etat6::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 7
-Etat7::Etat7(string n)
+Etat7::Etat7() : Etat (7)
 {
-	nom = n;
+
 }
 
 // dtor Etat 7
@@ -221,8 +284,12 @@ bool Etat7::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  AFFECT:
-            automate.decalage(s, new Etat24("Etat 24"));
+            automate.decalage(s, new Etat24());
+            automate.consommer();
 			break;
+        default:
+            // génerer une erreur
+            break;
 	}
 	return false;
 }
@@ -230,9 +297,9 @@ bool Etat7::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 8
-Etat8::Etat8(string n)
+Etat8::Etat8() : Etat (8)
 {
-	nom = n;
+
 }
 
 // dtor Etat 8
@@ -244,14 +311,23 @@ bool Etat8::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  PLUS:
-            automate.decalage(s, new Etat18("Etat 18"));
+            automate.decalage(s, new Etat18());
+            automate.consommer();
 			break;
         case  MOINS:
-            automate.decalage(s, new Etat43("Etat 43"));
+            automate.decalage(s, new Etat43());
+            automate.consommer();
 			break;
         case  PV:
-            automate.decalage(s, new Etat9("Etat 9"));
+            automate.decalage(s, new Etat9());
+            automate.consommer();
 			break;
+        case A:
+            automate.decalage(s, new Etat10);
+
+        default:
+            //getsion des erreurs
+            break;
 	}
 	return false;
 }
@@ -259,9 +335,9 @@ bool Etat8::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 9
-Etat9::Etat9(string n)
+Etat9::Etat9() : Etat (9)
 {
-	nom = n;
+
 }
 
 // dtor Etat 9
@@ -270,16 +346,19 @@ Etat9::~Etat9() {}
 // fonction de transition Etat 9
 bool Etat9::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(4, I);
+    Symbole * expression  = automate.getDernierSymbole();
+
+    automate.reduction(4, new InstructionEcriture(expression));
+
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 10
-Etat10::Etat10(string n)
+Etat10::Etat10() : Etat (10)
 {
-	nom = n;
+
 }
 
 // dtor Etat 10
@@ -291,14 +370,27 @@ bool Etat10::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  VAL:
-            automate.decalage(s, new Etat14("Etat 14"));
+            automate.decalage(s, new Etat14);
+            automate.consommer();
 			break;
         case  ID:
-            automate.decalage(s, new Etat13("Etat 13"));
+            automate.decalage(s, new Etat13);
+            automate.consommer();
 			break;
         case  PO:
-            automate.decalage(s, new Etat15("Etat 15"));
+            automate.decalage(s, new Etat15);
+            automate.consommer();
 			break;
+        case T:
+            automate.decalage(s, new Etat11);
+            break;
+        case F:
+            automate.decalage(s, new Etat12);
+            break;
+        default:
+            cout << s->getType();
+            //gestion des erreurs
+            break;
 	}
 	return false;
 }
@@ -306,9 +398,9 @@ bool Etat10::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 11
-Etat11::Etat11(string n)
+Etat11::Etat11() : Etat (11)
 {
-	nom = n;
+
 }
 
 // dtor Etat 11
@@ -317,36 +409,49 @@ Etat11::~Etat11() {}
 // fonction de transition Etat 11
 bool Etat11::transition(Automate &automate, Symbole *s)
 {
-   /* switch (s->getType())
+    Expression *exprDroite, *exprGauche;
+    OperateurAdditif *opAdditif;
+    switch (s->getType())
 	{
         case  PF: //r13
-            //automate.reduction(3, E);
+        case  PLUS:
+        case  MOINS:
+        case  PV:
+            exprDroite = (Expression *)automate.getDernierSymbole();
+            opAdditif =(OperateurAdditif *) automate.getDernierSymbole();
+            exprGauche  = (Expression *)automate.getDernierSymbole();
+            automate.reduction(3, new ExprAdd(exprGauche, opAdditif, exprDroite));
 			break;
-        case  PLUS: //r13
-			//automate.reduction(3, E);
-			break;
-        case  MOINS: //r13
-			//automate.reduction(3, E);
-			break;
+
         case  FOIS: //d22
-			automate.decalage(s, new Etat22("Etat 22"));
+        	// si l'un ou l'autre des termes est un 1, on enleve
+        	// sinon
+			automate.decalage(s, new Etat22());
+            automate.consommer();
 			break;
         case  DIVISE: //d23
-			automate.decalage(s, new Etat23("Etat 23"));
+        	//si division par 1, on enleve l'operateur et le diviseur
+        	//sinon
+			automate.decalage(s, new Etat23());
+            automate.consommer();
 			break;
-        case  PV: //r13
-			//automate.reduction(3, E);
-			break;
-    }*/
+        case M:
+            automate.decalage(s, new Etat20);
+            break;
+        default:
+        // gestion des erreurs
+            break;
+
+    }
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 12
-Etat12::Etat12(string n)
+Etat12::Etat12() : Etat (12)
 {
-	nom = n;
+
 }
 
 // dtor Etat 12
@@ -355,16 +460,20 @@ Etat12::~Etat12() {}
 // fonction de transition Etat 12
 bool Etat12::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(1, T);
+    Expression * facteur = (Expression *)automate.getDernierSymbole();
+    facteur->setType(T);
+    automate.reduction(1, facteur);
+
+
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 13
-Etat13::Etat13(string n)
+Etat13::Etat13() : Etat (13)
 {
-	nom = n;
+
 }
 
 // dtor Etat 13
@@ -373,16 +482,19 @@ Etat13::~Etat13() {}
 // fonction de transition Etat 13
 bool Etat13::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(1, F);
+    Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
+    identifiant->setType(F);
+    automate.reduction(1,identifiant);
+
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 14
-Etat14::Etat14(string n)
+Etat14::Etat14() : Etat (14)
 {
-	nom = n;
+
 }
 
 // dtor Etat 14
@@ -391,16 +503,19 @@ Etat14::~Etat14() {}
 // fonction de transition Etat 14
 bool Etat14::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(1, F);
+    Val *valeur = (Val *) automate.getDernierSymbole();
+    valeur->setType(F);
+    cout << "valeur " << valeur->valeur() << endl;
+    automate.reduction(1,valeur);
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 15
-Etat15::Etat15(string n)
+Etat15::Etat15() : Etat (15)
 {
-	nom = n;
+
 }
 
 // dtor Etat 15
@@ -409,27 +524,42 @@ Etat15::~Etat15() {}
 // fonction de transition Etat 15
 bool Etat15::transition(Automate &automate, Symbole *s)
 {
-   /* switch (s->getType())
+   switch (s->getType())
 	{
         case  VAL: //d14
-            automate.decalage(s, new Etat14("Etat 14"));
+            automate.decalage(s, new Etat14());
+            automate.consommer();
 			break;
         case  ID: //d13
-			automate.decalage(s, new Etat13("Etat 14"));
+			automate.decalage(s, new Etat13());
+            automate.consommer();
 			break;
         case  PO: //d15
-			automate.decalage(s, new Etat15("Etat 15"));
+			automate.decalage(s, new Etat15());
+            automate.consommer();
 			break;
-    }*/
+        case EXPR:
+            automate.decalage(s, new Etat16);
+            break;
+        case T:
+            automate.decalage(s, new Etat19);
+            break;
+        case F:
+            automate.decalage(s, new Etat12);
+            break;
+        default:
+            //gestion des erreurs
+            break;
+    }
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 16
-Etat16::Etat16(string n)
+Etat16::Etat16() : Etat (16)
 {
-	nom = n;
+
 }
 
 // dtor Etat 16
@@ -438,27 +568,37 @@ Etat16::~Etat16() {}
 // fonction de transition Etat 16
 bool Etat16::transition(Automate &automate, Symbole *s)
 {
-    /*switch (s->getType())
+    switch (s->getType())
 	{
         case  PF: //d17
-			automate.decalage(s, new Etat17("Etat 17"));
+			automate.decalage(s, new Etat17());
+            automate.consommer();
 			break;
         case  PLUS: //d18
-			automate.decalage(s, new Etat18("Etat 18"));
+			automate.decalage(s, new Etat18());
+            automate.consommer();
 			break;
         case  MOINS: //d43
-			automate.decalage(s, new Etat43("Etat 43"));
+			automate.decalage(s, new Etat43());
+            automate.consommer();
 			break;
-    }*/
+        case A:
+            automate.decalage(s, new Etat10);
+            break;
+
+        default:
+            //gestion des erreurs
+            break;
+    }
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 17
-Etat17::Etat17(string n)
+Etat17::Etat17() : Etat (17)
 {
-	nom = n;
+
 }
 
 // dtor Etat 17
@@ -467,16 +607,18 @@ Etat17::~Etat17() {}
 // fonction de transition Etat 17
 bool Etat17::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(3, F);
+    automate.popSymbole();
+    Expression *expression = (Expression *)automate.getDernierSymbole();
+    automate.reduction(3, new ExprPar(expression, F));
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 18
-Etat18::Etat18(string n)
+Etat18::Etat18() : Etat (18)
 {
-	nom = n;
+
 }
 
 // dtor Etat 18
@@ -485,16 +627,17 @@ Etat18::~Etat18() {}
 // fonction de transition Etat 18
 bool Etat18::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(1, A);
+    automate.popSymbole();
+    automate.reduction(1, new OperateurAdditif('+'));
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 19
-Etat19::Etat19(string n)
+Etat19::Etat19() : Etat (19)
 {
-	nom = n;
+
 }
 
 // dtor Etat 19
@@ -503,36 +646,42 @@ Etat19::~Etat19() {}
 // fonction de transition Etat 19
 bool Etat19::transition(Automate &automate, Symbole *s)
 {
-    /*switch (s->getType())
+    Expression *expr;
+    switch (s->getType())
 	{
         case  PF: //r14
-			//automate.reduction(1, E);
-			break;
-        case  PLUS: //r14
-			//automate.reduction(1, E);
-			break;
-        case  MOINS: //r14
-			//automate.reduction(1, E);
+        case  PLUS:
+        case  MOINS:
+        case  PV:
+            expr = (Expression *) automate.getDernierSymbole();
+            expr->setType(EXPR);
+            automate.reduction(1, expr);
 			break;
         case  FOIS: //d22
-			automate.decalage(s, new Etat22("Etat 22"));
+			automate.decalage(s, new Etat22());
+            automate.consommer();
 			break;
         case  DIVISE: //d23
-			automate.decalage(s, new Etat23("Etat 23"));
+			automate.decalage(s, new Etat23());
+            automate.consommer();
 			break;
-        case  PV: //r14
-			//automate.reduction(1, E);
-			break;
-    }*/
+        case M:
+            automate.decalage(s, new Etat20);
+            break;
+        default:
+            //gestion des erreurs
+            break;
+
+    }
 	return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 20
-Etat20::Etat20(string n)
+Etat20::Etat20() : Etat (20)
 {
-	nom = n;
+
 }
 
 // dtor Etat 20
@@ -544,14 +693,22 @@ bool Etat20::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  VAL: //d14
-            automate.decalage(s, new Etat14("E14"));
+            automate.decalage(s, new Etat14());
+            automate.consommer();
 			break;
         case  ID: //d13
-            automate.decalage(s, new Etat13("E13"));
+            automate.decalage(s, new Etat13());
+            automate.consommer();
 			break;
         case  PO: //d15
-            automate.decalage(s, new Etat15("E15"));
+            automate.decalage(s, new Etat15());
+            automate.consommer();
 			break;
+        case F:
+            automate.decalage(s, new Etat21);
+        default:
+            //gestion des erreurs
+            break;
 	}
 	return false;
 }
@@ -559,9 +716,9 @@ bool Etat20::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 21
-Etat21::Etat21(string n)
+Etat21::Etat21() : Etat (21)
 {
-	nom = n;
+
 }
 
 // dtor Etat 21
@@ -570,16 +727,20 @@ Etat21::~Etat21() {}
 // fonction de transition Etat 21
 bool Etat21::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(3, T);
+    Expression *expressionDroite = (Expression *)automate.getDernierSymbole();
+    OperateurMultiplicatif *operateur = (OperateurMultiplicatif *)automate.getDernierSymbole();
+    Expression *expressionGauche = (Expression *)automate.getDernierSymbole();
+    automate.reduction(3, new ExprMult(T, expressionGauche, operateur, expressionDroite));
+
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 22
-Etat22::Etat22(string n)
+Etat22::Etat22() : Etat (22)
 {
-	nom = n;
+
 }
 
 // dtor Etat 22
@@ -588,16 +749,18 @@ Etat22::~Etat22() {}
 // fonction de transition Etat 22
 bool Etat22::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(1, M);
+    automate.popSymbole();
+    automate.reduction(1, new OperateurMultiplicatif('*'));
+
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 23
-Etat23::Etat23(string n)
+Etat23::Etat23() : Etat (23)
 {
-	nom = n;
+
 }
 
 // dtor Etat 23
@@ -606,16 +769,17 @@ Etat23::~Etat23() {}
 // fonction de transition Etat 23
 bool Etat23::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(1, M);
+    automate.popSymbole();
+    automate.reduction(1, new OperateurMultiplicatif('/'));
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 24
-Etat24::Etat24(string n)
+Etat24::Etat24() : Etat (24)
 {
-	nom = n;
+
 }
 
 // dtor Etat 24
@@ -624,22 +788,44 @@ Etat24::~Etat24() {}
 // fonction de transition Etat 24
 bool Etat24::transition(Automate &automate, Symbole *s)
 {
-   /*
+
     switch (s->getType())
     {
 		case VAL: //d25
-            automate.decalage(s, new Etat25("Etat 25"));
+            automate.decalage(s, new Etat14());
+            automate.consommer();
+            break;
+        case PO:
+            automate.decalage(s, new Etat15);
+            automate.consommer();
+            break;
+        case ID:
+            automate.decalage(s, new Etat13);
+            automate.consommer();
+            break;
+        case EXPR:
+            automate.decalage(s, new Etat25);
+            break;
+        case F:
+            automate.decalage(s, new Etat12);
+            break;
+        case T:
+            automate.decalage(s, new Etat19);
+            break;
+        default:
+        //gestion des erreurs
+            break;
     }
-    */
+
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 25
-Etat25::Etat25(string n)
+Etat25::Etat25() : Etat (25)
 {
-	nom = n;
+
 }
 
 // dtor Etat 25
@@ -648,22 +834,38 @@ Etat25::~Etat25() {}
 // fonction de transition Etat 25
 bool Etat25::transition(Automate &automate, Symbole *s)
 {
-   /*
+
     switch (s->getType())
     {
 		case PV: //d26
-            automate.decalage(s, new Etat26("Etat 26"));
+            automate.decalage(s, new Etat26());
+            automate.consommer();
+            break;
+        case PLUS:
+            automate.decalage(s, new Etat18);
+            automate.consommer();
+            break;
+        case MOINS:
+            automate.decalage(s, new Etat43);
+            automate.consommer();
+            break;
+        case A:
+            automate.decalage(s, new Etat10);
+            break;
+        default:
+            //gestion des erreurs
+            break;
     }
-    */
+
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 26
-Etat26::Etat26(string n)
+Etat26::Etat26() : Etat (26)
 {
-	nom = n;
+
 }
 
 // dtor Etat 26
@@ -672,16 +874,24 @@ Etat26::~Etat26() {}
 // fonction de transition Etat 26
 bool Etat26::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(1, I);
+
+    automate.popSymbole();
+    Expression *expr = (Expression *) automate.getDernierSymbole();
+    automate.popSymbole();
+    Identifiant *id = (Identifiant *) automate.getDernierSymbole();
+    Instruction *blocInstruction = (Instruction *) automate.getDernierSymbole();
+    InstructionAffectation *instrAffect = new InstructionAffectation(id, expr);
+    blocInstruction->setInstruction(instrAffect);
+    automate.reduction(5, blocInstruction);
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 27
-Etat27::Etat27(string n)
+Etat27::Etat27() : Etat (27)
 {
-	nom = n;
+
 }
 
 // dtor Etat 27
@@ -690,22 +900,27 @@ Etat27::~Etat27() {}
 // fonction de transition Etat 27
 bool Etat27::transition(Automate &automate, Symbole *s)
 {
-   /*
+
     switch (s->getType())
     {
 		case PV: //d28
-			automate.decalage(s, new Etat28("Etat 28"));
+			automate.decalage(s, new Etat28());
+            automate.consommer();
+            break;
+        default:
+            //gestion des erreurs
+            break;
      }
-    */
-    return false;
+
+     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 28
-Etat28::Etat28(string n)
+Etat28::Etat28() : Etat (28)
 {
-	nom = n;
+
 }
 
 // dtor Etat 28
@@ -714,16 +929,20 @@ Etat28::~Etat28() {}
 // fonction de transition Etat 28
 bool Etat28::transition(Automate &automate, Symbole *s)
 {
-	//automate.reduction(1, I);
+    automate.popSymbole();
+    Symbole *identifiant = automate.getDernierSymbole();
+    automate.popSymbole();
+    automate.popSymbole();
+    automate.reduction(4, new InstructionLecture(identifiant));
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 29
-Etat29::Etat29(string n)
+Etat29::Etat29() : Etat (29)
 {
-	nom = n;
+
 }
 
 // dtor Etat 29
@@ -732,18 +951,17 @@ Etat29::~Etat29() {}
 // fonction de transition Etat 29
 bool Etat29::transition(Automate &automate, Symbole *s)
 {
-	if (s->getType() != END) {
-		//automate.reduction(1, LV);
-	}
+    Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
+    automate.reduction(1, new ListeVariables(identifiant));
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 30
-Etat30::Etat30(string n)
+Etat30::Etat30() : Etat (30)
 {
-	nom = n;
+
 }
 
 // dtor Etat 30
@@ -752,26 +970,31 @@ Etat30::~Etat30() {}
 // fonction de transition Etat 30
 bool Etat30::transition(Automate &automate, Symbole *s)
 {
-   /*
+
     switch (s->getType())
     {
 		case V: //d32
-            automate.decalage(s, new Etat32("Etat 32"));
+            automate.decalage(s, new Etat32());
+            automate.consommer();
             break;
 		case PV: //d31
-            automate.decalage(s, new Etat31("Etat 31"));
+            automate.decalage(s, new Etat31());
+            automate.consommer();
+            break;
+        default:
+            // génerer une erreur
             break;
     }
-    */
+
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 31
-Etat31::Etat31(string n)
+Etat31::Etat31() : Etat (31)
 {
-	nom = n;
+
 }
 
 // dtor Etat 31
@@ -779,20 +1002,19 @@ Etat31::~Etat31() {}
 
 // fonction de transition Etat 31
 bool Etat31::transition(Automate &automate, Symbole *s)
-{	
-	if (s->getType() != END) {
-		//r2
-		//automate.reduction(4, D);
-	}
+{
+	//r2
+    ListeVariables *listeVariables = (ListeVariables *) automate.getDernierSymbole();
+    automate.reduction(4, new DecVariable(listeVariables));
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 32
-Etat32::Etat32(string n)
+Etat32::Etat32() : Etat (32)
 {
-	nom = n;
+
 }
 
 // dtor Etat 32
@@ -804,8 +1026,11 @@ bool Etat32::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  ID: //d33
-            automate.decalage(s, new Etat33("Etat 33"));
-            automate.getAnalyseurLexical()->next();
+            automate.decalage(s, new Etat33());
+            automate.consommer();
+        default:
+            // génerer une erreur
+            break;
     }
     return false;
 }
@@ -813,9 +1038,9 @@ bool Etat32::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 33
-Etat33::Etat33(string n)
+Etat33::Etat33() : Etat (33)
 {
-	nom = n;
+
 }
 
 // dtor Etat 33
@@ -824,19 +1049,21 @@ Etat33::~Etat33() {}
 // fonction de transition Etat 33
 bool Etat33::transition(Automate &automate, Symbole *s)
 {
-	if (s->getType() != END) {
-		//r5
-		//automate.reduction(3, LV);
-	}
+	//r5
+    Identifiant *identifiant = (Identifiant *) automate.getDernierSymbole();
+    automate.popSymbole(); // on n'a pas besoin du virgule
+    ListeVariables *lv = (ListeVariables *) automate.getDernierSymbole();
+    lv->ajouterIdentifiant(identifiant);
+    automate.reduction(3, lv);
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 34
-Etat34::Etat34(string n)
+Etat34::Etat34() : Etat (34)
 {
-	nom = n;
+
 }
 
 // dtor Etat 34
@@ -848,12 +1075,15 @@ bool Etat34::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  V: //d36
-            automate.decalage(s, new Etat36("Etat 36"));
-            automate.getAnalyseurLexical()->next();
+            automate.decalage(s, new Etat36());
+            automate.consommer();
              break;
         case PV: //d35
-            automate.decalage(s, new Etat35("Etat 35"));
-            automate.getAnalyseurLexical()->next();
+            automate.decalage(s, new Etat35());
+            automate.consommer();
+            break;
+        default:
+            // génerer une erreur
             break;
     }
     return false;
@@ -862,9 +1092,9 @@ bool Etat34::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 35
-Etat35::Etat35(string n)
+Etat35::Etat35() : Etat (35)
 {
-	nom = n;
+
 }
 
 // dtor Etat 35
@@ -873,16 +1103,20 @@ Etat35::~Etat35() {}
 // fonction de transition Etat 35
 bool Etat35::transition(Automate &automate, Symbole *s)
 {	//r3
-    //automate.reduction(4, D);
+    automate.popSymbole();
+    ListeConstantes *lc = (ListeConstantes *) automate.getDernierSymbole();
+    automate.popSymbole();
+    automate.popSymbole();
+    automate.reduction(4, new DecConstante(lc));
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 36
-Etat36::Etat36(string n)
+Etat36::Etat36() : Etat (36)
 {
-	nom = n;
+
 }
 
 // dtor Etat 36
@@ -894,8 +1128,13 @@ bool Etat36::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  ID: //d37
-            automate.decalage(s, new Etat37("Etat 37"));
-            automate.getAnalyseurLexical()->next();
+            automate.decalage(s, new Etat37());
+            automate.consommer();
+            break;
+        default:
+            //gestion des erreurs
+            break;
+
     }
     return false;
 }
@@ -903,9 +1142,9 @@ bool Etat36::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 37
-Etat37::Etat37(string n)
+Etat37::Etat37() : Etat (37)
 {
-	nom = n;
+
 }
 
 // dtor Etat 37
@@ -917,8 +1156,11 @@ bool Etat37::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  EG: //d38
-            automate.decalage(s, new Etat38("Etat 38"));
-            automate.getAnalyseurLexical()->next();
+            automate.decalage(s, new Etat38());
+            automate.consommer();
+        default:
+            // génerer une erreur
+            break;
     }
     return false;
 }
@@ -926,9 +1168,9 @@ bool Etat37::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 38
-Etat38::Etat38(string n)
+Etat38::Etat38() : Etat (38)
 {
-	nom = n;
+
 }
 
 // dtor Etat 38
@@ -940,8 +1182,11 @@ bool Etat38::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  VAL: //d39
-            automate.decalage(s, new Etat39("Etat 39"));
-            automate.getAnalyseurLexical()->next();
+            automate.decalage(s, new Etat39());
+            automate.consommer();
+        default:
+            // génerer une erreur
+            break;
     }
     return false;
 }
@@ -949,9 +1194,9 @@ bool Etat38::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 39
-Etat39::Etat39(string n)
+Etat39::Etat39() : Etat (39)
 {
-	nom = n;
+
 }
 
 // dtor Etat 39
@@ -960,16 +1205,23 @@ Etat39::~Etat39() {}
 // fonction de transition Etat 39
 bool Etat39::transition(Automate &automate, Symbole *s)
 {	//r7
-    //automate.reduction(5, LC);
+    Val *valeur = (Val *)automate.getDernierSymbole();
+    automate.popSymbole();
+    Identifiant *id = (Identifiant *) automate.getDernierSymbole();
+    id->setValeurNum(valeur);
+    automate.popSymbole();
+    ListeConstantes *lc = (ListeConstantes *) automate.getDernierSymbole();
+    lc->ajouterConstante(id);
+    automate.reduction(5, lc);
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 40
-Etat40::Etat40(string n)
+Etat40::Etat40() : Etat (40)
 {
-	nom = n;
+
 }
 
 // dtor Etat 40
@@ -981,7 +1233,11 @@ bool Etat40::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  EG:
-            automate.decalage(s, new Etat41("Etat 41"));
+            automate.decalage(s, new Etat41());
+            automate.consommer();
+        default:
+            // génerer une erreur
+            break;
     }
     return false;
 }
@@ -989,9 +1245,9 @@ bool Etat40::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 41
-Etat41::Etat41(string n)
+Etat41::Etat41() : Etat (41)
 {
-	nom = n;
+
 }
 
 // dtor Etat 41
@@ -1003,8 +1259,11 @@ bool Etat41::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  VAL:
-            automate.decalage(s, new Etat42("Etat 42"));
-            automate.getAnalyseurLexical()->next();
+            automate.decalage(s, new Etat42());
+            automate.consommer();
+        default:
+            // génerer une erreur
+            break;
     }
     return false;
 }
@@ -1012,9 +1271,9 @@ bool Etat41::transition(Automate &automate, Symbole *s)
 //---------------------------------------------
 
 // ctor Etat 42
-Etat42::Etat42(string n)
+Etat42::Etat42() : Etat (42)
 {
-	nom = n;
+
 }
 
 // dtor Etat 42
@@ -1023,16 +1282,20 @@ Etat42::~Etat42() {}
 // fonction de transition Etat 42
 bool Etat42::transition(Automate &automate, Symbole *s)
 {
-    //automate.reduction(3, LC);
+    Val *valeur = (Val *) automate.getDernierSymbole();
+    automate.popSymbole();
+    Identifiant *id = (Identifiant *)automate.getDernierSymbole();
+    id->setValeurNum(valeur);
+    automate.reduction(3, new ListeConstantes(id));
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 43
-Etat43::Etat43(string n)
+Etat43::Etat43() : Etat (43)
 {
-	nom = n;
+
 }
 
 // dtor Etat 43
@@ -1041,16 +1304,17 @@ Etat43::~Etat43() {}
 // fonction de transition Etat 43
 bool Etat43::transition(Automate &automate, Symbole *s)
 {
-    //automate.reduction(1, A);
+    automate.popSymbole();
+    automate.reduction(1, new OperateurAdditif('-'));
     return false;
 }
 
 //---------------------------------------------
 
 // ctor Etat 44
-Etat44::Etat44(string n)
+Etat44::Etat44() : Etat (44)
 {
-	nom = n;
+
 }
 
 // dtor Etat 44
@@ -1059,5 +1323,5 @@ Etat44::~Etat44() {}
 // fonction de transition Etat 44
 bool Etat44::transition(Automate &automate, Symbole *s)
 {
-    return false;
+    return true;
 }

@@ -1,8 +1,12 @@
 #include "Programme.h"
 
-Programme::Programme()
+
+
+Programme::Programme(Symbole *dec, Symbole *instr):Symbole(P)
 {
-	//ctor
+
+    declarations = dec;
+    instructions = instr;
 }
 
 Programme::~Programme()

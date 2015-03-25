@@ -6,10 +6,10 @@
 
 using namespace std;
 
-typedef enum {P, D, I, VAR, CONST,VAL, ECRIRE, LIRE, ID, END, PF, PLUS, MOINS, FOIS, DIVISE, PV, PO, EG, V, AFFECT} Symboles;
+typedef enum {P, D, I,EXPR,LV, LC,F, T,A,M, VAR, CONST,VAL, ECRIRE, LIRE, ID, END, PF, PLUS, MOINS, FOIS, DIVISE, PV, PO, EG, V, AFFECT} Symboles;
 
 static const string types[] = {
-		"P", "D", "I", "VAR", "CONST","VAL", "ECRIRE", "LIRE", "ID", "END", "PF", "PLUS", "MOINS", "FOIS", "DIVISE", "PV", "PO", "EG", "V", "AFFECT"
+        "P", "D", "I", "EXPR","LV","LC","F", "T","A","M", "VAR", "CONST","VAL", "ECRIRE", "LIRE", "ID", "END", "PF", "PLUS", "MOINS", "FOIS", "DIVISE", "PV", "PO", "EG", "V", "AFFECT"
 
 		}; 
 
@@ -22,7 +22,8 @@ class Symbole
         //Symbole::Type getType();
         //operator int() const { return ident;}
         Symboles getType();
-        string afficherType();
+        void setType(Symboles t){type = t;}
+        virtual string afficherType();
 
 	protected:
         Symboles type;

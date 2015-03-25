@@ -7,7 +7,9 @@ class Declaration : public Symbole
 	public:
         Declaration(): Symbole(D){}
 		virtual ~Declaration();
+
 	protected:
+        Declaration *declaration;
 	private:
 };
 
