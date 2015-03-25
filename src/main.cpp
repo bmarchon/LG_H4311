@@ -79,10 +79,13 @@ int main( int argc, const char* argv[] )
 
    // AnalyseurLexical* lex = new AnalyseurLexical(filename(argc,argv));
 
-    AnalyseurLexical *aLexical = new AnalyseurLexical("fichier.lt");
-    Automate *automate = new Automate(aLexical);
-    cout << automate->analyse() << endl;
-    //TODO syntax analysis
+    AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
+    cout << "analyse lexicale OK" << endl;
+    Automate * automate = new Automate(aLexical);
+    cout << "automate créé" << endl;
+
+    cout << automate->analyse() << endl; //segfault
+    
 
     delete aLexical;
     delete automate;

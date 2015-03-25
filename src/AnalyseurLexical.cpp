@@ -30,8 +30,9 @@ AnalyseurLexical::AnalyseurLexical(string filename)
     Reader reader ;
     reader.lire(filename);
     text = reader.getFileText();
+    endReached = false; //has to be called before getSymbole!
     currentSym = getSymbole();
-    endReached = false;
+    
 }
 
 

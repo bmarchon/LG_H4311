@@ -77,11 +77,14 @@ bool Automate::decalage(Symbole *s, Etat *etat){
 bool Automate::analyse(){
     etats.push(new Etat0);
     cout <<  aLexical->next()->getType() << endl;
+    
+    
     //while(aLexical->next()->getType() != END)
     //{
+
      etats.top()->print();
      int i =0;
-     while(!etats.top()->transition(*this, aLexical->next()) & (i++) < 50)
+     while(!etats.top()->transition(*this, aLexical->next()) && (i++) < 50)
      {
           etats.top()->print();
      }
