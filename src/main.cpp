@@ -82,7 +82,7 @@ int main( int argc, const char* argv[] )
     AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
     cout << "analyse lexicale OK" << endl;
     Automate * automate = new Automate(aLexical);
-    cout << "automate crÃ©Ã©" << endl;
+    cout << "automate créé" << endl;
 
     cout << automate->analyse() << endl; //segfault
     
