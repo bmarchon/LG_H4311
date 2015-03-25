@@ -50,7 +50,7 @@ Symbole * AnalyseurLexical::next()
 
 void AnalyseurLexical::shift()
 {
-    currentSym = getSymbole();
+    while ((currentSym = getSymbole()) == NULL) {}
 }
 
 
@@ -103,8 +103,8 @@ Symbole * AnalyseurLexical::getSymbole()
             return res;
         }
     }
-        cout << "erreur lexicale au caractère: " << text << endl;
-        return NULL; //error
+    cout << "Erreur lexicale, le symbole " << text.erase(0,1) << " a été supprimé..." << endl;
+    return NULL; //error
 }
 
 

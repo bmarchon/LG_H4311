@@ -77,9 +77,9 @@ int main( int argc, const char* argv[] )
     cout << man << endl;
     //checkOptions(argc,argv); //get activated options
 
-   // AnalyseurLexical* lex = new AnalyseurLexical(filename(argc,argv));
+    AnalyseurLexical* aLexical = new AnalyseurLexical(filename(argc,argv));
 
-    AnalyseurLexical *aLexical = new AnalyseurLexical("fichier.lt");
+    //AnalyseurLexical *aLexical = new AnalyseurLexical("fichier.lt");
     Automate *automate = new Automate(aLexical);
     cout << automate->analyse() << endl;
     //TODO syntax analysis
