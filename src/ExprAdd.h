@@ -2,6 +2,12 @@
 #define EXPRADD_H
 #include "ExprBinaire.h"
 #include "OperateurAdditif.h"
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 class ExprAdd : public ExprBinaire
 {
 	public:

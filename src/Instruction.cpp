@@ -7,7 +7,7 @@
      {
          temp = temp->instruction;
      }
-     temp = instr;
+     temp = instr; //à corriger 
  }
 
 Instruction::~Instruction()

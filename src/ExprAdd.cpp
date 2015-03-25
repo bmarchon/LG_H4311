@@ -14,5 +14,18 @@ ExprAdd::~ExprAdd()
 
 double ExprAdd::eval(const map<string, double> &valeurs)
 {
-	return 0.0;
+	double res;	
+	switch(opAdditif->getChar())
+	{
+		case '+':
+			res = exprGauche->eval(valeurs) + exprDroite->eval(valeurs);
+			break;
+		case '-':
+			res = exprGauche->eval(valeurs) + exprDroite->eval(valeurs);
+			break;
+		default :
+			res = 0.0;
+			//cout << "error: " + opAdditif->getChar() + " is not a valid additive operator" << endl;
+	}
+	return res;
 }

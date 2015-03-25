@@ -11,8 +11,8 @@ class ExprBinaire : public Expression
         double eval(const map<string, double> &valeurs);
 
 	protected:
-        Symbole * exprGauche;
-        Symbole * exprDroite;
+        Expression * exprGauche;
+        Expression * exprDroite;
 	private:
 };
 
