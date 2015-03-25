@@ -8,7 +8,7 @@ ExprPar::~ExprPar()
 	//dtor
 }
 
-double ExprPar::eval(const map<string, double> &valeurs)
+double ExprPar::eval()
 {
-	return 0.0;
+	return expression->eval();
 }

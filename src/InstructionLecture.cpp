@@ -10,7 +10,7 @@ InstructionLecture::~InstructionLecture()
 
 }
 
-void InstructionLecture::executer(map<string, double> &valeurs)
+void InstructionLecture::executer()
 {
 	string mystr;
 	double inputValue = 0.0;
@@ -20,5 +20,5 @@ void InstructionLecture::executer(map<string, double> &valeurs)
   	getline (cin,inputString);
   	stringstream(inputString) >> inputValue;
 
-  	valeurs.insert(make_pair(identifiant->valeur(),inputValue));
+  	identifiant->setValeurNum(new Val(inputValue));
 }

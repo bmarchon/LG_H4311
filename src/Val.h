@@ -13,7 +13,7 @@ class Val : public Expression
 	virtual ~Val();
 	double valeur();
     //Val& operator = (const Val &valeur);
-    double eval(const map<string, double> &valeurs);
+    double eval();
 
 	protected:
 	private:

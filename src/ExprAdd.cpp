@@ -12,16 +12,16 @@ ExprAdd::~ExprAdd()
 	//dtor
 }
 
-double ExprAdd::eval(const map<string, double> &valeurs)
+double ExprAdd::eval()
 {
 	double res;	
 	switch(opAdditif->getType())
 	{
 		case PLUS:
-			res = exprGauche->eval(valeurs) + exprDroite->eval(valeurs);
+			res = exprGauche->eval() + exprDroite->eval();
 			break;
 		case MOINS:
-			res = exprGauche->eval(valeurs) + exprDroite->eval(valeurs);
+			res = exprGauche->eval() + exprDroite->eval();
 			break;
 		default :
 			res = 0.0;

@@ -15,7 +15,7 @@ class InstructionLecture : public Instruction
 public:
     InstructionLecture(Identifiant * id);
     ~InstructionLecture();
-    void executer(map<string, double> &valeurs);
+    void executer();
 
 private:
     Identifiant * identifiant;

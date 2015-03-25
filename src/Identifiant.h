@@ -18,7 +18,7 @@ class Identifiant : public Expression
 	string valeur();
     void setValeurNum(Val *valNum);
     Val *getValeurNum();
-    double eval(const map<string, double> &valeurs);
+    double eval();
 
 	protected:
 	private:

@@ -347,8 +347,9 @@ Etat9::~Etat9() {}
 bool Etat9::transition(Automate &automate, Symbole *s)
 {
     Expression * expression  = (Expression*)automate.getDernierSymbole();
-
-    automate.reduction(4, new InstructionEcriture(expression));
+    InstructionEcriture * ecr = new InstructionEcriture(expression);
+    automate.reduction(4, ecr);
+    ecr->executer();
 
 	return false;
 }
@@ -505,7 +506,7 @@ bool Etat14::transition(Automate &automate, Symbole *s)
 {
     Val *valeur = (Val *) automate.getDernierSymbole();
     valeur->setType(F);
-    cout << "valeur " << valeur->valeur() << endl;
+    //cout << "valeur " << valeur->eval() << endl;
     automate.reduction(1,valeur);
 	return false;
 }
@@ -880,9 +881,10 @@ bool Etat26::transition(Automate &automate, Symbole *s)
     automate.popSymbole();
     Identifiant *id = (Identifiant *) automate.getDernierSymbole();
     Instruction *blocInstruction = (Instruction *) automate.getDernierSymbole();
-    InstructionAffectation *instrAffect = new InstructionAffectation(id, expr);
-    blocInstruction->setInstruction(instrAffect);
+    InstructionAffectation * aff = new InstructionAffectation(id, expr);
+    blocInstruction->setInstruction(aff);
     automate.reduction(5, blocInstruction);
+    aff->executer();
     return false;
 }
 
@@ -933,7 +935,9 @@ bool Etat28::transition(Automate &automate, Symbole *s)
     Identifiant * identifiant = (Identifiant*) automate.getDernierSymbole();
     automate.popSymbole();
     automate.popSymbole();
-    automate.reduction(4, new InstructionLecture(identifiant));
+    InstructionLecture * lect = new InstructionLecture(identifiant);
+    automate.reduction(4, lect);
+    lect->executer();
     return false;
 }
 

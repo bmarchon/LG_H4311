@@ -7,7 +7,7 @@ class Expression : public Symbole
 	public:
         Expression(Symboles type): Symbole(type){}
 		virtual ~Expression();
-        virtual double eval(const map<string, double> &valeurs) = 0;
+        virtual double eval() = 0;
 
 	protected:
 	private:

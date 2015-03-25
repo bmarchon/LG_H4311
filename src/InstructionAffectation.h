@@ -8,6 +8,7 @@ class InstructionAffectation : public Instruction
 public:
     InstructionAffectation(Identifiant *id, Expression *expr);
     ~InstructionAffectation();
+    void executer();
 
 protected:
     Identifiant *identifiant;

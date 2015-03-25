@@ -11,7 +11,7 @@ class Instruction : public Symbole
 		virtual ~Instruction();
 
 		void setInstruction(Instruction *instr);
-		virtual void executer(map<string, double> &valeurs); //cannot be pure virtual because of instantiation in Etat1aN
+		virtual void executer(); //cannot be pure virtual because of instantiation in Etat1aN
 
 	protected:
         Instruction *instruction;

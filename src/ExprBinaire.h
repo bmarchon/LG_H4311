@@ -8,7 +8,7 @@ class ExprBinaire : public Expression
         ExprBinaire(Symboles type): Expression(type){}
         ExprBinaire(Symboles type, Expression *exprDroite, Expression *exprGauche);
 		virtual ~ExprBinaire();
-        double eval(const map<string, double> &valeurs);
+        virtual double eval() = 0;
 
 	protected:
         Expression * exprGauche;
