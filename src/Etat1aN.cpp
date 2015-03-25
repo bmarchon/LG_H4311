@@ -346,7 +346,7 @@ Etat9::~Etat9() {}
 // fonction de transition Etat 9
 bool Etat9::transition(Automate &automate, Symbole *s)
 {
-    Symbole * expression  = automate.getDernierSymbole();
+    Expression * expression  = (Expression*)automate.getDernierSymbole();
 
     automate.reduction(4, new InstructionEcriture(expression));
 
@@ -930,7 +930,7 @@ Etat28::~Etat28() {}
 bool Etat28::transition(Automate &automate, Symbole *s)
 {
     automate.popSymbole();
-    Symbole *identifiant = automate.getDernierSymbole();
+    Identifiant * identifiant = (Identifiant*) automate.getDernierSymbole();
     automate.popSymbole();
     automate.popSymbole();
     automate.reduction(4, new InstructionLecture(identifiant));

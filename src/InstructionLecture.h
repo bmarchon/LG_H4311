@@ -3,14 +3,22 @@
 #include "Instruction.h"
 #include "Identifiant.h"
 
+#include <iostream>
+#include <sstream>
+
+
+using namespace std;
+
+
 class InstructionLecture : public Instruction
 {
 public:
-    InstructionLecture(Symbole *s);
+    InstructionLecture(Identifiant * id);
     ~InstructionLecture();
+    void executer(map<string, double> &valeurs);
 
 private:
-    Symbole *identifiant;
+    Identifiant * identifiant;
 };
 
 #endif // INSTRUCTIONLECTURE_H

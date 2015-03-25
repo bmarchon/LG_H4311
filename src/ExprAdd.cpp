@@ -15,12 +15,12 @@ ExprAdd::~ExprAdd()
 double ExprAdd::eval(const map<string, double> &valeurs)
 {
 	double res;	
-	switch(opAdditif->getChar())
+	switch(opAdditif->getType())
 	{
-		case '+':
+		case PLUS:
 			res = exprGauche->eval(valeurs) + exprDroite->eval(valeurs);
 			break;
-		case '-':
+		case MOINS:
 			res = exprGauche->eval(valeurs) + exprDroite->eval(valeurs);
 			break;
 		default :
