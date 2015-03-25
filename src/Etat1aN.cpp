@@ -311,10 +311,14 @@ bool Etat8::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  PLUS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
             automate.decalage(s, new Etat18());
             automate.consommer();
 			break;
         case  MOINS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
             automate.decalage(s, new Etat43());
             automate.consommer();
 			break;
@@ -415,7 +419,11 @@ bool Etat11::transition(Automate &automate, Symbole *s)
 	{
         case  PF: //r13
         case  PLUS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
         case  MOINS:
+			//si l'un des termes est 0 => on enleve
+        	//sinon
         case  PV:
             exprDroite = (Expression *)automate.getDernierSymbole();
             opAdditif =(OperateurAdditif *) automate.getDernierSymbole();
@@ -575,10 +583,14 @@ bool Etat16::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case  PLUS: //d18
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
 			automate.decalage(s, new Etat18());
             automate.consommer();
 			break;
         case  MOINS: //d43
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
 			automate.decalage(s, new Etat43());
             automate.consommer();
 			break;
@@ -651,17 +663,25 @@ bool Etat19::transition(Automate &automate, Symbole *s)
 	{
         case  PF: //r14
         case  PLUS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
         case  MOINS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
         case  PV:
             expr = (Expression *) automate.getDernierSymbole();
             expr->setType(EXPR);
             automate.reduction(1, expr);
 			break;
         case  FOIS: //d22
+        	//si l'un des termes est 1 => on enleve
+        	//sinon
 			automate.decalage(s, new Etat22());
             automate.consommer();
 			break;
         case  DIVISE: //d23
+        	//si le diviseur est 1 => on enleve
+        	//sinon
 			automate.decalage(s, new Etat23());
             automate.consommer();
 			break;
@@ -842,10 +862,14 @@ bool Etat25::transition(Automate &automate, Symbole *s)
             automate.consommer();
             break;
         case PLUS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
             automate.decalage(s, new Etat18);
             automate.consommer();
             break;
         case MOINS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
             automate.decalage(s, new Etat43);
             automate.consommer();
             break;
