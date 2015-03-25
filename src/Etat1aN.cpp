@@ -424,10 +424,14 @@ bool Etat11::transition(Automate &automate, Symbole *s)
 			break;
 
         case  FOIS: //d22
+        	// si l'un ou l'autre des termes est un 1, on enleve
+        	// sinon
 			automate.decalage(s, new Etat22());
             automate.consommer();
 			break;
         case  DIVISE: //d23
+        	//si division par 1, on enleve l'operateur et le diviseur
+        	//sinon
 			automate.decalage(s, new Etat23());
             automate.consommer();
 			break;
@@ -998,7 +1002,7 @@ Etat31::~Etat31() {}
 
 // fonction de transition Etat 31
 bool Etat31::transition(Automate &automate, Symbole *s)
-{	
+{
 	//r2
     ListeVariables *listeVariables = (ListeVariables *) automate.getDernierSymbole();
     automate.reduction(4, new DecVariable(listeVariables));
