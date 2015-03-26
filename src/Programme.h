@@ -2,17 +2,26 @@
 #define PROGRAMME_H
 
 #include "Symbole.h"
+#include "Declaration.h"
+#include "Instruction.h"
+
+#include <vector>
+
+using namespace std;
 
 class Programme : public Symbole
 {
 	public:
         Programme();
-        Programme(Symbole *dec, Symbole *instr);
 		virtual ~Programme();
 
+		void ajouter(Declaration* dec);
+		void ajouter(Instruction* instr);
+		void executer();
+
 	protected:
-        Symbole *declarations;
-        Symbole *instructions;
+        vector<Declaration*> declarations;
+        vector<Instruction*> instructions;
 
 	private:
 };

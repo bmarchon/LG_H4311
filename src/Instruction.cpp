@@ -1,5 +1,6 @@
 #include "Instruction.h"
 
+/*
  void Instruction::setInstruction(Instruction *instr)
  {
      
@@ -7,15 +8,15 @@
      {
      	this->instruction = instr;
      }else{
-     	Instruction * temp = this->instruction;
-	     while(temp != NULL)
+     	Instruction * temp = this;
+	     while(temp->instruction != NULL)
 	     {
 	         temp = temp->instruction;
 	     }
 	   temp->instruction = instr; 
      }
      
- }
+ }*/
 
 Instruction::~Instruction()
 {
