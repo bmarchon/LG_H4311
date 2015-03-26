@@ -15,6 +15,7 @@ public:
     OperateurMultiplicatif(char op) : Symbole(M), operateur(op){}
     ~OperateurMultiplicatif();
     void afficher(); // Display the value for the representation
+    char getChar();
 protected:
     char operateur;
 };

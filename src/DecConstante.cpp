@@ -2,7 +2,7 @@
 
 DecConstante::DecConstante(ListeConstantes *lc):Declaration(lc)
 {
-    declaration = lc;
+    listeConstantes = lc;
 }
 
 
@@ -13,7 +13,7 @@ DecConstante::~DecConstante()
 }
 
 void DecConstante::afficher() {
-	//cout << "const ";
-	this->declaration->afficher();
-	//cout << ";";
+    //cout << "const ";
+    this->listeConstantes->afficher();
+    //cout << ";";
 }

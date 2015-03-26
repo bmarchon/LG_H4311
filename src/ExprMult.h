@@ -9,6 +9,7 @@ class ExprMult : public ExprBinaire
 		virtual ~ExprMult();
         double eval();
     	void afficher(); // Display the value for the representation
+
 	protected:
 	private:
         OperateurMultiplicatif *operateur;

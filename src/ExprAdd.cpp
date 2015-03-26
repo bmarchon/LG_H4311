@@ -15,13 +15,13 @@ ExprAdd::~ExprAdd()
 double ExprAdd::eval()
 {
 	double res;	
-	switch(opAdditif->getType())
+    switch(opAdditif->getChar())
 	{
-		case PLUS:
+        case '+':
 			res = exprGauche->eval() + exprDroite->eval();
 			break;
-		case MOINS:
-			res = exprGauche->eval() + exprDroite->eval();
+        case '-':
+            res = exprGauche->eval() - exprDroite->eval();
 			break;
 		default :
 			res = 0.0;
@@ -31,6 +31,8 @@ double ExprAdd::eval()
 }
 
 void ExprAdd::afficher() {
-	cout << "ExprPar ";
+
 	this->exprGauche->afficher();
+    cout << " + ";
+    this->exprDroite->afficher();
 }

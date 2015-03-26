@@ -1,8 +1,8 @@
 #include "Instruction.h"
 
-Instruction::Instruction(Instructions type): Symbole(I)
+Instruction::Instruction(Instructions instructionType): Symbole(I)
 {
-	this->type = type;
+    this->instructionType = instructionType;
 	instruction = NULL;
 }
 Instruction::Instruction(): Symbole(I)
@@ -12,7 +12,7 @@ Instruction::Instruction(): Symbole(I)
 
 Instructions Instruction::getInstType()
 {
-	return this->type;
+    return this->instructionType;
 }
 /*
  void Instruction::setInstruction(Instruction *instr)

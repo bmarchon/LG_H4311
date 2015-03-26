@@ -350,7 +350,10 @@ Etat9::~Etat9() {}
 // fonction de transition Etat 9
 bool Etat9::transition(Automate &automate, Symbole *s)
 {
+    automate.popSymbole();
     Expression * expression  = (Expression*)automate.getDernierSymbole();
+    automate.popSymbole();
+    automate.popSymbole();
     InstructionEcriture * ecr = new InstructionEcriture(expression);
     automate.ajouter(ecr);
     automate.reduction(4, ecr);
@@ -392,7 +395,7 @@ bool Etat10::transition(Automate &automate, Symbole *s)
             automate.decalage(s, new Etat12);
             break;
         default:
-            cout << s->getType();
+
             //gestion des erreurs
             break;
 	}
@@ -513,7 +516,7 @@ bool Etat14::transition(Automate &automate, Symbole *s)
 {
     Val *valeur = (Val *) automate.getDernierSymbole();
     valeur->setType(F);
-    //cout << "valeur " << valeur->eval() << endl;
+
     automate.reduction(1,valeur);
 	return false;
 }
@@ -621,6 +624,7 @@ bool Etat17::transition(Automate &automate, Symbole *s)
 {
     automate.popSymbole();
     Expression *expression = (Expression *)automate.getDernierSymbole();
+    automate.popSymbole();
     automate.reduction(3, new ExprPar(expression, F));
 	return false;
 }
@@ -903,11 +907,11 @@ bool Etat26::transition(Automate &automate, Symbole *s)
     Expression * expr = (Expression *) automate.getDernierSymbole();
     automate.popSymbole();
     Identifiant * id = (Identifiant *) automate.getDernierSymbole();
-    Instruction * inst = (Instruction *) automate.getDernierSymbole();
+    automate.popSymbole();
     InstructionAffectation * aff = new InstructionAffectation(id, expr);
     //blocInstruction->setInstruction(aff);
     automate.ajouter(aff);
-    automate.reduction(5, inst);
+    automate.reduction(5, aff);
     
     return false;
 }
@@ -1033,7 +1037,10 @@ Etat31::~Etat31() {}
 bool Etat31::transition(Automate &automate, Symbole *s)
 {
 	//r2
+    automate.popSymbole();
     ListeVariables *listeVariables = (ListeVariables *) automate.getDernierSymbole();
+    automate.popSymbole();
+    automate.popSymbole();
     DecVariable * decvar = new DecVariable(listeVariables);
     automate.ajouter(decvar);
     automate.reduction(4, decvar);
@@ -1319,6 +1326,8 @@ bool Etat42::transition(Automate &automate, Symbole *s)
     automate.popSymbole();
     Identifiant *id = (Identifiant *)automate.getDernierSymbole();
     id->setValeurNum(valeur);
+
+    id->getValeurNum()->afficher();
     automate.reduction(3, new ListeConstantes(id));
     return false;
 }

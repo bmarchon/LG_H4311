@@ -15,12 +15,12 @@ ExprMult::~ExprMult()
 double ExprMult::eval()
 {
     double res;	
-	switch(operateur->getType())
+    switch(operateur->getChar())
 	{
-		case FOIS:
+        case '*':
 			res = exprGauche->eval() * exprDroite->eval();
 			break;
-		case DIVISE:
+        case '/':
 			if(exprDroite->eval() != 0.0)
 			{
 				res = exprGauche->eval() / exprDroite->eval();
@@ -34,6 +34,8 @@ double ExprMult::eval()
 }
 
 void ExprMult::afficher() {
-	cout << "ExprPar ";
+    exprGauche->afficher();
 	this->operateur->afficher();
+    exprDroite->afficher();
 }
+
