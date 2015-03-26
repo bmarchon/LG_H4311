@@ -7,3 +7,8 @@ InstructionEcriture::~InstructionEcriture()
 
 }
 
+void InstructionEcriture::executer()
+{
+	cout << expression->eval() << endl;
+}
+

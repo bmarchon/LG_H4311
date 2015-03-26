@@ -12,16 +12,11 @@ Val::~Val()
 	//dtor
 }
 
-double Val::eval(const map<string, double> &valeurs)
+double Val::eval()
 {
 	return this->doubleVal;
 }
 
-
-double Val::valeur()
-{
-    return this->doubleVal;
-}
 
 /*
 Val& Val::operator = (const Val &valeur)

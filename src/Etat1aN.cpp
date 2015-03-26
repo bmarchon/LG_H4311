@@ -311,10 +311,14 @@ bool Etat8::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  PLUS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
             automate.decalage(s, new Etat18());
             automate.consommer();
 			break;
         case  MOINS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
             automate.decalage(s, new Etat43());
             automate.consommer();
 			break;
@@ -346,9 +350,10 @@ Etat9::~Etat9() {}
 // fonction de transition Etat 9
 bool Etat9::transition(Automate &automate, Symbole *s)
 {
-    Symbole * expression  = automate.getDernierSymbole();
-
-    automate.reduction(4, new InstructionEcriture(expression));
+    Expression * expression  = (Expression*)automate.getDernierSymbole();
+    InstructionEcriture * ecr = new InstructionEcriture(expression);
+    automate.reduction(4, ecr);
+    ecr->executer();
 
 	return false;
 }
@@ -415,7 +420,11 @@ bool Etat11::transition(Automate &automate, Symbole *s)
 	{
         case  PF: //r13
         case  PLUS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
         case  MOINS:
+			//si l'un des termes est 0 => on enleve
+        	//sinon
         case  PV:
             exprDroite = (Expression *)automate.getDernierSymbole();
             opAdditif =(OperateurAdditif *) automate.getDernierSymbole();
@@ -505,7 +514,7 @@ bool Etat14::transition(Automate &automate, Symbole *s)
 {
     Val *valeur = (Val *) automate.getDernierSymbole();
     valeur->setType(F);
-    cout << "valeur " << valeur->valeur() << endl;
+    //cout << "valeur " << valeur->eval() << endl;
     automate.reduction(1,valeur);
 	return false;
 }
@@ -575,10 +584,14 @@ bool Etat16::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case  PLUS: //d18
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
 			automate.decalage(s, new Etat18());
             automate.consommer();
 			break;
         case  MOINS: //d43
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
 			automate.decalage(s, new Etat43());
             automate.consommer();
 			break;
@@ -651,17 +664,25 @@ bool Etat19::transition(Automate &automate, Symbole *s)
 	{
         case  PF: //r14
         case  PLUS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
         case  MOINS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
         case  PV:
             expr = (Expression *) automate.getDernierSymbole();
             expr->setType(EXPR);
             automate.reduction(1, expr);
 			break;
         case  FOIS: //d22
+        	//si l'un des termes est 1 => on enleve
+        	//sinon
 			automate.decalage(s, new Etat22());
             automate.consommer();
 			break;
         case  DIVISE: //d23
+        	//si le diviseur est 1 => on enleve
+        	//sinon
 			automate.decalage(s, new Etat23());
             automate.consommer();
 			break;
@@ -842,10 +863,14 @@ bool Etat25::transition(Automate &automate, Symbole *s)
             automate.consommer();
             break;
         case PLUS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
             automate.decalage(s, new Etat18);
             automate.consommer();
             break;
         case MOINS:
+        	//si l'un des termes est 0 => on enleve
+        	//sinon
             automate.decalage(s, new Etat43);
             automate.consommer();
             break;
@@ -880,9 +905,10 @@ bool Etat26::transition(Automate &automate, Symbole *s)
     automate.popSymbole();
     Identifiant *id = (Identifiant *) automate.getDernierSymbole();
     Instruction *blocInstruction = (Instruction *) automate.getDernierSymbole();
-    InstructionAffectation *instrAffect = new InstructionAffectation(id, expr);
-    blocInstruction->setInstruction(instrAffect);
+    InstructionAffectation * aff = new InstructionAffectation(id, expr);
+    blocInstruction->setInstruction(aff);
     automate.reduction(5, blocInstruction);
+    aff->executer();
     return false;
 }
 
@@ -930,10 +956,12 @@ Etat28::~Etat28() {}
 bool Etat28::transition(Automate &automate, Symbole *s)
 {
     automate.popSymbole();
-    Symbole *identifiant = automate.getDernierSymbole();
+    Identifiant * identifiant = (Identifiant*) automate.getDernierSymbole();
     automate.popSymbole();
     automate.popSymbole();
-    automate.reduction(4, new InstructionLecture(identifiant));
+    InstructionLecture * lect = new InstructionLecture(identifiant);
+    automate.reduction(4, lect);
+    lect->executer();
     return false;
 }
 

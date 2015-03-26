@@ -4,6 +4,7 @@
 #include <string>
 #include "Expression.h"
 #include "Val.h"
+#include <map>
 using namespace std;
 
 class Identifiant : public Expression
@@ -17,7 +18,7 @@ class Identifiant : public Expression
 	string valeur();
     void setValeurNum(Val *valNum);
     Val *getValeurNum();
-    double eval(const map<string, double> &valeurs);
+    double eval();
 
 	protected:
 	private:

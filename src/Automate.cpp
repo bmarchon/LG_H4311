@@ -59,8 +59,8 @@ bool Automate::reduction(int nbEtat, Symbole *s)
     //symboles.push(s);
 
     etats.top()->transition(*this, s);
-    cout << "reduction" << endl;
-    etats.top()->print();
+    //cout << "reduction" << endl;
+    //etats.top()->print();
     return false;
 
 }
@@ -76,17 +76,17 @@ bool Automate::decalage(Symbole *s, Etat *etat){
 
 bool Automate::analyse(){
     etats.push(new Etat0);
-    cout <<  aLexical->next()->getType() << endl;
+    //cout <<  aLexical->next()->getType() << endl;
     
     
     //while(aLexical->next()->getType() != END)
     //{
 
-     etats.top()->print();
+     //etats.top()->print();
      int i =0;
      while(!etats.top()->transition(*this, aLexical->next()) && (i++) < 1000)
      {
-          etats.top()->print();
+          //etats.top()->print();
      }
 
 

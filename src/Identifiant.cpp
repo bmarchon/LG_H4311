@@ -23,10 +23,9 @@ string Identifiant::valeur()
 	return this->idVal;
 }
 
-double Identifiant::eval(const map<string, double> &valeurs)
+double Identifiant::eval()
 {
-    //return valNum->eval();
-    return 0.0;
+    return valNum->eval(); 
 }
 
 void Identifiant::setValeurNum(Val *valNum)

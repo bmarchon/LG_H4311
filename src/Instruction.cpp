@@ -2,15 +2,27 @@
 
  void Instruction::setInstruction(Instruction *instr)
  {
-     Instruction *temp = this->instruction;
-     while(temp != NULL)
+     
+     if(this->instruction == NULL)
      {
-         temp = temp->instruction;
+     	this->instruction = instr;
+     }else{
+     	Instruction * temp = this->instruction;
+	     while(temp != NULL)
+	     {
+	         temp = temp->instruction;
+	     }
+	   temp->instruction = instr; 
      }
-     temp = instr; //à corriger 
+     
  }
 
 Instruction::~Instruction()
 {
 	//dtor
+}
+
+void Instruction::executer()
+{
+	//nothing to do here
 }
