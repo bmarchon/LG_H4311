@@ -27,7 +27,7 @@ class Automate
         Symbole *getDernierSymbole();
         void consommer();
         void popSymbole();
-
+        Programme getProgramme();
         void ajouter(Declaration* dec);
         void ajouter(Instruction* instr);
 

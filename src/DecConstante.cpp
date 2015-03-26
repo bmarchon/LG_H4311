@@ -13,7 +13,7 @@ DecConstante::~DecConstante()
 }
 
 void DecConstante::afficher() {
-	cout << "const ";
+	//cout << "const ";
 	this->declaration->afficher();
-	cout << ";";
+	//cout << ";";
 }

@@ -22,7 +22,9 @@ void Automate::testTableauanalyseeeeee(){
 }
 
 
-
+Programme Automate::getProgramme() {
+    return this->programme;
+}
 
 
 
