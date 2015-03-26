@@ -84,7 +84,7 @@ bool Automate::analyse(){
 
      etats.top()->print();
      int i =0;
-     while(!etats.top()->transition(*this, aLexical->next()) && (i++) < 50)
+     while(!etats.top()->transition(*this, aLexical->next()) && (i++) < 1000)
      {
           etats.top()->print();
      }
