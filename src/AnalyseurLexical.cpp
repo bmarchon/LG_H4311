@@ -31,8 +31,7 @@ AnalyseurLexical::AnalyseurLexical(string filename)
     reader.lire(filename);
     text = reader.getFileText();
     endReached = false; //has to be called before getSymbole!
-    currentSym = getSymbole();
-    
+    while ((currentSym = getSymbole()) == NULL);
 }
 
 
@@ -51,7 +50,7 @@ Symbole * AnalyseurLexical::next()
 
 void AnalyseurLexical::shift()
 {
-    while ((currentSym = getSymbole()) == NULL) {}
+    while ((currentSym = getSymbole()) == NULL);
 }
 
 
@@ -103,8 +102,9 @@ Symbole * AnalyseurLexical::getSymbole()
 
             return res;
         }
-    }
-    cout << "Erreur lexicale, le symbole " << text.erase(0,1) << " a été supprimé..." << endl;
+    }   
+    cout << "Erreur lexicale, le symbole \"" << text[0] << "\" a été supprimé..." << endl;
+    text.erase(0, 1);
     return NULL; //error
 }
 

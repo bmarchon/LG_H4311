@@ -8,7 +8,7 @@ class SymboleSimple : public Symbole
 	public:
 	SymboleSimple(Symboles);
 	virtual ~SymboleSimple();
-
+    //void afficher(); // Display the value for the representation
 	protected:
 	private:
 };
