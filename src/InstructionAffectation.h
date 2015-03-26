@@ -9,6 +9,7 @@ public:
     InstructionAffectation(Identifiant *id, Expression *expr);
     ~InstructionAffectation();
     void executer();
+    void afficher(); // Display the value for the representation
 
 protected:
     Identifiant *identifiant;

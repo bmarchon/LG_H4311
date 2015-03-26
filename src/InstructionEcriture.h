@@ -13,6 +13,7 @@ public:
     InstructionEcriture(Expression *exp){expression = exp ;}
     ~InstructionEcriture();
     void executer();
+    void afficher(); // Display the value for the representation
 
 protected:
     Expression *expression;

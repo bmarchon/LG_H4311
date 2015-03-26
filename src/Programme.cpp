@@ -13,3 +13,9 @@ Programme::~Programme()
 {
 	//dtor
 }
+
+void Programme::afficher() {
+	cout << "Programme ";
+	this->declarations->afficher();
+	this->instructions->afficher();
+}

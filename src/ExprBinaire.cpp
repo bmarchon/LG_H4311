@@ -11,3 +11,8 @@ ExprBinaire::~ExprBinaire()
 }
 
 
+void ExprBinaire::afficher() {
+	cout << "ExprPar ";
+	this->exprGauche->afficher();
+	this->exprDroite->afficher();
+}

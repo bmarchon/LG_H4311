@@ -26,3 +26,8 @@ void Instruction::executer()
 {
 	//nothing to do here
 }
+
+void Instruction::afficher()
+{
+	//nothing to do here
+}

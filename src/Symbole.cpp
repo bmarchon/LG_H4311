@@ -19,3 +19,8 @@ string Symbole::afficherType()
 {
 	return types[this->type];
 }
+
+void Symbole::afficher()
+{
+	//nothing to do here
+}

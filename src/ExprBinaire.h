@@ -1,6 +1,9 @@
 #ifndef EXPRBINAIRE_H
 #define EXPRBINAIRE_H
 #include "Expression.h"
+#include <iostream>
+
+using namespace std;
 
 class ExprBinaire : public Expression
 {
@@ -9,6 +12,7 @@ class ExprBinaire : public Expression
         ExprBinaire(Symboles type, Expression *exprDroite, Expression *exprGauche);
 		virtual ~ExprBinaire();
         virtual double eval() = 0;
+    	void afficher(); // Display the value for the representation
 
 	protected:
         Expression * exprGauche;

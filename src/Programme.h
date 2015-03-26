@@ -2,6 +2,9 @@
 #define PROGRAMME_H
 
 #include "Symbole.h"
+#include "iostream"
+
+using namespace std;
 
 class Programme : public Symbole
 {
@@ -9,7 +12,7 @@ class Programme : public Symbole
         Programme();
         Programme(Symbole *dec, Symbole *instr);
 		virtual ~Programme();
-
+    	void afficher(); // Display the value for the representation
 	protected:
         Symbole *declarations;
         Symbole *instructions;

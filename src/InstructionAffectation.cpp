@@ -16,3 +16,7 @@ void InstructionAffectation::executer()
 	identifiant->setValeurNum(new Val(expression->eval()));
 }
 
+void InstructionAffectation::afficher() {
+	cout << "Affectation ";
+	this->identifiant->afficher();
+}

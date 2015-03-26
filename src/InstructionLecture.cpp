@@ -22,3 +22,9 @@ void InstructionLecture::executer()
 
   	identifiant->setValeurNum(new Val(inputValue));
 }
+
+
+void InstructionLecture::afficher() {
+	cout << "Lire ";
+	this->identifiant->afficher();
+}
