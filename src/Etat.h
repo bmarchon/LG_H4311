@@ -13,6 +13,7 @@ class Etat
 	public:
         Etat();
         Etat(int num);
+        int getNombreEtat();
 		virtual ~Etat();
 		void print() const;
 		virtual bool transition(Automate & automate, Symbole * s) = 0;

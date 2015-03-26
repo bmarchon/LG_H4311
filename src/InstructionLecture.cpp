@@ -1,6 +1,6 @@
 #include "InstructionLecture.h"
 
-InstructionLecture::InstructionLecture(Identifiant *identifiant):Instruction()
+InstructionLecture::InstructionLecture(Identifiant *identifiant):Instruction(LEC)
 {
     this->identifiant = identifiant;
 }

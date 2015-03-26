@@ -1,5 +1,19 @@
 #include "Instruction.h"
 
+Instruction::Instruction(Instructions type): Symbole(I)
+{
+	this->type = type;
+	instruction = NULL;
+}
+Instruction::Instruction(): Symbole(I)
+{
+	instruction = NULL;
+}
+
+Instructions Instruction::getInstType()
+{
+	return this->type;
+}
 /*
  void Instruction::setInstruction(Instruction *instr)
  {

@@ -6,10 +6,12 @@ class Declaration : public Symbole
 {
 	public:
         Declaration(): Symbole(D){}
+        Declaration(Symbole * s);
 		virtual ~Declaration();
-
+		Symbole * getContenu();
 	protected:
         Declaration *declaration;
+        Symbole * contenu;
 	private:
 };
 

@@ -19,6 +19,9 @@ class Programme : public Symbole
 		void ajouter(Instruction* instr);
 		void executer();
 
+		vector<Declaration*> getDeclarations();
+        vector<Instruction*> getInstructions();
+
 	protected:
         vector<Declaration*> declarations;
         vector<Instruction*> instructions;

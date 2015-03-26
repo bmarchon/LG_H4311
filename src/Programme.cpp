@@ -28,3 +28,12 @@ void Programme::executer()
     	(*it)->executer();
 	}
 }
+
+vector<Declaration*> Programme::getDeclarations()
+{
+	return declarations;
+}
+vector<Instruction*> Programme::getInstructions()
+{
+	return instructions;
+}

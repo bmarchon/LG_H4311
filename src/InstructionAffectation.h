@@ -10,6 +10,7 @@ public:
     InstructionAffectation(Identifiant *id, Expression *expr);
     ~InstructionAffectation();
     void executer();
+    Instructions getType();
 
 protected:
     Identifiant *identifiant;

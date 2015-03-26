@@ -2,13 +2,21 @@
 #define AUTOMATE_H
 
 #include <stack>
+#include <string.h>
+#include <iostream>
 
-#include "Symbole.h"
 #include "AnalyseurLexical.h"
 #include "Declaration.h"
-#include "Instruction.h"
-#include "Programme.h"
 #include "Etat.h"
+#include "Etat1aN.h"
+#include "Instruction.h"
+#include "InstructionEcriture.h"
+#include "InstructionLecture.h"
+#include "InstructionAffectation.h"
+#include "ListeVariables.h"
+#include "ListeConstantes.h"
+#include "Programme.h"
+#include "Symbole.h"
 
 using namespace std;
 class Automate
@@ -30,6 +38,8 @@ class Automate
 
         void ajouter(Declaration* dec);
         void ajouter(Instruction* instr);
+
+        void analyseStatique();
 
         void executer();
     protected:

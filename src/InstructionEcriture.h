@@ -10,7 +10,7 @@ using namespace std;
 class InstructionEcriture : public Instruction
 {
 public:
-    InstructionEcriture(Expression *exp){expression = exp ;}
+    InstructionEcriture(Expression *exp);
     ~InstructionEcriture();
     void executer();
 

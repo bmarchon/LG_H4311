@@ -1,7 +1,5 @@
 #include "Automate.h"
-#include <string.h>
-#include "Etat1aN.h"
-#include <iostream>
+
 using namespace std;
 /*
 Automate::Automate()
@@ -12,7 +10,7 @@ Automate::Automate()
 }*/
 
 Automate::Automate(AnalyseurLexical *aL)
-{
+{ 
     aLexical = aL;
 }
 
@@ -21,6 +19,50 @@ void Automate::testTableauanalyseeeeee(){
     cout << tableauAnalyseStatique[0].s->afficherType() << "coucou" << endl;
 }
 
+void Automate::analyseStatique(){
+    vector<Declaration*> declarations = programme.getDeclarations();
+    vector<Instruction*> instructions = programme.getInstructions();
+
+    for (auto it = declarations.begin() ; it != declarations.end(); ++it)
+    {
+        Symbole * contenuDec = (*it)->getContenu();
+
+        //for (auto it = listID.begin() ; it != listID.end(); ++it)
+        //{
+        
+        /*
+        if((*it)->getContenu()->getType() == LC)
+        {
+            tableauAnalyseStatique.back().affecte = true;
+        }
+        else if((*it)->getContenu()->getType() != LV)
+        {
+            cout << "Something went wrong, declaration was a :" <<  (*it)->getContenu()->getType() << endl;
+        }
+        */
+        //}
+    }
+
+    for (auto it = instructions.begin() ; it != instructions.end(); ++it)
+    {
+        /*
+        switch((*it)->getType())
+        {
+            case AFF:
+                InstructionAffectation * instrAff = (InstructionAffectation) *it;
+                
+                break;
+            case LEC:
+                InstructionLecture * instrLec = (InstructionLecture) *it;
+                break;
+            case ECR:
+                InstructionEcriture * instrEcr = (InstructionEcriture) *it;
+                break;
+        }
+        */
+    }
+
+} 
 
 
 

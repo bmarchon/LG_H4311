@@ -1,7 +1,7 @@
 #include "DecVariable.h"
 
 
-DecVariable::DecVariable(ListeVariables *lv):Declaration()
+DecVariable::DecVariable(ListeVariables *lv):Declaration(lv)
 {
     listeVariables = lv;
 }
