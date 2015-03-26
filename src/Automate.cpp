@@ -3,12 +3,13 @@
 #include "Etat1aN.h"
 #include <iostream>
 using namespace std;
+/*
 Automate::Automate()
 {
     //ctor
     struct analyseSymbole test(new SymboleSimple(VAR));
     tableauAnalyseStatique.push_back(test);
-}
+}*/
 
 Automate::Automate(AnalyseurLexical *aL)
 {
@@ -124,4 +125,20 @@ void Automate::popSymbole()
 Automate::~Automate()
 {
     //dtor
+}
+
+void Automate::ajouter(Instruction* instr)
+{
+    programme.ajouter(instr);
+}
+
+void Automate::ajouter(Declaration* dec)
+{
+    programme.ajouter(dec);
+}
+
+
+void Automate::executer()
+{
+    programme.executer();
 }

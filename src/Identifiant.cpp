@@ -4,6 +4,7 @@ Identifiant::Identifiant(string idVal) : Expression(ID)
 {
 	 //ctor
 	this->idVal = idVal;
+	this->valNum = NULL;
 }
 
 Identifiant::Identifiant(Symboles type, Identifiant *ident): Expression(type)
@@ -25,7 +26,13 @@ string Identifiant::valeur()
 
 double Identifiant::eval()
 {
-    return valNum->eval(); 
+    
+    if(valNum != NULL)
+    {
+    	return valNum->eval();
+    }else{
+    	return 0.0;
+    }
 }
 
 void Identifiant::setValeurNum(Val *valNum)

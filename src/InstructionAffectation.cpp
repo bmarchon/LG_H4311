@@ -14,5 +14,6 @@ InstructionAffectation::~InstructionAffectation()
 void InstructionAffectation::executer()
 {
 	identifiant->setValeurNum(new Val(expression->eval()));
+	// TODO delete previous expression?
 }
 

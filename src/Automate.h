@@ -1,10 +1,16 @@
 #ifndef AUTOMATE_H
 #define AUTOMATE_H
+
 #include <stack>
+
 #include "Symbole.h"
 #include "AnalyseurLexical.h"
-using namespace std;
+#include "Declaration.h"
+#include "Instruction.h"
+#include "Programme.h"
 #include "Etat.h"
+
+using namespace std;
 class Automate
 {
     public:
@@ -21,6 +27,11 @@ class Automate
         Symbole *getDernierSymbole();
         void consommer();
         void popSymbole();
+
+        void ajouter(Declaration* dec);
+        void ajouter(Instruction* instr);
+
+        void executer();
     protected:
         AnalyseurLexical *aLexical;
         stack<Etat *> etats;
@@ -39,6 +50,7 @@ class Automate
         };
         vector<analyseSymbole> tableauAnalyseStatique;
     private:
+        Programme programme;
 };
 
 #endif // AUTOMATE_H
