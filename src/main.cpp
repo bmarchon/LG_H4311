@@ -75,7 +75,7 @@ int main( int argc, const char* argv[] )
 {
     cout << programName << " version " << version << endl << endl;
     cout << man << endl;
-    //checkOptions(argc,argv); //get activated options
+    checkOptions(argc,argv); //get activated options
 
    // AnalyseurLexical* lex = new AnalyseurLexical(filename(argc,argv));
 
@@ -83,6 +83,11 @@ int main( int argc, const char* argv[] )
     Automate * automate = new Automate(aLexical);
     automate->analyse(); //segfault
     
+    if(optionE)
+    {
+        cout << "execution" << endl;
+        automate->executer();
+    }
 
     delete aLexical;
     delete automate;

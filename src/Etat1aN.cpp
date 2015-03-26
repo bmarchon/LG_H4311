@@ -106,9 +106,9 @@ Etat2::~Etat2() {}
 // fonction de transition Etat 2
 bool Etat2::transition(Automate &automate, Symbole *s)
 {
-    Instruction *instruction;
-    Declaration *declaration;
-    Programme *p;
+    //Instruction *instruction;
+    //Declaration *declaration;
+    //Programme *p;
     switch (s->getType())
 	{
         case  ECRIRE:
@@ -124,9 +124,9 @@ bool Etat2::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case  END:
-            instruction = (Instruction *)automate.getDernierSymbole();
-            declaration = (Declaration *)automate.getDernierSymbole();
-            p = new Programme(declaration, instruction);
+            //instruction = (Instruction *)automate.getDernierSymbole();
+            //declaration = (Declaration *)automate.getDernierSymbole();
+            //p = new Programme(declaration, instruction);
             cout << "Programme valide" << endl;
             return true;
         default:
@@ -352,9 +352,8 @@ bool Etat9::transition(Automate &automate, Symbole *s)
 {
     Expression * expression  = (Expression*)automate.getDernierSymbole();
     InstructionEcriture * ecr = new InstructionEcriture(expression);
+    automate.ajouter(ecr);
     automate.reduction(4, ecr);
-    ecr->executer();
-
 	return false;
 }
 
@@ -901,14 +900,15 @@ bool Etat26::transition(Automate &automate, Symbole *s)
 {
 
     automate.popSymbole();
-    Expression *expr = (Expression *) automate.getDernierSymbole();
+    Expression * expr = (Expression *) automate.getDernierSymbole();
     automate.popSymbole();
-    Identifiant *id = (Identifiant *) automate.getDernierSymbole();
-    Instruction *blocInstruction = (Instruction *) automate.getDernierSymbole();
+    Identifiant * id = (Identifiant *) automate.getDernierSymbole();
+    Instruction * inst = (Instruction *) automate.getDernierSymbole();
     InstructionAffectation * aff = new InstructionAffectation(id, expr);
-    blocInstruction->setInstruction(aff);
-    automate.reduction(5, blocInstruction);
-    aff->executer();
+    //blocInstruction->setInstruction(aff);
+    automate.ajouter(aff);
+    automate.reduction(5, inst);
+    
     return false;
 }
 
@@ -960,8 +960,9 @@ bool Etat28::transition(Automate &automate, Symbole *s)
     automate.popSymbole();
     automate.popSymbole();
     InstructionLecture * lect = new InstructionLecture(identifiant);
+    automate.ajouter(lect);
     automate.reduction(4, lect);
-    lect->executer();
+    
     return false;
 }
 
@@ -1033,7 +1034,9 @@ bool Etat31::transition(Automate &automate, Symbole *s)
 {
 	//r2
     ListeVariables *listeVariables = (ListeVariables *) automate.getDernierSymbole();
-    automate.reduction(4, new DecVariable(listeVariables));
+    DecVariable * decvar = new DecVariable(listeVariables);
+    automate.ajouter(decvar);
+    automate.reduction(4, decvar);
     return false;
 }
 
@@ -1135,7 +1138,9 @@ bool Etat35::transition(Automate &automate, Symbole *s)
     ListeConstantes *lc = (ListeConstantes *) automate.getDernierSymbole();
     automate.popSymbole();
     automate.popSymbole();
-    automate.reduction(4, new DecConstante(lc));
+    DecConstante * decconst = new DecConstante(lc);
+    automate.ajouter(decconst);
+    automate.reduction(4, decconst);
     return false;
 }
 

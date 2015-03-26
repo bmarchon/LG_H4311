@@ -2,11 +2,9 @@
 
 
 
-Programme::Programme(Symbole *dec, Symbole *instr):Symbole(P)
+Programme::Programme():Symbole(P)
 {
 
-    declarations = dec;
-    instructions = instr;
 }
 
 Programme::~Programme()
@@ -19,3 +17,21 @@ void Programme::afficher() {
 	this->declarations->afficher();
 	this->instructions->afficher();
 }
+
+void Programme::ajouter(Declaration* dec)
+{
+	declarations.push_back(dec);
+}
+
+void Programme::ajouter(Instruction* instr)
+{
+	instructions.push_back(instr);
+}
+
+void Programme::executer()
+{
+	for(auto it = instructions.begin(); it != instructions.end(); ++it) {
+    	(*it)->executer();
+	}
+}
+

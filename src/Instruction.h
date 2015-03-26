@@ -9,7 +9,7 @@ using namespace std;
 class Instruction : public Symbole
 {
 	public:
-        Instruction() : Symbole(I){}
+        Instruction() : Symbole(I){ instruction = NULL;}
 		virtual ~Instruction();
 
 		void setInstruction(Instruction *instr);
