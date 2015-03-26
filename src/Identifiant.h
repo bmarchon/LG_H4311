@@ -19,7 +19,7 @@ class Identifiant : public Expression
     void setValeurNum(Val *valNum);
     Val *getValeurNum();
     double eval();
-
+    void afficher(); // Display the value for the representation 
 	protected:
 	private:
 	string idVal;

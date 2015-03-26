@@ -83,11 +83,16 @@ int main( int argc, const char* argv[] )
     Automate * automate = new Automate(aLexical);
     automate->analyse(); //segfault
     
+
+    automate->getProgramme().afficher();
+
     if(optionE)
     {
         cout << "execution" << endl;
         automate->executer();
     }
+
+
 
     delete aLexical;
     delete automate;

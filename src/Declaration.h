@@ -9,6 +9,7 @@ class Declaration : public Symbole
         Declaration(Symbole * s);
 		virtual ~Declaration();
 		Symbole * getContenu();
+		void afficher(); // Display the value for the representation
 	protected:
         Declaration *declaration;
         Symbole * contenu;

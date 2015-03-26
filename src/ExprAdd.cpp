@@ -29,3 +29,8 @@ double ExprAdd::eval()
 	}
 	return res;
 }
+
+void ExprAdd::afficher() {
+	cout << "ExprPar ";
+	this->exprGauche->afficher();
+}

@@ -9,3 +9,8 @@ SymboleSimple::~SymboleSimple()
 {
 	//dtor
 }
+
+void SymboleSimple::afficher()
+{
+	//nothing to do here
+}

@@ -6,3 +6,6 @@ Expression::~Expression()
 	//dtor
 }
 
+void Expression::afficher(){
+	
+}

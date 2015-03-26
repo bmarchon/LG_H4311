@@ -22,3 +22,8 @@ ListeConstantes::~ListeConstantes()
 
 }
 
+void ListeConstantes::afficher() {
+	for(int unsigned i=0; i<listeConstantes.size(); i++) {
+		cout << "const " << listeConstantes[i]->valeur() << ";" << endl;
+	}
+}

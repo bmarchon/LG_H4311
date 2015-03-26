@@ -12,3 +12,8 @@ double ExprPar::eval()
 {
 	return expression->eval();
 }
+
+void ExprPar::afficher() {
+	cout << "ExprPar ";
+	this->expression->afficher();
+}

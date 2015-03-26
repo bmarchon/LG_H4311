@@ -32,3 +32,8 @@ double ExprMult::eval()
 	}
 	return res;
 }
+
+void ExprMult::afficher() {
+	cout << "ExprPar ";
+	this->operateur->afficher();
+}

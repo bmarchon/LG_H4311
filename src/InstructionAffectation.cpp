@@ -17,3 +17,7 @@ void InstructionAffectation::executer()
 	// TODO delete previous expression?
 }
 
+void InstructionAffectation::afficher() {
+	cout << "Affectation ";
+	this->identifiant->afficher();
+}

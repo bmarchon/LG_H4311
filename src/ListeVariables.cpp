@@ -15,3 +15,14 @@ void ListeVariables::ajouterIdentifiant(Identifiant *id)
 {
     listeVariables.push_back(id);
 }
+
+void ListeVariables::afficher() {
+	for(int unsigned i=0; i<listeVariables.size(); i++) {
+		if (i == listeVariables.size() -1) {
+			cout << listeVariables[i]->valeur();
+		}
+		else {
+			cout<<listeVariables[i]->valeur() << ", " ;
+		}
+	}
+}

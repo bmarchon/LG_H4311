@@ -44,3 +44,7 @@ Val *Identifiant::getValeurNum()
 {
     return valNum;
 }
+
+void Identifiant::afficher(){
+	cout << this->idVal;
+}

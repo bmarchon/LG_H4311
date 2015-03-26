@@ -12,6 +12,17 @@ Programme::~Programme()
 	//dtor
 }
 
+void Programme::afficher() {
+	for(unsigned int i=0; i<this->declarations.size(); i++) {
+		this->declarations[i]->afficher();
+	}
+	for(unsigned int i=0; i<this->instructions.size(); i++) {
+		this->instructions[i]->afficher();
+	}
+
+
+}
+
 void Programme::ajouter(Declaration* dec)
 {
 	declarations.push_back(dec);

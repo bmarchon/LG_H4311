@@ -64,7 +64,9 @@ void Automate::analyseStatique(){
 
 } 
 
-
+Programme Automate::getProgramme() {
+    return this->programme;
+}
 
 
 

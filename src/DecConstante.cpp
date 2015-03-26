@@ -11,3 +11,9 @@ DecConstante::~DecConstante()
 {
 	//dtor
 }
+
+void DecConstante::afficher() {
+	//cout << "const ";
+	this->declaration->afficher();
+	//cout << ";";
+}

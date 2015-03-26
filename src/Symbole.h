@@ -24,8 +24,7 @@ class Symbole
         Symboles getType();
         void setType(Symboles t){type = t;}
         virtual string afficherType();
-        //virtual void afficher()=0; // Display the value for the representation
-
+        virtual void afficher(); // Display the value for the representation 
 	protected:
         Symboles type;
 
