@@ -7,8 +7,8 @@ InstructionEcriture::~InstructionEcriture()
 
 }
 
-void InstructionEcriture::executer(map<string, double> &valeurs)
+void InstructionEcriture::executer()
 {
-	cout << expression->eval(valeurs) << endl;
+	cout << expression->eval() << endl;
 }
 

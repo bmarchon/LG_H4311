@@ -2,16 +2,17 @@
 
  void Instruction::setInstruction(Instruction *instr)
  {
-     Instruction *temp = this->instruction;
-     if(temp == NULL)
+     
+     if(this->instruction == NULL)
      {
      	this->instruction = instr;
      }else{
-	     while(temp->instruction != NULL)
+     	Instruction * temp = this->instruction;
+	     while(temp != NULL)
 	     {
 	         temp = temp->instruction;
 	     }
-	     temp->instruction = instr; //à corriger 
+	   temp->instruction = instr; 
      }
      
  }
@@ -21,7 +22,7 @@ Instruction::~Instruction()
 	//dtor
 }
 
-void Instruction::executer(map<string, double> &valeurs)
+void Instruction::executer()
 {
 	//nothing to do here
 }

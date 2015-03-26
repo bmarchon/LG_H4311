@@ -12,7 +12,7 @@ class InstructionEcriture : public Instruction
 public:
     InstructionEcriture(Expression *exp){expression = exp ;}
     ~InstructionEcriture();
-    void executer(map<string, double> &valeurs);
+    void executer();
 
 protected:
     Expression *expression;

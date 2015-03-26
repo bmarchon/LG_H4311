@@ -7,7 +7,7 @@ class ExprMult : public ExprBinaire
 	public:
         ExprMult(Symboles type, Expression *expressionGauche,OperateurMultiplicatif *operateur, Expression *expressionDroite);
 		virtual ~ExprMult();
-        double eval(const map<string, double> &valeurs);
+        double eval();
 
 	protected:
 	private:

@@ -12,18 +12,18 @@ ExprMult::~ExprMult()
 	//dtor
 }
 
-double ExprMult::eval(const map<string, double> &valeurs)
+double ExprMult::eval()
 {
     double res;	
 	switch(operateur->getType())
 	{
 		case FOIS:
-			res = exprGauche->eval(valeurs) * exprDroite->eval(valeurs);
+			res = exprGauche->eval() * exprDroite->eval();
 			break;
 		case DIVISE:
-			if(exprDroite->eval(valeurs) != 0.0)
+			if(exprDroite->eval() != 0.0)
 			{
-				res = exprGauche->eval(valeurs) / exprDroite->eval(valeurs);
+				res = exprGauche->eval() / exprDroite->eval();
 			}
 			break;
 		default :
