@@ -9,7 +9,7 @@ class ExprBinaire : public Expression
 {
 	public:
         	ExprBinaire(Symboles type): Expression(BIN, type){}
-        	ExprBinaire(Symboles type, Expression *exprDroite, Expression *exprGauche);
+            ExprBinaire(Symboles type, Expression *exprGauche, Expression *exprDroite);
 		virtual ~ExprBinaire();
         	virtual double eval() = 0;
     		void afficher(); // Display the value for the representation
