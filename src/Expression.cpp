@@ -24,3 +24,7 @@ Expression::~Expression()
 void Expression::afficher(){
 	
 }
+/*Expression * Expression::getExpression()
+{
+	return this->expression;
+}*/

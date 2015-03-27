@@ -11,7 +11,7 @@ class ExprPar : public Expression
 		virtual ~ExprPar();
         	double eval();
     		void afficher(); // Display the value for the representation
-		//Expression getExpression(); //a implementer
+		Expression* getExpression(); 
 	protected:
 	private:
 		Expression * expression;

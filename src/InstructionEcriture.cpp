@@ -25,3 +25,7 @@ Expressions InstructionEcriture::getExpressionType()
 {
 	return this->expression->getExprType();
 }
+Expression * InstructionEcriture::getExpression()
+{
+	return this->expression;
+}

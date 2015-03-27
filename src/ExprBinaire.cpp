@@ -16,3 +16,11 @@ void ExprBinaire::afficher() {
 	this->exprGauche->afficher();
 	this->exprDroite->afficher();
 }
+Expression* ExprBinaire::getGauche() 
+{
+	return this->exprGauche;
+}
+Expression* ExprBinaire::getDroite()
+{
+	return this->exprDroite;
+}

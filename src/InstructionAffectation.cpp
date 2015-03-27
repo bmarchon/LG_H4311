@@ -29,3 +29,7 @@ Expressions InstructionAffectation::getExpressionType()
 {
 	return this->expression->getExprType();
 }
+Expression * InstructionAffectation::getExpression()
+{
+	return this->expression;
+}

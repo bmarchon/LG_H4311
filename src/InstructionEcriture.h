@@ -15,6 +15,7 @@ public:
 	Expressions getExpressionType();
     void executer();
     void afficher(); // Display the value for the representation
+	Expression * getExpression();
 
 protected:
     Expression *expression;

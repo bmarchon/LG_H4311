@@ -18,3 +18,7 @@ void ExprPar::afficher() {
 	this->expression->afficher();
     cout << ")";
 }
+Expression * ExprPar::getExpression()
+{
+	return this->expression;
+}

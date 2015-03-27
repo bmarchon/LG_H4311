@@ -4,6 +4,9 @@
 #include "Programme.h"
 #include "InstructionAffectation.h"
 #include "InstructionEcriture.h"
+#include "Expression.h"
+#include "ExprBinaire.h"
+#include "ExprPar.h"
 
 using namespace std;
 

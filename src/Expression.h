@@ -15,6 +15,7 @@ class Expression : public Symbole
         	virtual double eval() = 0;
     		void afficher(); // Display the value for the representation
 		Expressions getExprType();
+		//Expression * getExpression();
 
 	protected:
 		Expressions typeExp;
