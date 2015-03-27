@@ -17,6 +17,10 @@ double Val::eval()
 	return this->doubleVal;
 }
 
+void Val::afficher()
+{
+    cout << doubleVal;
+}
 
 /*
 Val& Val::operator = (const Val &valeur)

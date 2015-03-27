@@ -11,7 +11,7 @@ class Instruction : public Symbole
 {
 	public:
 		Instruction();
-        	Instruction(Instructions type);
+        	Instruction(Instructions instructionType);
 		virtual ~Instruction();
 		void setInstruction(Instruction *instr);
 		virtual void executer(); //cannot be pure virtual because of instantiation in Etat1aN
@@ -19,7 +19,7 @@ class Instruction : public Symbole
     		void afficher(); // Display the value for the representation
 	protected:
         Instruction *instruction;
-        Instructions type;
+        Instructions instructionType;
 	private:
 };
 

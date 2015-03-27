@@ -18,6 +18,10 @@ void InstructionAffectation::executer()
 }
 
 void InstructionAffectation::afficher() {
-	cout << "Affectation ";
-	this->identifiant->afficher();
+
+    this->identifiant->afficher();
+    cout << " := ";
+    this->expression->afficher();
+    cout << ";" << endl;
+
 }

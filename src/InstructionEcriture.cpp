@@ -18,4 +18,5 @@ void InstructionEcriture::executer()
 void InstructionEcriture::afficher() {
 	cout << "Ecrire ";
 	this->expression->afficher();
+    cout << ";" << endl;
 }

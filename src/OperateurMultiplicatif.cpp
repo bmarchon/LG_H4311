@@ -11,10 +11,10 @@ void OperateurMultiplicatif::afficher()
 {
 	//string tmp = string(this->operateur);
 	//cout << tmp << end;
+    cout << operateur;
+}
 
-	stringstream ss;
-	string s;
-	ss << this->operateur;
-	ss >> s;
-	cout << s << endl;
+char OperateurMultiplicatif::getChar()
+{
+    return operateur;
 }

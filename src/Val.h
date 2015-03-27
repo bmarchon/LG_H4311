@@ -14,7 +14,7 @@ class Val : public Expression
 	double valeur();
     //Val& operator = (const Val &valeur);
     double eval();
-
+    void afficher();
 	protected:
 	private:
 	double doubleVal;

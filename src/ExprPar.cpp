@@ -14,6 +14,7 @@ double ExprPar::eval()
 }
 
 void ExprPar::afficher() {
-	cout << "ExprPar ";
+    cout << "(";
 	this->expression->afficher();
+    cout << ")";
 }

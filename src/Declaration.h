@@ -11,7 +11,7 @@ class Declaration : public Symbole
 		Symbole * getContenu();
 		void afficher(); // Display the value for the representation
 	protected:
-        Declaration *declaration;
+        //Declaration *declaration;
         Symbole * contenu;
 	private:
 };
