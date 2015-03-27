@@ -660,6 +660,7 @@ Etat19::~Etat19() {}
 // fonction de transition Etat 19
 bool Etat19::transition(Automate &automate, Symbole *s)
 {
+    Expression * expr;
     switch (s->getType())
 	{
         case  PF: //r14
@@ -670,7 +671,7 @@ bool Etat19::transition(Automate &automate, Symbole *s)
         	//si l'un des termes est 0 => on enleve
         	//sinon
         case  PV:
-            Expression * expr = (Expression *) automate.getDernierSymbole();
+            expr = (Expression *) automate.getDernierSymbole();
             expr->setType(EXPR);
             automate.reduction(1, expr);
 			break;
