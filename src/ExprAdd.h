@@ -15,6 +15,7 @@ class ExprAdd : public ExprBinaire
         ExprAdd(Expression *exprGauche, OperateurAdditif *opAdd, Expression *exprDroite);
 		virtual ~ExprAdd();
         double eval();
+    	void afficher(); // Display the value for the representation
 
 	protected:
 	private:

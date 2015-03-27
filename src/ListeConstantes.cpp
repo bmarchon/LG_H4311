@@ -1,8 +1,15 @@
 #include "ListeConstantes.h"
 
+using namespace std;
+
 ListeConstantes::ListeConstantes(Identifiant *id):Symbole(LC)
 {
     listeConstantes.push_back(id);
+}
+
+vector<Identifiant *> ListeConstantes::getListID()
+{
+	return this->listeConstantes;
 }
 
 void ListeConstantes::ajouterConstante(Identifiant *id)
@@ -15,8 +22,12 @@ ListeConstantes::~ListeConstantes()
 
 }
 
-vector<Identifiant*> ListeConstantes::identifiants()
-{
-	return this->listeConstantes;
+void ListeConstantes::afficher() {
+    for(int unsigned i=0; i<listeConstantes.size(); i++) {
+        cout << "const ";
+        listeConstantes[i]->afficher();
+        cout << " = ";
+        listeConstantes[i]->getValeurNum()->afficher();
+        cout << ";" << endl;
+	}
 }
-

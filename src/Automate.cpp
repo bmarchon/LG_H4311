@@ -1,8 +1,8 @@
 #include "Automate.h"
-#include <string.h>
-#include "Etat1aN.h"
-#include <iostream>
+
 using namespace std;
+
+static const int MAX = 10000;
 /*
 Automate::Automate()
 {
@@ -12,7 +12,7 @@ Automate::Automate()
 }*/
 
 Automate::Automate(AnalyseurLexical *aL)
-{
+{ 
     aLexical = aL;
 }
 
@@ -21,8 +21,54 @@ void Automate::testTableauanalyseeeeee(){
     cout << tableauAnalyseStatique[0].s->afficherType() << "coucou" << endl;
 }
 
+void Automate::analyseStatique(){
+    vector<Declaration*> declarations = programme.getDeclarations();
+    vector<Instruction*> instructions = programme.getInstructions();
 
+    for (auto it = declarations.begin() ; it != declarations.end(); ++it)
+    {
+        Symbole * contenuDec = (*it)->getContenu();
 
+        //for (auto it = listID.begin() ; it != listID.end(); ++it)
+        //{
+        
+        /*
+        if((*it)->getContenu()->getType() == LC)
+        {
+            tableauAnalyseStatique.back().affecte = true;
+        }
+        else if((*it)->getContenu()->getType() != LV)
+        {
+            cout << "Something went wrong, declaration was a :" <<  (*it)->getContenu()->getType() << endl;
+        }
+        */
+        //}
+    }
+
+    for (auto it = instructions.begin() ; it != instructions.end(); ++it)
+    {
+        /*
+        switch((*it)->getType())
+        {
+            case AFF:
+                InstructionAffectation * instrAff = (InstructionAffectation) *it;
+                
+                break;
+            case LEC:
+                InstructionLecture * instrLec = (InstructionLecture) *it;
+                break;
+            case ECR:
+                InstructionEcriture * instrEcr = (InstructionEcriture) *it;
+                break;
+        }
+        */
+    }
+
+} 
+
+Programme Automate::getProgramme() {
+    return this->programme;
+}
 
 
 
@@ -76,6 +122,45 @@ bool Automate::decalage(Symbole *s, Etat *etat){
 
 
 bool Automate::analyse(){
+
+    etats.push(new Etat0);
+    
+    int i =0;
+    Symbole * next;
+    bool transition;
+    do{
+        
+        next = aLexical->next();
+
+        //if the next symbol is an id, we have to make sure it has not been created before
+        if(aLexical->next()->getType() == ID)
+        {
+            Identifiant * id  = (Identifiant*) next;
+            if(identifiants.find(id->valeur()) != identifiants.end())
+            {
+                //use existing id if it exists
+                next = identifiants[id->valeur()];
+            }else{
+                //insert new id
+                identifiants.insert(make_pair(id->valeur(),id));
+            }
+        }
+        
+     }while((!etats.top()->transition(*this, next)) && (i++) < MAX);
+
+
+    if(i >= MAX)
+    {
+        cout << "program contains errors" << endl;
+        return false;
+    }else{
+        return true;
+    }
+    
+}
+
+/* old version
+bool Automate::analyse(){
     etats.push(new Etat0);
     //cout <<  aLexical->next()->getType() << endl;
     
@@ -85,15 +170,19 @@ bool Automate::analyse(){
 
      //etats.top()->print();
      int i =0;
-     while(!etats.top()->transition(*this, aLexical->next()) && (i++) < 1000)
+     while(!etats.top()->transition(*this, aLexical->next()) && (i++) < MAX)
      {
           //etats.top()->print();
      }
 
-
+     if(i >= MAX)
+    {
+        return false;
+    }
 
     return true;
-}
+}*/
+
 
 AnalyseurLexical * Automate::getAnalyseurLexical()
 {

@@ -1,6 +1,6 @@
 #include "InstructionLecture.h"
 
-InstructionLecture::InstructionLecture(Identifiant *identifiant):Instruction()
+InstructionLecture::InstructionLecture(Identifiant *identifiant):Instruction(LEC)
 {
     this->identifiant = identifiant;
 }
@@ -21,4 +21,11 @@ void InstructionLecture::executer()
   	stringstream(inputString) >> inputValue;
 
   	identifiant->setValeurNum(new Val(inputValue));
+}
+
+
+void InstructionLecture::afficher() {
+	cout << "Lire ";
+	this->identifiant->afficher();
+    cout << ";" << endl;
 }

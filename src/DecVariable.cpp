@@ -1,7 +1,7 @@
 #include "DecVariable.h"
 
 
-DecVariable::DecVariable(ListeVariables *lv):Declaration()
+DecVariable::DecVariable(ListeVariables *lv):Declaration(lv)
 {
     listeVariables = lv;
 }
@@ -9,4 +9,10 @@ DecVariable::DecVariable(ListeVariables *lv):Declaration()
 DecVariable::~DecVariable()
 {
 	//dtor
+}
+
+void DecVariable::afficher() {
+
+	this->listeVariables->afficher();
+
 }

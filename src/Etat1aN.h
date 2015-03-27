@@ -5,6 +5,24 @@
 #include "Symbole.h"
 #include <string>
 
+#include "Declaration.h"
+#include "Instruction.h"
+#include "ExprBinaire.h"
+#include "ExprPar.h"
+#include "InstructionEcriture.h"
+#include "InstructionAffectation.h"
+#include "InstructionLecture.h"
+#include "Programme.h"
+#include "ExprAdd.h"
+#include "ExprMult.h"
+#include "ListeVariables.h"
+#include "ListeConstantes.h"
+#include "OperateurMultiplicatif.h"
+#include "OperateurAdditif.h"
+#include "DecVariable.h"
+#include "DecConstante.h"
+#include "Val.h"
+
 using namespace std;
 
 class Etat0: public Etat

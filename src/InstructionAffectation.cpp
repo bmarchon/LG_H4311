@@ -1,6 +1,6 @@
 #include "InstructionAffectation.h"
 
-InstructionAffectation::InstructionAffectation(Identifiant *id, Expression *expr):Instruction()
+InstructionAffectation::InstructionAffectation(Identifiant *id, Expression *expr):Instruction(AFF)
 {
     identifiant = id;
     expression = expr;
@@ -17,3 +17,11 @@ void InstructionAffectation::executer()
 	// TODO delete previous expression?
 }
 
+void InstructionAffectation::afficher() {
+
+    this->identifiant->afficher();
+    cout << " := ";
+    this->expression->afficher();
+    cout << ";" << endl;
+
+}

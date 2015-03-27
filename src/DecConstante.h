@@ -7,9 +7,9 @@ class DecConstante : public Declaration
 	public:
         DecConstante(ListeConstantes *lc);
 		virtual ~DecConstante();
-
+    	void afficher(); // Display the value for the representation
 	protected:
-        ListeConstantes *declaration;
+        ListeConstantes *listeConstantes;
 	private:
 };
 

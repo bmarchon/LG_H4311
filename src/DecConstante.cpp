@@ -1,8 +1,8 @@
 #include "DecConstante.h"
 
-DecConstante::DecConstante(ListeConstantes *lc):Declaration()
+DecConstante::DecConstante(ListeConstantes *lc):Declaration(lc)
 {
-    declaration = lc;
+    listeConstantes = lc;
 }
 
 
@@ -10,4 +10,10 @@ DecConstante::DecConstante(ListeConstantes *lc):Declaration()
 DecConstante::~DecConstante()
 {
 	//dtor
+}
+
+void DecConstante::afficher() {
+    //cout << "const ";
+    this->listeConstantes->afficher();
+    //cout << ";";
 }

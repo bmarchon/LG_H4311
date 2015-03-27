@@ -10,12 +10,15 @@ using namespace std;
 class InstructionEcriture : public Instruction
 {
 public:
+    
 	InstructionEcriture();
     InstructionEcriture(Expression *exp);
     ~InstructionEcriture();
     void executer();
+    //void afficher(); // Display the value for the representation
 
 protected:
+  
     Expression * expression;
 };
 

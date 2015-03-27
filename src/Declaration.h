@@ -6,10 +6,13 @@ class Declaration : public Symbole
 {
 	public:
         Declaration(): Symbole(D){}
+        Declaration(Symbole * s);
 		virtual ~Declaration();
-
+		Symbole * getContenu();
+		void afficher(); // Display the value for the representation
 	protected:
-        Declaration *declaration;
+        //Declaration *declaration;
+        Symbole * contenu;
 	private:
 };
 
