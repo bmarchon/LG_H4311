@@ -100,6 +100,8 @@ bool Automate::reduction(int nbEtat, Symbole *s)
     return false;
     */
 
+    
+
     for(int i = 0; i<nbEtat ; i++){
         etats.pop();
     }
@@ -129,7 +131,10 @@ bool Automate::analyse(){
     Symbole * next;
     bool transition;
     do{
-        
+        /* debug
+        cout << " etat " << endl;
+        etats.top()->print();
+        */
         next = aLexical->next();
 
         //if the next symbol is an id, we have to make sure it has not been created before

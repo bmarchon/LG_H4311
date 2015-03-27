@@ -33,6 +33,6 @@ double ExprAdd::eval()
 void ExprAdd::afficher() {
 
 	this->exprGauche->afficher();
-    cout << " + ";
+    cout << " " << opAdditif->getChar() << " ";
     this->exprDroite->afficher();
 }
