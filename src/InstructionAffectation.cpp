@@ -25,3 +25,7 @@ void InstructionAffectation::afficher() {
     cout << ";" << endl;
 
 }
+Expressions InstructionAffectation::getExpressionType()
+{
+	return this->expression->getExprType();
+}

@@ -12,6 +12,7 @@ public:
     void executer();
     Instructions getType();
     void afficher(); // Display the value for the representation
+	Expressions getExpressionType();
 
 protected:
     Identifiant *identifiant;

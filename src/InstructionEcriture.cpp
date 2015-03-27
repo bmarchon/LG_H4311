@@ -20,3 +20,8 @@ void InstructionEcriture::afficher() {
 	this->expression->afficher();
     cout << ";" << endl;
 }
+
+Expressions InstructionEcriture::getExpressionType()
+{
+	return this->expression->getExprType();
+}

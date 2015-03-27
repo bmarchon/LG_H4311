@@ -5,10 +5,10 @@
 class ExprMult : public ExprBinaire
 {
 	public:
-        ExprMult(Symboles type, Expression *expressionGauche,OperateurMultiplicatif *operateur, Expression *expressionDroite);
+        	ExprMult(Symboles type, Expression *expressionGauche,OperateurMultiplicatif *operateur, Expression *expressionDroite);
 		virtual ~ExprMult();
-        double eval();
-    	void afficher(); // Display the value for the representation
+        	double eval();
+    		void afficher(); // Display the value for the representation
 
 	protected:
 	private:

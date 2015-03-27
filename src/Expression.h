@@ -9,7 +9,6 @@ class Expression : public Symbole
 {
 	public:
         	Expression();
-		//Expression(Symboles type): Symbole(type){}
 		Expression(Expressions typeExp, Symboles type);
 		void setExpression(Expression *expr);
 		virtual ~Expression();

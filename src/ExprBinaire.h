@@ -8,11 +8,13 @@ using namespace std;
 class ExprBinaire : public Expression
 {
 	public:
-        ExprBinaire(Symboles type): Expression(BIN, type){}
-        ExprBinaire(Symboles type, Expression *exprDroite, Expression *exprGauche);
+        	ExprBinaire(Symboles type): Expression(BIN, type){}
+        	ExprBinaire(Symboles type, Expression *exprDroite, Expression *exprGauche);
 		virtual ~ExprBinaire();
-        virtual double eval() = 0;
-    	void afficher(); // Display the value for the representation
+        	virtual double eval() = 0;
+    		void afficher(); // Display the value for the representation
+		//Expression getGauche(); a implementer
+		//Expression getDroite(); idem
 
 	protected:
         Expression * exprGauche;
