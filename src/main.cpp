@@ -85,14 +85,14 @@ int main( int argc, const char* argv[] )
     
     automate->analyse();
     
-
+    
     automate->getProgramme().afficher();
 
 	if(optionO)
 	{
-	Programme leProgramme = automate->getProgramme();
-	Transformation * transformation = new Transformation(leProgramme);
-	transformation->transformer();
+	   Programme leProgramme = automate->getProgramme();
+	   Transformation * transformation = new Transformation(leProgramme);
+	   transformation->transformer();
 	}
 
     if(optionE)
