@@ -16,7 +16,7 @@ public:
     ~InstructionEcriture();
 	Expressions getExpressionType();
     void executer();
-    //void afficher(); // Display the value for the representation
+    void afficher(); // Display the value for the representation
 	Expression * getExpression();
 
 protected:

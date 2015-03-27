@@ -42,3 +42,10 @@ Expression * InstructionEcriture::getExpression()
 {
 	return this->expression;
 }
+
+
+void InstructionEcriture::afficher() {
+	cout << "ecrire ";
+	this->expression->afficher();
+    cout << ";" << endl;
+}

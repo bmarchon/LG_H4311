@@ -25,7 +25,7 @@ void InstructionLecture::executer()
 
 
 void InstructionLecture::afficher() {
-	cout << "Lire ";
+	cout << "lire ";
 	this->identifiant->afficher();
     cout << ";" << endl;
 }

@@ -86,7 +86,7 @@ int main( int argc, const char* argv[] )
     automate->analyse();
     
 
-    //automate->getProgramme().afficher();
+    automate->getProgramme().afficher();
 
 	if(optionO)
 	{
