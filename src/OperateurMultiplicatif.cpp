@@ -7,3 +7,8 @@ OperateurMultiplicatif::~OperateurMultiplicatif()
 
 }
 
+char OperateurMultiplicatif::getChar()
+{
+	return operateur;
+}
+

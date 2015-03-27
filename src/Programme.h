@@ -6,6 +6,7 @@
 #include "Instruction.h"
 
 #include <vector>
+#include <iostream>
 
 using namespace std;
 

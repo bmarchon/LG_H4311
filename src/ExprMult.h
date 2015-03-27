@@ -2,6 +2,9 @@
 #define EXPRMULT_H
 #include "ExprBinaire.h"
 #include "OperateurMultiplicatif.h"
+
+#include <iostream>
+
 class ExprMult : public ExprBinaire
 {
 	public:

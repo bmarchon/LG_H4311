@@ -36,6 +36,7 @@ class Automate
         AnalyseurLexical *aLexical;
         stack<Etat *> etats;
         stack<Symbole *> symboles;
+        
         struct analyseSymbole {
             analyseSymbole(Symbole * s)
             {

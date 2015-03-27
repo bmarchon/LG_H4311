@@ -5,6 +5,8 @@
 #include "Expression.h"
 #include "Val.h"
 #include <map>
+#include <iostream>
+
 using namespace std;
 
 class Identifiant : public Expression
@@ -23,7 +25,7 @@ class Identifiant : public Expression
 	protected:
 	private:
 	string idVal;
-    Val *valNum;
+    Val * valNum;
 };
 
 #endif // IDENTIFIANT_H

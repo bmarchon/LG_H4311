@@ -15,3 +15,8 @@ ListeConstantes::~ListeConstantes()
 
 }
 
+vector<Identifiant*> ListeConstantes::identifiants()
+{
+	return this->listeConstantes;
+}
+

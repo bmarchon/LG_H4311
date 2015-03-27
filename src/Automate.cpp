@@ -54,7 +54,7 @@ bool Automate::reduction(int nbEtat, Symbole *s)
     return false;
     */
 
-    for(int i = 1; i<nbEtat+1; i++){
+    for(int i = 0; i<nbEtat ; i++){
         etats.pop();
     }
     //symboles.push(s);

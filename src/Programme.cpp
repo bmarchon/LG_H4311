@@ -25,6 +25,7 @@ void Programme::ajouter(Instruction* instr)
 void Programme::executer()
 {
 	for(auto it = instructions.begin(); it != instructions.end(); ++it) {
+		//cout << (*it)->afficherType() << endl; 
     	(*it)->executer();
 	}
 }

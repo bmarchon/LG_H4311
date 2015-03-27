@@ -36,15 +36,15 @@ bool Etat0::transition(Automate &automate, Symbole *s)
         case  LIRE:
         case  ID:
         case  END:
-            automate.reduction(0, new Declaration);
-
+            automate.reduction(0, new Declaration());
             break;
         case D:
-            automate.decalage(s, new Etat1);
+            automate.decalage(s, new Etat1());
             break;
 
         default:
             // génerer une erreur
+            cout << "program is not valid" << endl; 
             break;
 
 	}
@@ -79,10 +79,10 @@ bool Etat1::transition(Automate &automate, Symbole *s)
         case  LIRE:
         case  ID:
         case  END:
-            automate.reduction(0, new Instruction);
+            automate.reduction(0, new Instruction());
             break;
         case I:
-            automate.decalage(s, new Etat2);
+            automate.decalage(s, new Etat2());
             break;
         default:
             // génerer une erreur
@@ -127,7 +127,7 @@ bool Etat2::transition(Automate &automate, Symbole *s)
             //instruction = (Instruction *)automate.getDernierSymbole();
             //declaration = (Declaration *)automate.getDernierSymbole();
             //p = new Programme(declaration, instruction);
-            cout << "Programme valide" << endl;
+            cout << "program is valid" << endl;
             return true;
         default:
             // génerer une erreur
@@ -157,7 +157,7 @@ bool Etat3::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case LC:
-            automate.decalage(s,new Etat34);
+            automate.decalage(s,new Etat34());
             break;
         default:
             // génerer une erreur
@@ -225,13 +225,13 @@ bool Etat5::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case EXPR:
-            automate.decalage(s, new Etat8);
+            automate.decalage(s, new Etat8());
             break;
         case T:
-            automate.decalage(s, new Etat19);
+            automate.decalage(s, new Etat19());
             break;
         case F:
-            automate.decalage(s, new Etat12);
+            automate.decalage(s, new Etat12());
             break;
         default:
             //gestion des erreurs
@@ -327,7 +327,7 @@ bool Etat8::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case A:
-            automate.decalage(s, new Etat10);
+            automate.decalage(s, new Etat10());
 
         default:
             //getsion des erreurs
@@ -350,8 +350,13 @@ Etat9::~Etat9() {}
 // fonction de transition Etat 9
 bool Etat9::transition(Automate &automate, Symbole *s)
 {
+    automate.popSymbole();
     Expression * expression  = (Expression*)automate.getDernierSymbole();
+    //automate.popSymbole();
     InstructionEcriture * ecr = new InstructionEcriture(expression);
+
+    //TODO popSymbole??
+
     automate.ajouter(ecr);
     automate.reduction(4, ecr);
 	return false;
@@ -374,25 +379,25 @@ bool Etat10::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  VAL:
-            automate.decalage(s, new Etat14);
+            automate.decalage(s, new Etat14());
             automate.consommer();
 			break;
         case  ID:
-            automate.decalage(s, new Etat13);
+            automate.decalage(s, new Etat13());
             automate.consommer();
 			break;
         case  PO:
-            automate.decalage(s, new Etat15);
+            automate.decalage(s, new Etat15());
             automate.consommer();
 			break;
         case T:
-            automate.decalage(s, new Etat11);
+            automate.decalage(s, new Etat11());
             break;
         case F:
-            automate.decalage(s, new Etat12);
+            automate.decalage(s, new Etat12());
             break;
         default:
-            cout << s->getType();
+            //cout << s->getType();
             //gestion des erreurs
             break;
 	}
@@ -444,7 +449,7 @@ bool Etat11::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case M:
-            automate.decalage(s, new Etat20);
+            automate.decalage(s, new Etat20());
             break;
         default:
         // gestion des erreurs
@@ -491,6 +496,7 @@ Etat13::~Etat13() {}
 bool Etat13::transition(Automate &automate, Symbole *s)
 {
     Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
+    //cout << "valeur de l'identifiant " << identifiant->valeur() <<  " " << identifiant->eval() << endl;
     identifiant->setType(F);
     automate.reduction(1,identifiant);
 
@@ -547,13 +553,13 @@ bool Etat15::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case EXPR:
-            automate.decalage(s, new Etat16);
+            automate.decalage(s, new Etat16());
             break;
         case T:
-            automate.decalage(s, new Etat19);
+            automate.decalage(s, new Etat19());
             break;
         case F:
-            automate.decalage(s, new Etat12);
+            automate.decalage(s, new Etat12());
             break;
         default:
             //gestion des erreurs
@@ -595,7 +601,7 @@ bool Etat16::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case A:
-            automate.decalage(s, new Etat10);
+            automate.decalage(s, new Etat10());
             break;
 
         default:
@@ -686,7 +692,7 @@ bool Etat19::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case M:
-            automate.decalage(s, new Etat20);
+            automate.decalage(s, new Etat20());
             break;
         default:
             //gestion des erreurs
@@ -725,7 +731,7 @@ bool Etat20::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case F:
-            automate.decalage(s, new Etat21);
+            automate.decalage(s, new Etat21());
         default:
             //gestion des erreurs
             break;
@@ -816,21 +822,21 @@ bool Etat24::transition(Automate &automate, Symbole *s)
             automate.consommer();
             break;
         case PO:
-            automate.decalage(s, new Etat15);
+            automate.decalage(s, new Etat15());
             automate.consommer();
             break;
         case ID:
-            automate.decalage(s, new Etat13);
+            automate.decalage(s, new Etat13());
             automate.consommer();
             break;
         case EXPR:
-            automate.decalage(s, new Etat25);
+            automate.decalage(s, new Etat25());
             break;
         case F:
-            automate.decalage(s, new Etat12);
+            automate.decalage(s, new Etat12());
             break;
         case T:
-            automate.decalage(s, new Etat19);
+            automate.decalage(s, new Etat19());
             break;
         default:
         //gestion des erreurs
@@ -864,17 +870,17 @@ bool Etat25::transition(Automate &automate, Symbole *s)
         case PLUS:
         	//si l'un des termes est 0 => on enleve
         	//sinon
-            automate.decalage(s, new Etat18);
+            automate.decalage(s, new Etat18());
             automate.consommer();
             break;
         case MOINS:
         	//si l'un des termes est 0 => on enleve
         	//sinon
-            automate.decalage(s, new Etat43);
+            automate.decalage(s, new Etat43());
             automate.consommer();
             break;
         case A:
-            automate.decalage(s, new Etat10);
+            automate.decalage(s, new Etat10());
             break;
         default:
             //gestion des erreurs
@@ -1136,6 +1142,10 @@ bool Etat35::transition(Automate &automate, Symbole *s)
 {	//r3
     automate.popSymbole();
     ListeConstantes *lc = (ListeConstantes *) automate.getDernierSymbole();
+
+
+    //cout << "premier id : " << lc->identifiants().size() << endl;
+
     automate.popSymbole();
     automate.popSymbole();
     DecConstante * decconst = new DecConstante(lc);
@@ -1315,6 +1325,7 @@ Etat42::~Etat42() {}
 // fonction de transition Etat 42
 bool Etat42::transition(Automate &automate, Symbole *s)
 {
+    //automate.popSymbole();
     Val *valeur = (Val *) automate.getDernierSymbole();
     automate.popSymbole();
     Identifiant *id = (Identifiant *)automate.getDernierSymbole();

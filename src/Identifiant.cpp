@@ -31,6 +31,7 @@ double Identifiant::eval()
     {
     	return valNum->eval();
     }else{
+        cout << "error trying to evaluate value for " << idVal << " (in Identifiant)" <<  endl;
     	return 0.0;
     }
 }

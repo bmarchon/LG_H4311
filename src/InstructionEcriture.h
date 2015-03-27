@@ -10,12 +10,13 @@ using namespace std;
 class InstructionEcriture : public Instruction
 {
 public:
-    InstructionEcriture(Expression *exp){expression = exp ;}
+	InstructionEcriture();
+    InstructionEcriture(Expression *exp);
     ~InstructionEcriture();
     void executer();
 
 protected:
-    Expression *expression;
+    Expression * expression;
 };
 
 #endif // INSTRUCTIONECRITURE_H
