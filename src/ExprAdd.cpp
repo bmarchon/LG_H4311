@@ -14,18 +14,18 @@ ExprAdd::~ExprAdd()
 
 double ExprAdd::eval()
 {
-	double res;	
-    switch(opAdditif->getChar())
+	double res;
+	switch(opAdditif->getChar())	
 	{
-        case '+':
+		case '+':
 			res = exprGauche->eval() + exprDroite->eval();
 			break;
-        case '-':
-            res = exprGauche->eval() - exprDroite->eval();
+		case '-':
+			res = exprGauche->eval() - exprDroite->eval();
 			break;
 		default :
 			res = 0.0;
-			//cout << "error: " + opAdditif->getChar() + " is not a valid additive operator" << endl;
+			cout << "error in evaluating additive expression : " << opAdditif->getChar() << endl;
 	}
 	return res;
 }

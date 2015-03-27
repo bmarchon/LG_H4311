@@ -82,10 +82,11 @@ int main( int argc, const char* argv[] )
 
     AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
     Automate * automate = new Automate(aLexical);
-    automate->analyse(); //segfault
+    
+    automate->analyse();
     
 
-    automate->getProgramme().afficher();
+    //automate->getProgramme().afficher();
 
 	if(optionO)
 	{
@@ -99,10 +100,9 @@ int main( int argc, const char* argv[] )
         cout << "execution" << endl;
         automate->executer();
     }
-
-
-
-    delete aLexical;
+    
     delete automate;
+    delete aLexical; //delete after automate (otherwise causes SIGABRT -> why ??)
+     
     return 0;
 }

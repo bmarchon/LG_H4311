@@ -11,7 +11,7 @@ class Val : public Expression
     	Val();
 	Val(double valeur);
 	virtual ~Val();
-	double valeur();
+	//double valeur();
     //Val& operator = (const Val &valeur);
     double eval();
     void afficher();

@@ -4,6 +4,7 @@
 #include <stack>
 #include <string.h>
 #include <iostream>
+#include <map>
 
 #include "AnalyseurLexical.h"
 #include "Declaration.h"
@@ -17,6 +18,7 @@
 #include "ListeConstantes.h"
 #include "Programme.h"
 #include "Symbole.h"
+#include "Identifiant.h"
 
 using namespace std;
 class Automate
@@ -46,6 +48,7 @@ class Automate
         AnalyseurLexical *aLexical;
         stack<Etat *> etats;
         stack<Symbole *> symboles;
+        
         struct analyseSymbole {
             analyseSymbole(Symbole * s)
             {
@@ -61,6 +64,7 @@ class Automate
         vector<analyseSymbole> tableauAnalyseStatique;
     private:
         Programme programme;
+        map<string,Identifiant*> identifiants;
 };
 
 #endif // AUTOMATE_H

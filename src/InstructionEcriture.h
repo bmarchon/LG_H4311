@@ -10,15 +10,18 @@ using namespace std;
 class InstructionEcriture : public Instruction
 {
 public:
+    
+	InstructionEcriture();
     InstructionEcriture(Expression *exp);
     ~InstructionEcriture();
 	Expressions getExpressionType();
     void executer();
-    void afficher(); // Display the value for the representation
+    //void afficher(); // Display the value for the representation
 	Expression * getExpression();
 
 protected:
-    Expression *expression;
+  
+    Expression * expression;
 };
 
 #endif // INSTRUCTIONECRITURE_H

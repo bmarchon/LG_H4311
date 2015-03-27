@@ -12,7 +12,7 @@ ExprBinaire::~ExprBinaire()
 
 
 void ExprBinaire::afficher() {
-	cout << "ExprPar ";
+	cout << "ExprBin ";
 	this->exprGauche->afficher();
 	this->exprDroite->afficher();
 }

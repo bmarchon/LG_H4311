@@ -1,6 +1,8 @@
 #include "Automate.h"
 
 using namespace std;
+
+static const int MAX = 10000;
 /*
 Automate::Automate()
 {
@@ -98,7 +100,7 @@ bool Automate::reduction(int nbEtat, Symbole *s)
     return false;
     */
 
-    for(int i = 1; i<nbEtat+1; i++){
+    for(int i = 0; i<nbEtat ; i++){
         etats.pop();
     }
     //symboles.push(s);
@@ -120,6 +122,45 @@ bool Automate::decalage(Symbole *s, Etat *etat){
 
 
 bool Automate::analyse(){
+
+    etats.push(new Etat0);
+    
+    int i =0;
+    Symbole * next;
+    bool transition;
+    do{
+        
+        next = aLexical->next();
+
+        //if the next symbol is an id, we have to make sure it has not been created before
+        if(aLexical->next()->getType() == ID)
+        {
+            Identifiant * id  = (Identifiant*) next;
+            if(identifiants.find(id->valeur()) != identifiants.end())
+            {
+                //use existing id if it exists
+                next = identifiants[id->valeur()];
+            }else{
+                //insert new id
+                identifiants.insert(make_pair(id->valeur(),id));
+            }
+        }
+        
+     }while((!etats.top()->transition(*this, next)) && (i++) < MAX);
+
+
+    if(i >= MAX)
+    {
+        cout << "program contains errors" << endl;
+        return false;
+    }else{
+        return true;
+    }
+    
+}
+
+/* old version
+bool Automate::analyse(){
     etats.push(new Etat0);
     //cout <<  aLexical->next()->getType() << endl;
     
@@ -129,15 +170,19 @@ bool Automate::analyse(){
 
      //etats.top()->print();
      int i =0;
-     while(!etats.top()->transition(*this, aLexical->next()) && (i++) < 1000)
+     while(!etats.top()->transition(*this, aLexical->next()) && (i++) < MAX)
      {
           //etats.top()->print();
      }
 
-
+     if(i >= MAX)
+    {
+        return false;
+    }
 
     return true;
-}
+}*/
+
 
 AnalyseurLexical * Automate::getAnalyseurLexical()
 {

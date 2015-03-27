@@ -14,21 +14,26 @@ ExprMult::~ExprMult()
 
 double ExprMult::eval()
 {
-    double res;	
-    switch(operateur->getChar())
+    double res;
+    switch(operateur->getChar())	
 	{
-        case '*':
+		case '*':
 			res = exprGauche->eval() * exprDroite->eval();
 			break;
-        case '/':
+
+		case '/':
 			if(exprDroite->eval() != 0.0)
 			{
 				res = exprGauche->eval() / exprDroite->eval();
+			}else{
+				res = 0.0;
+				cout << "division by 0, result has been set to 0" << endl;
 			}
 			break;
+
 		default :
 			res = 0.0;
-			//cout << "error: " + opAdditif->getChar() + " is not a valid additive operator" << endl;
+			cout << "error in evaluating multiplicative expression" << endl;
 	}
 	return res;
 }
