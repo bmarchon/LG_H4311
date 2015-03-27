@@ -8,7 +8,7 @@ using namespace std;
 class Val : public Expression
 {
 	public:
-    Val();
+    	Val();
 	Val(double valeur);
 	virtual ~Val();
 	double valeur();

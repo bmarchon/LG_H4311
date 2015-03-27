@@ -8,7 +8,7 @@ using namespace std;
 class ExprBinaire : public Expression
 {
 	public:
-        ExprBinaire(Symboles type): Expression(type){}
+        ExprBinaire(Symboles type): Expression(BIN, type){}
         ExprBinaire(Symboles type, Expression *exprDroite, Expression *exprGauche);
 		virtual ~ExprBinaire();
         virtual double eval() = 0;
