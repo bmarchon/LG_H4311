@@ -1,5 +1,5 @@
 #include "ExprPar.h"
- ExprPar::ExprPar(Expression *expr, Symboles type): Expression(type)
+ ExprPar::ExprPar(Expression *expr, Symboles type): Expression(PAR, type)
  {
      expression = expr;
  }

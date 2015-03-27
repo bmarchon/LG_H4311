@@ -1,7 +1,7 @@
 #include "Val.h"
 
-Val::Val():Expression(VAL){}
-Val::Val(double valeur) : Expression(VAL)
+Val::Val():Expression(VALEUR, VAL){}
+Val::Val(double valeur) : Expression(VALEUR, VAL)
 {
 	 //ctor
 	this->doubleVal = valeur;

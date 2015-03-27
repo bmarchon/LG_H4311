@@ -12,10 +12,10 @@ using namespace std;
 class ExprAdd : public ExprBinaire
 {
 	public:
-        ExprAdd(Expression *exprGauche, OperateurAdditif *opAdd, Expression *exprDroite);
+        	ExprAdd(Expression *exprGauche, OperateurAdditif *opAdd, Expression *exprDroite);
 		virtual ~ExprAdd();
-        double eval();
-    	void afficher(); // Display the value for the representation
+        	double eval();
+    		void afficher(); // Display the value for the representation
 
 	protected:
 	private:

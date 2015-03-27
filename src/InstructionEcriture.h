@@ -14,6 +14,7 @@ public:
 	InstructionEcriture();
     InstructionEcriture(Expression *exp);
     ~InstructionEcriture();
+	Expressions getExpressionType();
     void executer();
     //void afficher(); // Display the value for the representation
 

@@ -1,6 +1,6 @@
 #include "Identifiant.h"
 
-Identifiant::Identifiant(string idVal) : Expression(ID)
+Identifiant::Identifiant(string idVal) : Expression(IDENT,ID)
 {
 	 //ctor
 	this->idVal = idVal;
@@ -8,7 +8,7 @@ Identifiant::Identifiant(string idVal) : Expression(ID)
     //cout << "call to Identifiant-ctor1 : " << idVal << " " << "NULL" << endl;
 }
 
-Identifiant::Identifiant(Symboles type, Identifiant *ident): Expression(type)
+Identifiant::Identifiant(Symboles type, Identifiant *ident): Expression(IDENT,type)
 {
     this->idVal = ident->valeur();
     this->valNum = ident->getValeurNum();

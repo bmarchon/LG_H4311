@@ -33,3 +33,8 @@ void InstructionEcriture::executer()
 	}
 }
 
+
+Expressions InstructionEcriture::getExpressionType()
+{
+	return this->expression->getExprType();
+}
