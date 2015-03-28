@@ -18,6 +18,7 @@ class Transformation
 		virtual ~Transformation();
 		void transformer();
 		Programme getProgramme();
+		void anaExpr(Expression* lExpressionMere);
 	protected:
 		Programme programme;
 	private:
