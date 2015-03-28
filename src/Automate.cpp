@@ -2,7 +2,7 @@
 
 using namespace std;
 
-static const int MAX = 10000;
+static const int MAX = 100;
 /*
 Automate::Automate()
 {
@@ -130,11 +130,9 @@ bool Automate::analyse(){
     int i =0;
     Symbole * next;
     bool transition;
-    do{
-        /* debug
-        cout << " etat " << endl;
-        etats.top()->print();
-        */
+    do{ 
+        //etats.top()->print();
+        
         next = aLexical->next();
 
         //if the next symbol is an id, we have to make sure it has not been created before
@@ -145,6 +143,8 @@ bool Automate::analyse(){
             {
                 //use existing id if it exists
                 next = identifiants[id->valeur()];
+                //reset id role (could have been used as T or F before)
+                next->setType(ID);
             }else{
                 //insert new id
                 identifiants.insert(make_pair(id->valeur(),id));
