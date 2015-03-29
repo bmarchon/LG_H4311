@@ -99,7 +99,7 @@ int main( int argc, const char* argv[] )
         if(optionO) //transform
         {
            Programme leProgramme = automate->getProgramme();
-           Transformation * transformation = new Transformation(leProgramme);
+           Transformation * transformation = new Transformation(&leProgramme);
            transformation->transformer();
         }
 

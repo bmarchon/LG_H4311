@@ -14,13 +14,13 @@ using namespace std;
 class Transformation
 {
 	public:
-		Transformation(Programme prog);
+		Transformation(Programme * prog);
 		virtual ~Transformation();
 		void transformer();
-		Programme getProgramme();
+		Programme * getProgramme();
 		void anaExpr(Expression* lExpressionFille, Expression* lExpressionMere);
 	protected:
-		Programme programme;
+		Programme * programme;
 	private:
 };
 
