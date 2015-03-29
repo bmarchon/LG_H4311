@@ -7,6 +7,12 @@ Val::Val(double valeur) : Expression(VALEUR, VAL)
 	this->doubleVal = valeur;
 }
 
+Val::Val(Symboles type, Val *v) : Expression(VALEUR, type)
+{
+	 //ctor
+	this->doubleVal = v->doubleVal;
+}
+
 Val::~Val()
 {
 	//dtor
@@ -15,6 +21,11 @@ Val::~Val()
 double Val::eval()
 {
 	return this->doubleVal;
+}
+
+void Val::setValeur(double valeur)
+{
+    this->doubleVal = valeur;
 }
 
 void Val::afficher()

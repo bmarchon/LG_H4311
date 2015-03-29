@@ -1,9 +1,10 @@
 #include "InstructionAffectation.h"
+#include "ExprBinaire.h"
 
 InstructionAffectation::InstructionAffectation(Identifiant *id, Expression *expr):Instruction(AFF)
 {
-    identifiant = id;
-    expression = expr;
+    this->identifiant = id;
+    this->expression = expr;
 }
 
 InstructionAffectation::~InstructionAffectation()
@@ -13,7 +14,7 @@ InstructionAffectation::~InstructionAffectation()
 
 void InstructionAffectation::executer()
 {
-	identifiant->setValeurNum(new Val(expression->eval()));
+	identifiant->setValeurNum(expression->eval());
 	// TODO delete previous expression?
 }
 

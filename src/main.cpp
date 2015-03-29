@@ -1,3 +1,4 @@
+
 #include "main.h"
 #include <iostream>
 #include <stdio.h>
@@ -42,6 +43,7 @@ static string filename(int argc, const char* argv[])
 {
     if(argc < 2)
     {
+
         return string(NO_FILE);
     }
     else
@@ -61,9 +63,11 @@ int main( int argc, const char* argv[] )
 {
     bool syntaxError = false;
 
+
     //print program name and help message
     cout << programName << " version " << version << author << endl << endl;
     cout << man << endl;
+
 
     if(!checkOptions(argc,argv)) //get activated options
     {
@@ -83,6 +87,7 @@ int main( int argc, const char* argv[] )
     }
 
     Automate * automate = new Automate(aLexical);  
+
     try{
          automate->analyse();
          
@@ -119,6 +124,7 @@ int main( int argc, const char* argv[] )
 
     delete automate;
     delete aLexical; //delete after automate (otherwise causes SIGABRT -> why ??)
+
 
     if(syntaxError)
     {

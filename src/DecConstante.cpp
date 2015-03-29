@@ -6,7 +6,6 @@ DecConstante::DecConstante(ListeConstantes *lc):Declaration(lc)
 }
 
 
-
 DecConstante::~DecConstante()
 {
 	//dtor
@@ -16,4 +15,9 @@ void DecConstante::afficher() {
     //cout << "const ";
     this->listeConstantes->afficher();
     //cout << ";";
+}
+
+vector<Identifiant *> DecConstante::getConstantes()
+{
+	return this->listeConstantes->getListID();
 }

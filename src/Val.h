@@ -10,10 +10,12 @@ class Val : public Expression
 	public:
     	Val();
 	Val(double valeur);
+	Val(Symboles type, Val *v);
 	virtual ~Val();
 	//double valeur();
     //Val& operator = (const Val &valeur);
     double eval();
+    void setValeur(double valeur);
     void afficher();
 	protected:
 	private:
