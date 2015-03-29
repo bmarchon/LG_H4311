@@ -1070,6 +1070,7 @@ bool Etat32::transition(Automate &automate, Symbole *s)
         case  ID: //d33
             automate.decalage(s, new Etat33());
             automate.consommer();
+            break;
         default:
             throw std::logic_error( MISSING_ID_IN_VAR_DECLARATION );
             break;

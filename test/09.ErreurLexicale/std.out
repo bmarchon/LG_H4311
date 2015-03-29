@@ -7,16 +7,5 @@ Usage : lut [-a] [-e] [-o] [-p] file.lt
 -p option : display program
 
 file read correctly
+lexical error : removing unknown symbol '_'
 program is valid
-
-program :
-
-var a;
-var b;
-const c = 4;
-const d = 6;
-var e;
-a := (c + d)*3 - 5;
-lire b;
-e := b + d;
-ecrire e;

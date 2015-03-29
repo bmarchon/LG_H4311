@@ -101,7 +101,7 @@ Symbole * AnalyseurLexical::getSymbole()
             return res;
         }
     }   
-    cout << "Erreur lexicale, le symbole \"" << text[0] << "\" a été supprimé..." << endl;
+    cout << "lexical error : removing unknown symbol '" << text[0] << "'" << endl;
     text.erase(0, 1);
     return NULL; //error
 }

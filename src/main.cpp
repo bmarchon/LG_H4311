@@ -14,6 +14,7 @@ static bool checkOptions(int& argc, const char* argv[])
 {
     for(int i = 1 ; i < argc-1 ; i++) // first parameter is program path, last parameter must be file name
     {
+        bool res = true;
         if(strcmp(argv[i],"-p") == 0)
         {
             optionP = true;
@@ -32,6 +33,7 @@ static bool checkOptions(int& argc, const char* argv[])
         }else
         {
             cout << "invalid option: " << argv[i] << endl;
+            res = false;
         }
     }
 }
@@ -40,7 +42,7 @@ static string filename(int argc, const char* argv[])
 {
     if(argc < 2)
     {
-        return string("no input file name specified");
+        return string(NO_FILE);
     }
     else
     {
@@ -60,12 +62,17 @@ int main( int argc, const char* argv[] )
     bool syntaxError = false;
 
     //print program name and help message
-    cout << programName << " version " << version << endl << endl;
+    cout << programName << " version " << version << author << endl << endl;
     cout << man << endl;
 
     if(!checkOptions(argc,argv)) //get activated options
     {
-        return INPUT_PARAMETER_ERROR;
+        if(argc < 2)
+        {
+            cout << NO_FILE << endl;
+            return INPUT_PARAMETER_ERROR;
+        }
+        
     }
 
     AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
@@ -92,8 +99,10 @@ int main( int argc, const char* argv[] )
         }
 
         if(optionP) //display
-        {
+        {   
+            cout << endl << "program : " << endl << endl;
             automate->getProgramme().afficher();
+            cout << endl;
         }
 
         if(optionE) //execute
