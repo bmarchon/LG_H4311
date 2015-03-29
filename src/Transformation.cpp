@@ -65,12 +65,12 @@ void Transformation::anaExpr(Expression * lExpressionFille, Expression * lExpres
 			cout <<"lExpressionMere : "<<lExpressionMere<<endl;
 			cout <<"lExpressionMere->getExpression() : "<<lExpressionMere->getExpression()<<endl;
 			//if (lExpressionMere->getExprType() == BIN) cout << "bin"<<endl;
-			double valeur = lExpressionFilleCastee->eval();
-			cout <<"Valeur : "<<valeur<<endl;
+			//double valeur = lExpressionFilleCastee->eval();
+			//cout <<"Valeur : "<<valeur<<endl;
 			lExpressionMere->setExpression(lExpressionFilleG);
 			cout <<"lExpressionMere->getExpression() : "<<lExpressionMere->getExpression()<<endl; 
-			valeur = lExpressionMere->getExpression()->eval();
-			cout <<"Valeur : "<<valeur<<endl;
+			//valeur = lExpressionMere->getExpression()->eval();
+			//cout <<"Valeur : "<<valeur<<endl;
 		}
 		else if (lExpressionFilleCastee->eval() == lExpressionFilleD->eval())
 		{
@@ -78,12 +78,12 @@ void Transformation::anaExpr(Expression * lExpressionFille, Expression * lExpres
 			cout <<"lExpressionMere : "<<lExpressionMere<<endl;
 			cout <<"lExpressionMere->getExpression() : "<<lExpressionMere->getExpression()<<endl;
 			//if (lExpressionMere->getExprType() == BIN) cout << "bin"<<endl;
-			double valeur = lExpressionFilleCastee->eval();
-			cout <<"Valeur : "<<valeur<<endl;
+			//double valeur = lExpressionFilleCastee->eval();
+			//cout <<"Valeur : "<<valeur<<endl;
 			lExpressionMere->setExpression(lExpressionFilleD);
-			cout <<"lExpressionMere->getExpression() : "<<lExpressionMere->getExpression()<<endl; 
-			valeur = lExpressionFilleD->getExpression()->eval();
-			cout <<"Valeur : "<<valeur<<endl; 
+			// trace : cout <<"lExpressionMere->getExpression() : "<<lExpressionMere->getExpression()<<endl; 
+			//valeur = lExpressionFilleD->getExpression()->eval();
+			//cout <<"Valeur : "<<valeur<<endl; 
 		}
 		else
 		{
