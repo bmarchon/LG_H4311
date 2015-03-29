@@ -8,6 +8,7 @@ class DecConstante : public Declaration
         DecConstante(ListeConstantes *lc);
 		virtual ~DecConstante();
     	void afficher(); // Display the value for the representation
+    	vector<Identifiant *> getConstantes();
 	protected:
         ListeConstantes *listeConstantes;
 	private:

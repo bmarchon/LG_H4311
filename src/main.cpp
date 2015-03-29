@@ -101,6 +101,12 @@ int main( int argc, const char* argv[] )
         automate->executer();
     }
     
+    if (optionA)
+    {
+        cout << "analyse statique" << endl;
+        automate->analyseStatique();
+    }
+    
     delete automate;
     delete aLexical; //delete after automate (otherwise causes SIGABRT -> why ??)
      

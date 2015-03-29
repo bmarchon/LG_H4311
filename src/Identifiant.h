@@ -18,7 +18,8 @@ class Identifiant : public Expression
 
 	virtual ~Identifiant();
 	string valeur();
-    void setValeurNum(Val *valNum);
+    void setValeurNum(double valeur);
+    void setValeurNum(Val * valeur);
     Val *getValeurNum();
     double eval();
     void afficher(); // Display the value for the representation 

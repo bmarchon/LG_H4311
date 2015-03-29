@@ -15,7 +15,9 @@
 #include "OperateurAdditif.h"
 #include "DecVariable.h"
 #include "DecConstante.h"
-#include "Val.h"
+
+Identifiant * ctest;
+
 // ctor Etat0
 Etat0::Etat0() : Etat(0)
 {
@@ -68,13 +70,13 @@ bool Etat1::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  VAR:
-			automate.decalage(s, new Etat4());
+			      automate.decalage(s, new Etat4());
             automate.consommer();
-			break;
+			      break;
         case  CONST:
-			automate.decalage(s, new Etat3());
+			      automate.decalage(s, new Etat3());
             automate.consommer();
-			break;
+			      break;
         case  ECRIRE:
         case  LIRE:
         case  ID:
@@ -182,7 +184,7 @@ bool Etat4::transition(Automate &automate, Symbole *s)
         case  ID:
             automate.decalage(s, new Etat29());
             automate.consommer();
-			break;
+			      break;
         case LV:
             automate.decalage(s, new Etat30());
             break;
@@ -352,7 +354,6 @@ bool Etat9::transition(Automate &automate, Symbole *s)
     Expression * expression  = (Expression*)automate.getDernierSymbole();
     automate.popSymbole();
     automate.popSymbole();
-
     InstructionEcriture * ecr = new InstructionEcriture(expression);
     automate.ajouter(ecr);
     automate.reduction(4, ecr);
@@ -475,6 +476,7 @@ bool Etat12::transition(Automate &automate, Symbole *s)
     facteur->setType(T);
     automate.reduction(1, facteur);
 
+
 	return false;
 }
 
@@ -492,9 +494,7 @@ Etat13::~Etat13() {}
 // fonction de transition Etat 13
 bool Etat13::transition(Automate &automate, Symbole *s)
 {
-    Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
-    identifiant->setType(F);
-    automate.reduction(1,identifiant);
+    automate.reduction(1, new Identifiant(F, (Identifiant *)automate.getDernierSymbole()));
 
 	return false;
 }
@@ -513,9 +513,7 @@ Etat14::~Etat14() {}
 // fonction de transition Etat 14
 bool Etat14::transition(Automate &automate, Symbole *s)
 {
-    Val *valeur = (Val *) automate.getDernierSymbole();
-    valeur->setType(F);
-    automate.reduction(1,valeur);
+    automate.reduction(1,new Val(F, (Val *) automate.getDernierSymbole()));
 
 	return false;
 }
@@ -676,7 +674,7 @@ bool Etat19::transition(Automate &automate, Symbole *s)
             automate.reduction(1, expr);
 			break;
         case FOIS:
-			automate.decalage(s, new Etat22());
+			      automate.decalage(s, new Etat22());
             automate.consommer();
             //d22
             //si l'un des termes est 1 => on enleve
@@ -1095,7 +1093,6 @@ bool Etat33::transition(Automate &automate, Symbole *s)
     Identifiant *identifiant = (Identifiant *) automate.getDernierSymbole();
     automate.popSymbole(); // v
     ListeVariables *lv = (ListeVariables *) automate.getDernierSymbole();
-
     lv->ajouterIdentifiant(identifiant);
     automate.reduction(3, lv);
 
@@ -1151,7 +1148,7 @@ bool Etat35::transition(Automate &automate, Symbole *s)
     ListeConstantes *lc = (ListeConstantes *) automate.getDernierSymbole();
 
 
-    //cout << "premier id : " << lc->identifiants().size() << endl;
+    //cout << "premier id : " << lc->getListID().size() << endl;
 
     automate.popSymbole(); //const
     automate.popSymbole();
@@ -1344,7 +1341,8 @@ bool Etat42::transition(Automate &automate, Symbole *s)
     Val * valeur = (Val *) automate.getDernierSymbole();
     automate.popSymbole(); //eg
     Identifiant *id = (Identifiant *)automate.getDernierSymbole();
-    
+    ListeConstantes * test = new ListeConstantes(id);
+
     id->setValeurNum(valeur);
     automate.reduction(3, new ListeConstantes(id));
 

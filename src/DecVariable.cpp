@@ -16,3 +16,8 @@ void DecVariable::afficher() {
 	this->listeVariables->afficher();
 
 }
+
+vector<Identifiant *> DecVariable::getVariables()
+{
+	return this->listeVariables->getListID();
+}
