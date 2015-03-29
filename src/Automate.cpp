@@ -84,10 +84,10 @@ bool Automate::reduction(int nbEtat, Symbole *s)
     for (int i = 0; i < nbEtat ; i++){
         etats.pop();
     }
+
     //symboles.push(s);
+
     etats.top()->transition(*this, s);
-    //cout << "reduction" << endl;
-    //etats.top()->print();
     return false;
 
 }
@@ -107,13 +107,13 @@ bool Automate::analyse(){
     
     int i =0;
     Symbole * next;
-    bool transition;
+    bool accepte;
     do{ 
-        etats.top()->print();
+        //etats.top()->print();
         
         next = aLexical->next();
         
-        cout << next->afficherType() << endl;
+        //cout << next->afficherType() << endl;
 
         //if the next symbol is an id, we have to make sure it has not been created before
         if(next->getType() == ID)
@@ -130,41 +130,17 @@ bool Automate::analyse(){
                 identifiants.insert(make_pair(id->valeur(),id));
             }
         }
-     }while((!etats.top()->transition(*this, next)) && (i++) < MAX);
+        try
+        {
+            accepte = etats.top()->transition(*this, next);
+        }catch(std::logic_error ex)
+        {
+            throw ex;
+        }
+     }while(!accepte);
 
-    if(i >= MAX)
-    {
-        cout << "program contains errors" << endl;
-        return false;
-    }else{
-        return true;
-    }
     
 }
-
-/* old version
-bool Automate::analyse(){
-    etats.push(new Etat0);
-    //cout <<  aLexical->next()->getType() << endl;
-    
-    
-    //while(aLexical->next()->getType() != END)
-    //{
-
-     //etats.top()->print();
-     int i =0;
-     while(!etats.top()->transition(*this, aLexical->next()) && (i++) < MAX)
-     {
-          //etats.top()->print();
-     }
-
-     if(i >= MAX)
-    {
-        return false;
-    }
-
-    return true;
-}*/
 
 
 AnalyseurLexical * Automate::getAnalyseurLexical()
