@@ -24,7 +24,12 @@ Expression::~Expression()
 void Expression::afficher(){
 	
 }
-/*Expression * Expression::getExpression()
+Expression * Expression::getExpression()
 {
 	return this->expression;
-}*/
+}
+
+void Expression::setExpression(Expression *expr)
+{
+	this->expression=expr;
+}
