@@ -74,35 +74,35 @@ static string filename(int argc, const char* argv[])
 
 int main( int argc, const char* argv[] )
 {
+
     cout << programName << " version " << version << endl << endl;
     cout << man << endl;
     checkOptions(argc,argv); //get activated options
-
-   // AnalyseurLexical* lex = new AnalyseurLexical(filename(argc,argv));
-
     AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
-    Automate * automate = new Automate(aLexical);
-    
-    automate->analyse();
-    
-    
-    automate->getProgramme().afficher();
-
-	if(optionO)
-	{
-	   Programme leProgramme = automate->getProgramme();
-	   Transformation * transformation = new Transformation(leProgramme);
-	   transformation->transformer();
-	}
-
-    if(optionE)
+    Automate * automate = new Automate(aLexical);  
+    try
     {
-        cout << "execution" << endl;
-        automate->executer();
+         automate->analyse();
+         automate->getProgramme().afficher();
+         if(optionO)
+         {
+            Programme leProgramme = automate->getProgramme();
+            Transformation * transformation = new Transformation(leProgramme);
+            transformation->transformer();
+         }
+
+         if(optionE)
+         {
+             cout << "execution" << endl;
+             automate->executer();
+         }
+    }catch(std::logic_error ex)
+    {
+        cout << ex.what() << endl;
+
     }
-    
     delete automate;
     delete aLexical; //delete after automate (otherwise causes SIGABRT -> why ??)
-     
+
     return 0;
 }
