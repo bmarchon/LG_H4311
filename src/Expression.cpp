@@ -28,3 +28,8 @@ Expression * Expression::getExpression()
 {
 	return this->expression;
 }
+
+void Expression::setExpression(Expression *expr)
+{
+	this->expression=expr;
+}
