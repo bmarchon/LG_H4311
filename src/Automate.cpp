@@ -22,39 +22,43 @@ void Automate::analyseStatique(){
 
     for (auto itDeclaration = declarations.begin() ; itDeclaration != declarations.end(); ++itDeclaration)
     {
-        Symbole * contenuDec = (*itDeclaration)->getContenu();
-        if(contenuDec->getType() == LC)
+        switch((*itDeclaration)->getContenu())
         {
-            vector<Identifiant *> constantes = ((DecConstante*)(*itDeclaration))->getConstantes();
-            for (auto itConstantes = constantes.begin(); itConstantes != constantes.end(); ++itConstantes) {
-                cout << "constante: " << (*itConstantes)->afficherType() << endl;
-                //tableauAnalyseStatique.insert(make_pair((*itConstantes)->valeur(),(*itConstantes)));
-                //tableauAnalyseStatique.back().affecte = true;
-            }
-        }
-        else if (contenuDec->getType() == LV)
-        {
-            vector<Identifiant *> variables = ((DecVariable*)(*itDeclaration))->getVariables();
-            for (auto itVariables = variables.begin(); itVariables != variables.end(); ++itVariables) {
-                cout << "variable: " << (*itVariables)->afficherType() << endl;
-                // variables cannot be directly initalized;
-                //tableauAnalyseStatique.push_back(*itVariables);
-            }
-        }
-        // should never be the case when no fault in grammar
-        else
-        {
-            cout << "Something went wrong, declaration was a :" <<  (*itDeclaration)->getContenu()->afficherType() << endl;
-        }
-        
-        for (auto it = tableauAnalyseStatique.begin(); it != tableauAnalyseStatique.end(); it++) {
-            //cout << it->first << " => " << it->second.s->afficher() << '\n';
+            case LC:
+                vector<Identifiant *> constantes = ((DecConstante*)(*itDeclaration))->getConstantes();
+                for (auto itConstantes = constantes.begin(); itConstantes != constantes.end(); ++itConstantes) {
+                    cout << "constante: " << (*itConstantes)->afficherType() << endl;
+                    if (tableauAnalyseStatique.find((*itConstantes)->valeur()) != tableauAnalyseStatique.end()) {
+                        cout << "ERROR: The Constant " << (*itConstantes)->valeur() << " has already been declared" << endl;
+                    } else {
+                        tableauAnalyseStatique.insert(make_pair((*itConstantes)->valeur(),(*itConstantes)));
+                        tableauAnalyseStatique.at((*itConstantes)->valeur()).affecte = true;
+                    }
+                }
+                break;
+            case LV:
+                vector<Identifiant *> variables = ((DecVariable*)(*itDeclaration))->getVariables();
+                for (auto itVariables = variables.begin(); itVariables != variables.end(); ++itVariables) {
+                    cout << "variable: " << (*itVariables)->afficherType() << endl;
+                    if (tableauAnalyseStatique.find((*itVariables)->valeur()) != tableauAnalyseStatique.end()) {
+                        cout << "ERROR: The Variable " << (*itVariables)->valeur() << " has already been declared" << endl;
+                    } else {
+                        tableauAnalyseStatique.insert(make_pair((*itVariables)->valeur(),(*itVariables)));
+                    }
+                    // variables cannot be directly initalized;
+                }
+                break;
+            // should never be the case when no fault in grammar
+            default:
+                cout << "Something went wrong, declaration was a :" <<  (*itDeclaration)->getContenu()->afficherType() << endl;
         }
     }
+/*    for (auto it = tableauAnalyseStatique.begin(); it != tableauAnalyseStatique.end(); it++) {
+        cout << it->first << endl;
+    }*/
 
     for (auto it = instructions.begin() ; it != instructions.end(); ++it)
     {
-        /*
         switch((*it)->getType())
         {
             case AFF:
@@ -68,10 +72,8 @@ void Automate::analyseStatique(){
                 InstructionEcriture * instrEcr = (InstructionEcriture) *it;
                 break;
         }
-        */
     }
-
-} 
+}
 
 Programme Automate::getProgramme() {
     return this->programme;
