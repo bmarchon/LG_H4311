@@ -11,6 +11,11 @@ ListeVariables::~ListeVariables()
 
 }
 
+vector<Identifiant *> ListeVariables::getListID()
+{
+	return this->listeVariables;
+}
+
 void ListeVariables::ajouterIdentifiant(Identifiant *id)
 {
     listeVariables.push_back(id);

@@ -1,0 +1,8 @@
+var x, o;
+var tt, tt1, tt2, tt3, tt4;
+const y=5;
+tt1:=12;
+tt3:=y+tt1;
+ecrire y;
+lire x;
+x:=4; 

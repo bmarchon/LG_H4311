@@ -8,10 +8,10 @@ class ExprPar : public Expression
 {
 	public:
         	ExprPar(Expression *expr, Symboles type);
-		virtual ~ExprPar();
+			virtual ~ExprPar();
         	double eval();
     		void afficher(); // Display the value for the representation
-		Expression* getExpression(); 
+			Expression* getExpression(); 
 	protected:
 	private:
 		Expression * expression;

@@ -14,8 +14,8 @@
 #include "InstructionEcriture.h"
 #include "InstructionLecture.h"
 #include "InstructionAffectation.h"
-#include "ListeVariables.h"
-#include "ListeConstantes.h"
+#include "DecVariable.h"
+#include "DecConstante.h"
 #include "Programme.h"
 #include "Symbole.h"
 #include "Identifiant.h"
@@ -31,7 +31,6 @@ class Automate
         bool analyse();
         AnalyseurLexical *getAnalyseurLexical();
         virtual ~Automate();
-        void testTableauanalyseeeeee();
         void pushEtat(Etat *etat);
         // renvoie le symbole qui se trouve en haut de la pile
         Symbole *getDernierSymbole();
@@ -61,7 +60,7 @@ class Automate
             bool affecte;
             bool utilise;
         };
-        vector<analyseSymbole> tableauAnalyseStatique;
+        map<string,analyseSymbole> tableauAnalyseStatique;
     private:
         Programme programme;
         map<string,Identifiant*> identifiants;

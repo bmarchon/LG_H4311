@@ -13,6 +13,7 @@ public:
     ~ListeVariables();
     void ajouterIdentifiant(Identifiant *id);
     void afficher(); // Display the value for the representation
+    vector<Identifiant *> getListID();
 protected:
     vector<Identifiant *> listeVariables;
 

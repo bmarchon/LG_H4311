@@ -13,6 +13,7 @@ class DecVariable : public Declaration
         DecVariable(ListeVariables *lv);
         virtual ~DecVariable();
     	void afficher(); // Display the value for the representation
+    	vector<Identifiant *> getVariables();
 	protected:
         ListeVariables *listeVariables;
 	private:

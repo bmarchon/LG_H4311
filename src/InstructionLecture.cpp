@@ -20,7 +20,7 @@ void InstructionLecture::executer()
   	getline (cin,inputString);
   	stringstream(inputString) >> inputValue;
 
-  	identifiant->setValeurNum(new Val(inputValue));
+  	identifiant->setValeurNum(inputValue);
 }
 
 

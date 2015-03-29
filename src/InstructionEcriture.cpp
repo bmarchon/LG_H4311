@@ -6,7 +6,7 @@ InstructionEcriture::InstructionEcriture(): Instruction()
 	expression = NULL;
 }
 
-InstructionEcriture::InstructionEcriture(Expression *exp) : Instruction()
+InstructionEcriture::InstructionEcriture(Expression *exp) : Instruction(ECR)
 {
 	if(exp->getType() != EXPR)
 	{

@@ -15,7 +15,9 @@
 #include "OperateurAdditif.h"
 #include "DecVariable.h"
 #include "DecConstante.h"
-#include "Val.h"
+
+Identifiant * ctest;
+
 // ctor Etat0
 Etat0::Etat0() : Etat(0)
 {
@@ -43,8 +45,8 @@ bool Etat0::transition(Automate &automate, Symbole *s)
             break;
 
         default:
-            // génerer une erreur
-            cout << "program is not valid" << endl; 
+             throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
+
             break;
 
 	}
@@ -68,13 +70,13 @@ bool Etat1::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  VAR:
-			automate.decalage(s, new Etat4());
+			      automate.decalage(s, new Etat4());
             automate.consommer();
-			break;
+			      break;
         case  CONST:
-			automate.decalage(s, new Etat3());
+			      automate.decalage(s, new Etat3());
             automate.consommer();
-			break;
+			      break;
         case  ECRIRE:
         case  LIRE:
         case  ID:
@@ -85,7 +87,7 @@ bool Etat1::transition(Automate &automate, Symbole *s)
             automate.decalage(s, new Etat2());
             break;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 
 	}
@@ -127,7 +129,7 @@ bool Etat2::transition(Automate &automate, Symbole *s)
             cout << "program is valid" << endl;
             return true;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 	}
 	return false;
@@ -157,7 +159,7 @@ bool Etat3::transition(Automate &automate, Symbole *s)
             automate.decalage(s,new Etat34());
             break;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 	}
 	return false;
@@ -182,12 +184,12 @@ bool Etat4::transition(Automate &automate, Symbole *s)
         case  ID:
             automate.decalage(s, new Etat29());
             automate.consommer();
-			break;
+			      break;
         case LV:
             automate.decalage(s, new Etat30());
             break;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 	}
 	return false;
@@ -231,7 +233,7 @@ bool Etat5::transition(Automate &automate, Symbole *s)
             automate.decalage(s, new Etat12());
             break;
         default:
-            //gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 	}
 	return false;
@@ -258,7 +260,7 @@ bool Etat6::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 	}
 	return false;
@@ -285,7 +287,7 @@ bool Etat7::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         default:
-            // génerer une erreur
+            automate.decalage(new SymboleSimple(AFFECT), new Etat24);
             break;
 	}
 	return false;
@@ -327,11 +329,10 @@ bool Etat8::transition(Automate &automate, Symbole *s)
 			break;
         case A:
             automate.decalage(s, new Etat10());
+            break;
 
         default:
-            cout << "DEFAULT" << endl;
-            cout << s->getType() << endl;
-            //getsion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 	}
 	return false;
@@ -356,11 +357,9 @@ bool Etat9::transition(Automate &automate, Symbole *s)
     automate.popSymbole();
     automate.popSymbole();
     InstructionEcriture * ecr = new InstructionEcriture(expression);
-
-    //TODO popSymbole??
-
     automate.ajouter(ecr);
     automate.reduction(4, ecr);
+
 	return false;
 }
 
@@ -385,25 +384,21 @@ bool Etat10::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case  ID:
-           
             automate.decalage(s, new Etat13());
             automate.consommer();
 			break;
         case  PO:
-          
             automate.decalage(s, new Etat15());
             automate.consommer();
 			break;
         case T:
-        
             automate.decalage(s, new Etat11());
             break;
         case F:
-           
             automate.decalage(s, new Etat12());
             break;
         default:
-            //gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 	}
 	return false;
@@ -426,7 +421,7 @@ bool Etat11::transition(Automate &automate, Symbole *s)
     Expression *exprDroite, *exprGauche;
     OperateurAdditif *opAdditif;
     switch (s->getType())
-	{
+	{  
         case  PF: //r13
         case  PLUS:
         	//si l'un des termes est 0 => on enleve
@@ -458,7 +453,7 @@ bool Etat11::transition(Automate &automate, Symbole *s)
             automate.decalage(s, new Etat20());
             break;
         default:
-        // gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 
     }
@@ -501,10 +496,7 @@ Etat13::~Etat13() {}
 // fonction de transition Etat 13
 bool Etat13::transition(Automate &automate, Symbole *s)
 {
-    Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
-    //cout << "valeur de l'identifiant " << identifiant->valeur() <<  " " << identifiant->eval() << endl;
-    identifiant->setType(F);
-    automate.reduction(1,identifiant);
+    automate.reduction(1, new Identifiant(F, (Identifiant *)automate.getDernierSymbole()));
 
 	return false;
 }
@@ -523,10 +515,8 @@ Etat14::~Etat14() {}
 // fonction de transition Etat 14
 bool Etat14::transition(Automate &automate, Symbole *s)
 {
-    Val *valeur = (Val *) automate.getDernierSymbole();
-    valeur->setType(F);
+    automate.reduction(1,new Val(F, (Val *) automate.getDernierSymbole()));
 
-    automate.reduction(1,valeur);
 	return false;
 }
 
@@ -559,18 +549,16 @@ bool Etat15::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case EXPR:
-           
             automate.decalage(s, new Etat16());
             break;
         case T:
-          
             automate.decalage(s, new Etat19());
             break;
         case F:
-                   automate.decalage(s, new Etat12());
+            automate.decalage(s, new Etat12());
             break;
         default:
-            //gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
     }
 	return false;
@@ -609,12 +597,10 @@ bool Etat16::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case A:
-        
             automate.decalage(s, new Etat10());
             break;
-
         default:
-            //gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
     }
 	return false;
@@ -674,7 +660,7 @@ Etat19::~Etat19() {}
 // fonction de transition Etat 19
 bool Etat19::transition(Automate &automate, Symbole *s)
 {
-    Expression *expr;
+    Expression * expr;
     switch (s->getType())
 	{
         case  PF: //r14
@@ -689,24 +675,25 @@ bool Etat19::transition(Automate &automate, Symbole *s)
             expr->setType(EXPR);
             automate.reduction(1, expr);
 			break;
-        case  FOIS: //d22
-        	//si l'un des termes est 1 => on enleve
-        	//sinon
-			automate.decalage(s, new Etat22());
+        case FOIS:
+			      automate.decalage(s, new Etat22());
             automate.consommer();
+            //d22
+            //si l'un des termes est 1 => on enleve
+            //sinon
 			break;
-        case  DIVISE: //d23
-        	//si le diviseur est 1 => on enleve
-        	//sinon
+        case  DIVISE: 
 			automate.decalage(s, new Etat23());
             automate.consommer();
+            //d23
+            //si le diviseur est 1 => on enleve
+            //sinon
 			break;
         case M:
-          
             automate.decalage(s, new Etat20());
             break;
         default:
-            //gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 
     }
@@ -742,10 +729,10 @@ bool Etat20::transition(Automate &automate, Symbole *s)
             automate.consommer();
 			break;
         case F:
-            
             automate.decalage(s, new Etat21());
+            break;
         default:
-            //gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
 	}
 	return false;
@@ -838,24 +825,20 @@ bool Etat24::transition(Automate &automate, Symbole *s)
             automate.consommer();
             break;
         case ID:
-            
             automate.decalage(s, new Etat13());
             automate.consommer();
             break;
         case EXPR:
-        
             automate.decalage(s, new Etat25());
             break;
         case F:
-          
             automate.decalage(s, new Etat12());
             break;
         case T:
-            
             automate.decalage(s, new Etat19());
             break;
         default:
-        //gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
     }
 
@@ -886,23 +869,20 @@ bool Etat25::transition(Automate &automate, Symbole *s)
         case PLUS:
         	//si l'un des termes est 0 => on enleve
         	//sinon
-            
             automate.decalage(s, new Etat18());
             automate.consommer();
             break;
         case MOINS:
         	//si l'un des termes est 0 => on enleve
         	//sinon
-          
             automate.decalage(s, new Etat43());
             automate.consommer();
             break;
         case A:
-           
             automate.decalage(s, new Etat10());
             break;
         default:
-            //gestion des erreurs
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
     }
 
@@ -924,13 +904,13 @@ Etat26::~Etat26() {}
 bool Etat26::transition(Automate &automate, Symbole *s)
 {
 
-    automate.popSymbole();
+    automate.popSymbole(); //pv
     Expression * expr = (Expression *) automate.getDernierSymbole();
-    automate.popSymbole();
+    automate.popSymbole(); //affect
     Identifiant * id = (Identifiant *) automate.getDernierSymbole();
     automate.popSymbole();
+
     InstructionAffectation * aff = new InstructionAffectation(id, expr);
-    //blocInstruction->setInstruction(aff);
     automate.ajouter(aff);
     automate.reduction(5, aff);
     
@@ -959,7 +939,7 @@ bool Etat27::transition(Automate &automate, Symbole *s)
             automate.consommer();
             break;
         default:
-            //gestion des erreurs
+            automate.decalage(new SymboleSimple(PV), new Etat28);
             break;
      }
 
@@ -980,10 +960,11 @@ Etat28::~Etat28() {}
 // fonction de transition Etat 28
 bool Etat28::transition(Automate &automate, Symbole *s)
 {
-    automate.popSymbole();
+    automate.popSymbole(); //pv
     Identifiant * identifiant = (Identifiant*) automate.getDernierSymbole();
+    automate.popSymbole(); //lire
     automate.popSymbole();
-    automate.popSymbole();
+
     InstructionLecture * lect = new InstructionLecture(identifiant);
     automate.ajouter(lect);
     automate.reduction(4, lect);
@@ -1007,6 +988,7 @@ bool Etat29::transition(Automate &automate, Symbole *s)
 {
     Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
     automate.reduction(1, new ListeVariables(identifiant));
+
     return false;
 }
 
@@ -1036,7 +1018,7 @@ bool Etat30::transition(Automate &automate, Symbole *s)
             automate.consommer();
             break;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Le fichier contient une ou plusieurs erreurs syntaxiques." );
             break;
     }
 
@@ -1058,10 +1040,11 @@ Etat31::~Etat31() {}
 bool Etat31::transition(Automate &automate, Symbole *s)
 {
 	//r2
-    automate.popSymbole();
+    automate.popSymbole(); //pv
     ListeVariables *listeVariables = (ListeVariables *) automate.getDernierSymbole();
+    automate.popSymbole(); //var
     automate.popSymbole();
-    automate.popSymbole();
+
     DecVariable * decvar = new DecVariable(listeVariables);
     automate.ajouter(decvar);
     automate.reduction(4, decvar);
@@ -1087,8 +1070,10 @@ bool Etat32::transition(Automate &automate, Symbole *s)
         case  ID: //d33
             automate.decalage(s, new Etat33());
             automate.consommer();
+            break;
         default:
-            // génerer une erreur
+        cout << s->afficherType() << endl;
+            throw std::logic_error( "Il y a un identifiant qui manque dans une déclaration d'une variable." );
             break;
     }
     return false;
@@ -1110,10 +1095,11 @@ bool Etat33::transition(Automate &automate, Symbole *s)
 {
 	//r5
     Identifiant *identifiant = (Identifiant *) automate.getDernierSymbole();
-    automate.popSymbole(); // on n'a pas besoin du virgule
+    automate.popSymbole(); // v
     ListeVariables *lv = (ListeVariables *) automate.getDernierSymbole();
     lv->ajouterIdentifiant(identifiant);
     automate.reduction(3, lv);
+
     return false;
 }
 
@@ -1142,7 +1128,7 @@ bool Etat34::transition(Automate &automate, Symbole *s)
             automate.consommer();
             break;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Une virgule ou un point virgule est oublié." );
             break;
     }
     return false;
@@ -1162,17 +1148,17 @@ Etat35::~Etat35() {}
 // fonction de transition Etat 35
 bool Etat35::transition(Automate &automate, Symbole *s)
 {	//r3
-    automate.popSymbole();
+    automate.popSymbole(); //pv
     ListeConstantes *lc = (ListeConstantes *) automate.getDernierSymbole();
 
+    //cout << "premier id : " << lc->getListID().size() << endl;
 
-    //cout << "premier id : " << lc->identifiants().size() << endl;
-
-    automate.popSymbole();
+    automate.popSymbole(); //const
     automate.popSymbole();
     DecConstante * decconst = new DecConstante(lc);
     automate.ajouter(decconst);
     automate.reduction(4, decconst);
+
     return false;
 }
 
@@ -1197,7 +1183,7 @@ bool Etat36::transition(Automate &automate, Symbole *s)
             automate.consommer();
             break;
         default:
-            //gestion des erreurs
+            throw std::logic_error( "Un identifiant est oublié au moment de la déclaration d'une constante." );
             break;
 
     }
@@ -1223,8 +1209,9 @@ bool Etat37::transition(Automate &automate, Symbole *s)
         case  EG: //d38
             automate.decalage(s, new Etat38());
             automate.consommer();
+            break;
         default:
-            // génerer une erreur
+            automate.decalage(new SymboleSimple(EG), new Etat38);
             break;
     }
     return false;
@@ -1249,8 +1236,9 @@ bool Etat38::transition(Automate &automate, Symbole *s)
         case  VAL: //d39
             automate.decalage(s, new Etat39());
             automate.consommer();
+            break;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Vous avez oublié de donner de valeur à une constante." );
             break;
     }
     return false;
@@ -1271,15 +1259,15 @@ Etat39::~Etat39() {}
 bool Etat39::transition(Automate &automate, Symbole *s)
 {	//r7
     Val *valeur = (Val *)automate.getDernierSymbole();
-    automate.popSymbole();
+    automate.popSymbole(); // eg
     Identifiant *id = (Identifiant *) automate.getDernierSymbole();
-    id->setValeurNum(valeur);
-    cout << "etat 39 : set valeur = " << valeur->eval() << " to " << id->valeur() << endl;
-
-    automate.popSymbole();
+    automate.popSymbole(); //v
     ListeConstantes *lc = (ListeConstantes *) automate.getDernierSymbole();
+
+    id->setValeurNum(valeur); 
     lc->ajouterConstante(id);
     automate.reduction(5, lc);
+    
     return false;
 }
 
@@ -1302,7 +1290,9 @@ bool Etat40::transition(Automate &automate, Symbole *s)
         case  EG:
             automate.decalage(s, new Etat41());
             automate.consommer();
+            break;
         default:
+            automate.decalage(new SymboleSimple(EG), new Etat41);
             // génerer une erreur
             break;
     }
@@ -1328,8 +1318,9 @@ bool Etat41::transition(Automate &automate, Symbole *s)
         case  VAL:
             automate.decalage(s, new Etat42());
             automate.consommer();
+            break;
         default:
-            // génerer une erreur
+            throw std::logic_error( "Vous avez oublié de donner de valeur à une constante." );
             break;
     }
     return false;
@@ -1349,16 +1340,14 @@ Etat42::~Etat42() {}
 // fonction de transition Etat 42
 bool Etat42::transition(Automate &automate, Symbole *s)
 {
-    //automate.popSymbole();
     Val * valeur = (Val *) automate.getDernierSymbole();
-    automate.popSymbole();
+    automate.popSymbole(); //eg
     Identifiant *id = (Identifiant *)automate.getDernierSymbole();
-    
+    ListeConstantes * test = new ListeConstantes(id);
+
     id->setValeurNum(valeur);
-    //cout << "etat 42 : set valeur = " << id->eval() << " to " << id->valeur() << endl;
-    //cout << valeur << endl; 
-    //id->getValeurNum()->afficher();
     automate.reduction(3, new ListeConstantes(id));
+
     return false;
 }
 
@@ -1378,22 +1367,8 @@ bool Etat43::transition(Automate &automate, Symbole *s)
 {
     automate.popSymbole();
     automate.reduction(1, new OperateurAdditif('-'));
+
     return false;
 }
 
 //---------------------------------------------
-/*
-// ctor Etat 44
-Etat44::Etat44() : Etat (44)
-{
-
-}
-
-// dtor Etat 44
-Etat44::~Etat44() {}
-
-// fonction de transition Etat 44
-bool Etat44::transition(Automate &automate, Symbole *s)
-{
-    return true;
-}*/
