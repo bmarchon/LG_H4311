@@ -1,9 +1,9 @@
 #include "ExprMult.h"
 
 
-ExprMult::ExprMult(Symboles type, Expression *exprGauche,OperateurMultiplicatif *operateur, Expression *exprDroite):ExprBinaire(type, exprGauche, exprDroite)
+ExprMult::ExprMult(Symboles type, Expression *exprGauche,OperateurMultiplicatif *opMult, Expression *exprDroite):ExprBinaire(type, exprGauche, exprDroite)
 {
-    this->operateur = operateur;
+    this->opMult = opMult;
 }
 
 
@@ -15,7 +15,7 @@ ExprMult::~ExprMult()
 double ExprMult::eval()
 {
     double res;
-    switch(operateur->getChar())	
+    switch(opMult->getChar())	
 	{
 		case '*':
 			res = exprGauche->eval() * exprDroite->eval();
@@ -40,7 +40,12 @@ double ExprMult::eval()
 
 void ExprMult::afficher() {
     exprGauche->afficher();
-	this->operateur->afficher();
+	this->opMult->afficher();
     exprDroite->afficher();
+}
+
+char ExprMult::operateur()
+{
+	return opMult->getChar();
 }
 

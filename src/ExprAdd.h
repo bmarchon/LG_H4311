@@ -16,6 +16,7 @@ class ExprAdd : public ExprBinaire
     virtual ~ExprAdd();
         double eval();
         void afficher(); // Display the value for the representation
+        virtual char operateur();
     protected:
     private:
         OperateurAdditif *opAdditif;

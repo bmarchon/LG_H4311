@@ -37,7 +37,13 @@ Expression * InstructionAffectation::getExpression()
 	return this->expression;
 }
 
+
 Identifiant * InstructionAffectation::getIdentifiant()
 {
     return this->identifiant;
+}
+
+void InstructionAffectation::setExpression(Expression* exp)
+{
+    this->expression = exp;
 }

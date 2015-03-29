@@ -8,14 +8,15 @@
 class ExprMult : public ExprBinaire
 {
 	public:
-        	ExprMult(Symboles type, Expression *expressionGauche,OperateurMultiplicatif *operateur, Expression *expressionDroite);
+        	ExprMult(Symboles type, Expression *expressionGauche,OperateurMultiplicatif *opMult, Expression *expressionDroite);
 			virtual ~ExprMult();
         	double eval();
     		void afficher(); // Display the value for the representation
+    		virtual char operateur();
 
 	protected:
 	private:
-        OperateurMultiplicatif *operateur;
+        OperateurMultiplicatif *opMult;
 };
 
 #endif // EXPRMULT_H

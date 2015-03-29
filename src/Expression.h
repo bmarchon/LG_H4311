@@ -20,8 +20,9 @@ class Expression : public Symbole
 		  Expression * getExpression();
 		  virtual string afficherExprType();
 	protected:
-		  Expressions typeExp;
-      Expression *expression;
+		Expressions typeExp;
+      	Expression *expression;
+
 	private:
 };
 

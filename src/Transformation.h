@@ -7,6 +7,8 @@
 #include "Expression.h"
 #include "ExprBinaire.h"
 #include "ExprPar.h"
+#include "ExprAdd.h"
+#include "ExprMult.h"
 
 using namespace std;
 
@@ -14,13 +16,17 @@ using namespace std;
 class Transformation
 {
 	public:
-		Transformation(Programme prog);
+		Transformation(Programme * prog);
 		virtual ~Transformation();
 		void transformer();
-		Programme getProgramme();
-		void anaExpr(Expression* lExpressionFille, Expression* lExpressionMere);
+		Programme * getProgramme();
+		
 	protected:
-		Programme programme;
+		Programme * programme;
+		Expression * simplifier(Expression* exp);
+		bool is0Const(Expression * exp);
+		bool is1Const(Expression * exp);
+
 	private:
 };
 

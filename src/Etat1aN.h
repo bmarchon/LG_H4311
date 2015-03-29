@@ -25,6 +25,12 @@
 
 using namespace std;
 
+const string MISSING_ID_IN_VAR_DECLARATION = "missing id in variable declaration";
+const string MISSING_ID_IN_CONST_DECLARATION = "missing id in constant declaration";
+const string MISSING_COMMA = "missing comma or semi-colon";
+const string SYNTAX_ERRORS = "this file contains syntactic errors";
+const string CONST_NO_VALUE = "found constant without initialization";
+
 class Etat0: public Etat
 {
 	public:

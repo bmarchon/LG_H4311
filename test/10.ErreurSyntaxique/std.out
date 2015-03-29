@@ -1,0 +1,10 @@
+Lutin interpreter version 1.0 by H4311
+
+Usage : lut [-a] [-e] [-o] [-p] file.lt
+-a option : static error analysis
+-e option : execute program
+-o option : transform for simplification
+-p option : display program
+
+file read correctly
+syntax error : this file contains syntactic errors

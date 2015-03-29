@@ -15,6 +15,7 @@ class InstructionAffectation : public Instruction
         Expressions getExpressionType();
         Expression * getExpression();
         Identifiant * getIdentifiant();
+        void setExpression(Expression *);
     protected:
         Identifiant *identifiant;
         Expression *expression;

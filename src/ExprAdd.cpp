@@ -36,3 +36,8 @@ void ExprAdd::afficher() {
     cout << " " << opAdditif->getChar() << " ";
     this->exprDroite->afficher();
 }
+
+char ExprAdd::operateur()
+{
+	return opAdditif->getChar();
+}

@@ -11,11 +11,11 @@ typedef enum {P, D, I,EXPR,LV, LC,F, T,A,M, VAR, CONST,VAL, ECRIRE, LIRE, ID, EN
 static const string types[] = {
         "P", "D", "I", "EXPR","LV","LC","F", "T","A","M", "VAR", "CONST","VAL", "ECRIRE", "LIRE", "ID", "END", "PF", "PLUS", "MOINS", "FOIS", "DIVISE", "PV", "PO", "EG", "V", "AFFECT"
 
-		}; 
+        }; 
 
 class Symbole
 {
-	public:
+    public:
         Symbole(Symboles type);
         virtual ~Symbole();
         //void print();
@@ -25,11 +25,11 @@ class Symbole
         void setType(Symboles t){type = t;}
         virtual string afficherType();
         virtual void afficher(); // Display the value for the representation 
-	protected:
+    protected:
         Symboles type;
 
     private:
-    	   
+           
 };
 
 #endif // SYMBOLE_H
