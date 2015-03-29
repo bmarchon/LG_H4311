@@ -14,6 +14,7 @@ class InstructionAffectation : public Instruction
         void afficher(); // Display the value for the representation
         Expressions getExpressionType();
         Expression * getExpression();
+        Identifiant * getIdentifiant();
     protected:
         Identifiant *identifiant;
         Expression *expression;

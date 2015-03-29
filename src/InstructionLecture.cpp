@@ -24,8 +24,14 @@ void InstructionLecture::executer()
 }
 
 
-void InstructionLecture::afficher() {
-	cout << "lire ";
-	this->identifiant->afficher();
+void InstructionLecture::afficher()
+{
+    cout << "lire ";
+    this->identifiant->afficher();
     cout << ";" << endl;
+}
+
+Identifiant * InstructionLecture::getIdentifiant()
+{
+    return this->identifiant;
 }

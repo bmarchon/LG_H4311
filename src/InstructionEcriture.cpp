@@ -38,13 +38,15 @@ Expressions InstructionEcriture::getExpressionType()
 {
 	return this->expression->getExprType();
 }
+
 Expression * InstructionEcriture::getExpression()
 {
 	return this->expression;
 }
 
 
-void InstructionEcriture::afficher() {
+void InstructionEcriture::afficher()
+{
 	cout << "ecrire ";
 	this->expression->afficher();
     cout << ";" << endl;

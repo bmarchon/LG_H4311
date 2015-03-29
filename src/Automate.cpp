@@ -22,30 +22,40 @@ void Automate::analyseStatique(){
 
     for (auto itDeclaration = declarations.begin() ; itDeclaration != declarations.end(); ++itDeclaration)
     {
-        switch((*itDeclaration)->getContenu())
+        switch((*itDeclaration)->getContenu()->getType())
         {
             case LC:
-                vector<Identifiant *> constantes = ((DecConstante*)(*itDeclaration))->getConstantes();
-                for (auto itConstantes = constantes.begin(); itConstantes != constantes.end(); ++itConstantes) {
-                    cout << "constante: " << (*itConstantes)->afficherType() << endl;
-                    if (tableauAnalyseStatique.find((*itConstantes)->valeur()) != tableauAnalyseStatique.end()) {
-                        cout << "ERROR: The Constant " << (*itConstantes)->valeur() << " has already been declared" << endl;
-                    } else {
-                        tableauAnalyseStatique.insert(make_pair((*itConstantes)->valeur(),(*itConstantes)));
-                        tableauAnalyseStatique.at((*itConstantes)->valeur()).affecte = true;
+                {
+                    vector<Identifiant *> constantes = ((DecConstante*)(*itDeclaration))->getConstantes();
+                    for (auto itConstantes = constantes.begin(); itConstantes != constantes.end(); ++itConstantes)
+                    {
+                        cout << "constante: " << (*itConstantes)->afficherType() << endl;
+                        if (tableauAnalyseStatique.find((*itConstantes)->valeur()) != tableauAnalyseStatique.end())
+                        {
+                            cout << "ERROR: The Constant " << (*itConstantes)->valeur() << " has already been declared" << endl;
+                        }
+                        else
+                        {
+                            tableauAnalyseStatique.insert(make_pair((*itConstantes)->valeur(),analyseSymbole(*itConstantes, true)));
+                            tableauAnalyseStatique.at((*itConstantes)->valeur()).affecte = true;
+                        }
                     }
                 }
                 break;
+
             case LV:
-                vector<Identifiant *> variables = ((DecVariable*)(*itDeclaration))->getVariables();
-                for (auto itVariables = variables.begin(); itVariables != variables.end(); ++itVariables) {
-                    cout << "variable: " << (*itVariables)->afficherType() << endl;
-                    if (tableauAnalyseStatique.find((*itVariables)->valeur()) != tableauAnalyseStatique.end()) {
-                        cout << "ERROR: The Variable " << (*itVariables)->valeur() << " has already been declared" << endl;
-                    } else {
-                        tableauAnalyseStatique.insert(make_pair((*itVariables)->valeur(),(*itVariables)));
+                {
+                    vector<Identifiant *> variables = ((DecVariable*)(*itDeclaration))->getVariables();
+                    for (auto itVariables = variables.begin(); itVariables != variables.end(); ++itVariables)
+                    {
+                        cout << "variable: " << (*itVariables)->afficherType() << endl;
+                        if (tableauAnalyseStatique.find((*itVariables)->valeur()) != tableauAnalyseStatique.end()) {
+                            cout << "ERROR: The Variable " << (*itVariables)->valeur() << " has already been declared" << endl;
+                        } else {
+                            tableauAnalyseStatique.insert(make_pair((*itVariables)->valeur(),analyseSymbole(*itVariables, false)));
+                        }
+                        // variables cannot be directly initalized;
                     }
-                    // variables cannot be directly initalized;
                 }
                 break;
             // should never be the case when no fault in grammar
@@ -53,24 +63,46 @@ void Automate::analyseStatique(){
                 cout << "Something went wrong, declaration was a :" <<  (*itDeclaration)->getContenu()->afficherType() << endl;
         }
     }
-/*    for (auto it = tableauAnalyseStatique.begin(); it != tableauAnalyseStatique.end(); it++) {
-        cout << it->first << endl;
-    }*/
+/*    for (auto it = tableauAnalyseStatique.begin(); it != tableauAnalyseStatique.end(); it++)
+      {
+          cout << it->first << endl;
+      }*/
 
     for (auto it = instructions.begin() ; it != instructions.end(); ++it)
     {
-        switch((*it)->getType())
+        switch((*it)->getInstType())
         {
             case AFF:
-                InstructionAffectation * instrAff = (InstructionAffectation) *it;
-                
+                {
+                    InstructionAffectation * instrAff = (InstructionAffectation*) *it;
+                    Identifiant* id = instrAff->getIdentifiant();
+                    checkIdent(id, false);
+                    Expression* expr = instrAff->getExpression();
+                    checkExpression(expr);
+                }
                 break;
             case LEC:
-                InstructionLecture * instrLec = (InstructionLecture) *it;
+                {
+                    InstructionLecture * instrLec = (InstructionLecture*) *it;
+                    Identifiant* id = instrLec->getIdentifiant();
+                    checkIdent(id, false);
+                }
                 break;
             case ECR:
-                InstructionEcriture * instrEcr = (InstructionEcriture) *it;
+                {
+                    InstructionEcriture * instrEcr = (InstructionEcriture*) *it;
+                    Expression* expr = instrEcr->getExpression();
+                    checkExpression(expr);
+                }
                 break;
+        }
+    }
+    
+    for (auto itIdentifiers = tableauAnalyseStatique.begin(); itIdentifiers != tableauAnalyseStatique.end(); ++itIdentifiers)
+    {
+        if (itIdentifiers->second.utilise == false)
+        {
+            cout << "ERROR: The identifier " << itIdentifiers->first << " is never used!" << endl;
         }
     }
 }
@@ -191,4 +223,57 @@ void Automate::ajouter(Declaration* dec)
 void Automate::executer()
 {
     programme.executer();
+}
+
+void Automate::checkIdent(Identifiant * id, bool isExpression)
+{
+    if (id->getExprType() != IDENT)
+    {
+        cout << "ERROR: Expression type of identifier to use is " << id->afficherExprType() << endl;
+    }
+    else
+    {
+        // should never be the case when no fault in grammar
+// not sure yet if we need this
+/*        if (id->getType() != ID)
+        {
+            cout << "ERROR: Symbol type of identifier to use is " << id->afficherType() << endl;
+        }*/
+        if (tableauAnalyseStatique.find(id->valeur()) == tableauAnalyseStatique.end())
+        {
+            cout << "ERROR: Identifier " << id->valeur() << "has not been declared" << endl;
+        }
+        else
+        {
+            if (!isExpression && tableauAnalyseStatique.at(id->valeur()).isConstante)
+            {
+                cout << "ERROR: Constante " << id->valeur() << " used in variable context" << endl;
+            }
+            else if (isExpression && !(id->isInitialized()))
+            {
+                cout << "ERROR: Variable " << id->valeur() << " has not been initialised" << endl;
+            }
+            else
+            {
+                tableauAnalyseStatique.at(id->valeur()).utilise = true;
+            }
+        }
+    }
+}
+
+void Automate::checkExpression(Expression * expr)
+{
+    if (expr->getExprType() == IDENT)
+    {
+        checkIdent((Identifiant*) expr, true);
+    }
+    else if (expr->getExprType() == PAR)
+    {
+        checkExpression(expr->getExpression());
+    }
+    else if (expr->getExprType() == BIN)
+    {
+        checkExpression(((ExprBinaire*)expr)->getGauche());
+        checkExpression(((ExprBinaire*)expr)->getDroite());
+    }
 }

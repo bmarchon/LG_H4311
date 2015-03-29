@@ -17,6 +17,7 @@ public:
     ~InstructionLecture();
     void executer();
     void afficher(); // Display the value for the representation
+    Identifiant * getIdentifiant();
 private:
     Identifiant * identifiant;
 };

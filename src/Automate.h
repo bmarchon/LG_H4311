@@ -49,21 +49,25 @@ class Automate
         stack<Symbole *> symboles;
         
         struct analyseSymbole {
-            analyseSymbole(Symbole * s)
+            analyseSymbole(Symbole * s, bool isC)
             {
                 this->s = s;
                 this->affecte = false;
                 this->utilise = false;
+                this->isConstante = isC;
             }
 
             Symbole * s;
             bool affecte;
             bool utilise;
+            bool isConstante;
         };
         map<string,analyseSymbole> tableauAnalyseStatique;
     private:
         Programme programme;
         map<string,Identifiant*> identifiants;
+        void checkIdent(Identifiant * id, bool isExpression);
+        void checkExpression(Expression * expr);
 };
 
 #endif // AUTOMATE_H

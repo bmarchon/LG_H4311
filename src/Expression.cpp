@@ -33,3 +33,8 @@ void Expression::setExpression(Expression *expr)
 {
 	this->expression=expr;
 }
+
+string Expression::afficherExprType()
+{
+    return exprTypes[this->typeExp];
+}

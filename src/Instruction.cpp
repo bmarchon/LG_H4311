@@ -7,7 +7,7 @@ Instruction::Instruction(Instructions instructionType): Symbole(I)
 }
 Instruction::Instruction(): Symbole(I)
 {
-	instruction = NULL;
+    this->instruction = NULL;
 }
 
 Instructions Instruction::getInstType()

@@ -5,6 +5,8 @@
 #include <iostream>
 
 typedef enum {BIN, PAR, VALEUR, IDENT} Expressions;
+static const string exprTypes[] = { "BIN", "PAR", "VALEUR", "IDENT" };
+
 class Expression : public Symbole
 {
 	public:
@@ -16,6 +18,7 @@ class Expression : public Symbole
       void afficher(); // Display the value for the representation
 		  Expressions getExprType();
 		  Expression * getExpression();
+		  virtual string afficherExprType();
 	protected:
 		  Expressions typeExp;
       Expression *expression;

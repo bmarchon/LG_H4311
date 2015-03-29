@@ -22,11 +22,13 @@ class Identifiant : public Expression
     void setValeurNum(Val * valeur);
     Val *getValeurNum();
     double eval();
-    void afficher(); // Display the value for the representation 
+    void afficher(); // Display the value for the representation
+    bool isInitialized();
 	protected:
 	private:
-	string idVal;
+    string idVal;
     Val * valNum;
+    bool isInit;
 };
 
 #endif // IDENTIFIANT_H
