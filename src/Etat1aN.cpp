@@ -310,12 +310,14 @@ bool Etat8::transition(Automate &automate, Symbole *s)
         case  PLUS:
         	//si l'un des termes est 0 => on enleve
         	//sinon
+            cout << "PLUS" << endl;
             automate.decalage(s, new Etat18());
             automate.consommer();
 			break;
         case  MOINS:
         	//si l'un des termes est 0 => on enleve
         	//sinon
+            cout << "MOINS" << endl;
             automate.decalage(s, new Etat43());
             automate.consommer();
 			break;
@@ -327,6 +329,8 @@ bool Etat8::transition(Automate &automate, Symbole *s)
             automate.decalage(s, new Etat10());
 
         default:
+            cout << "DEFAULT" << endl;
+            cout << s->getType() << endl;
             //getsion des erreurs
             break;
 	}
