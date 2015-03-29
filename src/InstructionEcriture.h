@@ -18,6 +18,7 @@ public:
     void executer();
     void afficher(); // Display the value for the representation
 	Expression * getExpression();
+	void setExpression(Expression *);
 
 protected:
   

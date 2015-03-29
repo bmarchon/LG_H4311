@@ -96,7 +96,7 @@ Symbole * AnalyseurLexical::getSymbole()
             else
             {
                 res = new SymboleSimple(regPair.first);
-                cout << res->getType() << endl;
+                //cout << res->getType() << endl;
             }
 
             return res;

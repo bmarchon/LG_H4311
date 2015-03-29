@@ -34,3 +34,8 @@ Expression * InstructionAffectation::getExpression()
 {
 	return this->expression;
 }
+
+void InstructionAffectation::setExpression(Expression* exp)
+{
+    this->expression = exp;
+}
