@@ -13,7 +13,7 @@ class Reader
 	public:
 		Reader();
 		virtual ~Reader();
-		void lire(string inputname);
+		bool lire(string inputname);
 
         string getFileText();
 	private:

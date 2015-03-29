@@ -21,12 +21,14 @@ class AnalyseurLexical
 		virtual ~AnalyseurLexical();
 		Symbole * next(); //returns next symbol to read, WARNING: can be NULL if lexical error
 		void shift(); //consumes current symbol
+		bool isFileOK();
 		
 
 	private:
 		string text;
 		Symbole * currentSym;
 		Symbole * getSymbole();
+		bool fileOK;
 		bool endReached;
 
 

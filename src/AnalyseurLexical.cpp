@@ -28,7 +28,7 @@ static pair<Symboles, boost::regex>regexes [] =
 AnalyseurLexical::AnalyseurLexical(string filename)
 {
     Reader reader ;
-    reader.lire(filename);
+    fileOK = reader.lire(filename);
     text = reader.getFileText();
     endReached = false; //has to be called before getSymbole!
     while ((currentSym = getSymbole()) == NULL);
@@ -41,8 +41,6 @@ AnalyseurLexical::~AnalyseurLexical()
 }
 
 
-// jamais utilisé !! peut-etre inutile!!
-// no it's useful
 Symbole * AnalyseurLexical::next()
 {
     return currentSym;
@@ -108,42 +106,7 @@ Symbole * AnalyseurLexical::getSymbole()
     return NULL; //error
 }
 
-
-
-
-/*
-// pour tester le AnalyseurLexical
-int main ()
+bool AnalyseurLexical::isFileOK()
 {
-
-    AnalyseurLexical * r = new AnalyseurLexical("../tmp/test.txt");
-
-    while(r->next() != NULL && r->next()->getType() != END)
-    {
-        Symbole * s = r->next();
-
-        if(s != NULL)
-        {
-            cout << s->afficherType();
-            Symboles type  = s->getType();
-            if(type == VAL)
-            {
-                Val* val = (Val*) s;
-                cout << " = " << val->valeur();
-            }
-            else if(type == ID)
-            {
-                Identifiant* id = (Identifiant*) s;
-                cout << " = " << id->valeur();
-            }
-            cout << endl;
-
-            r->shift();
-        }
-
-    }
-
-    delete r;
-    return 0;
+    return fileOK;
 }
-*/

@@ -25,6 +25,12 @@
 
 using namespace std;
 
+const string MISSING_ID_IN_VAR_DECLARATION = "Il y a un identifiant qui manque dans une déclaration d'une variable.";
+const string MISSING_ID_IN_CONST_DECLARATION = "Un identifiant est oublié au moment de la déclaration d'une constante.";
+const string MISSING_COMMA = "Une virgule ou un point virgule est oublié.";
+const string SYNTAX_ERRORS = "Le fichier contient une ou plusieurs erreurs syntaxiques.";
+const string CONST_NO_VALUE = "Vous avez oublié de donner de valeur à une constante.";
+
 class Etat0: public Etat
 {
 	public:

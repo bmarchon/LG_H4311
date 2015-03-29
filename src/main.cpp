@@ -1,20 +1,3 @@
-/*#include "main.h"
-#include <iostream>
-#include <stdio.h>
-
-int main( int argc, const char* argv[] )
-{
-
-	cout << programName << " " << version << endl;
-    AnalyseurLexical *aLexical = new AnalyseurLexical("fichier.lt");
-    Automate *automate = new Automate(aLexical);
-    automate->analyse();
-	return 0;
-
-
-
-
-}*/
 #include "main.h"
 #include <iostream>
 #include <stdio.h>
@@ -27,7 +10,7 @@ static bool optionO = false;
 static bool optionA = false;
 static bool optionE = false;
 
-static void checkOptions(int& argc, const char* argv[])
+static bool checkOptions(int& argc, const char* argv[])
 {
     for(int i = 1 ; i < argc-1 ; i++) // first parameter is program path, last parameter must be file name
     {
@@ -74,35 +57,64 @@ static string filename(int argc, const char* argv[])
 
 int main( int argc, const char* argv[] )
 {
+    bool syntaxError = false;
 
+    //print program name and help message
     cout << programName << " version " << version << endl << endl;
     cout << man << endl;
-    checkOptions(argc,argv); //get activated options
-    AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
-    Automate * automate = new Automate(aLexical);  
-    try
-    {
-         automate->analyse();
-         automate->getProgramme().afficher();
-         if(optionO)
-         {
-            Programme leProgramme = automate->getProgramme();
-            Transformation * transformation = new Transformation(leProgramme);
-            transformation->transformer();
-         }
 
-         if(optionE)
-         {
-             cout << "execution" << endl;
-             automate->executer();
-         }
-    }catch(std::logic_error ex)
+    if(!checkOptions(argc,argv)) //get activated options
     {
-        cout << ex.what() << endl;
-
+        return INPUT_PARAMETER_ERROR;
     }
+
+    AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
+
+    if(!aLexical->isFileOK())
+    {
+        return FILE_ERROR;
+    }
+
+    Automate * automate = new Automate(aLexical);  
+    try{
+         automate->analyse();
+         
+
+        if(optionA) //static error analysis
+        {
+            //TODO
+        }
+        if(optionO) //transform
+        {
+           Programme leProgramme = automate->getProgramme();
+           Transformation * transformation = new Transformation(leProgramme);
+           transformation->transformer();
+        }
+
+        if(optionP) //display
+        {
+            automate->getProgramme().afficher();
+        }
+
+        if(optionE) //execute
+        {
+            cout << "execution" << endl;
+            automate->executer();
+        }
+
+    }catch(std::logic_error ex){ //syntax error
+        cout << "syntax error : ";
+        cout << ex.what() << endl;
+        syntaxError = true;
+    }
+
     delete automate;
     delete aLexical; //delete after automate (otherwise causes SIGABRT -> why ??)
 
-    return 0;
+    if(syntaxError)
+    {
+        return SYNTAX_ERROR;
+    }
+
+    return OK;
 }
