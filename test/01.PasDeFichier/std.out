@@ -6,17 +6,4 @@ Usage : lut [-a] [-e] [-o] [-p] file.lt
 -o option : transform for simplification
 -p option : display program
 
-file read correctly
-program is valid
-
-program :
-
-var a;
-var b;
-const c = 4;
-const d = 6;
-var e;
-a := (c + d)*3 - 5;
-lire b;
-e := b + d;
-ecrire e;
+no input file name specified

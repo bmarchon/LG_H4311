@@ -1,0 +1,10 @@
+var a;
+var b;
+var e;
+var j;
+const c = 4, d = 6;
+j := 0;
+a := (c+d)*3-5;
+lire b;
+e := b+j;
+ecrire e; 

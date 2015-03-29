@@ -16,7 +16,7 @@ void InstructionLecture::executer()
 	double inputValue = 0.0;
 	string inputString;
  
- 	cout << "Enter value for " << identifiant->valeur() << endl;
+ 	cout << "enter value for " << identifiant->valeur() << endl;
   	getline (cin,inputString);
   	stringstream(inputString) >> inputValue;
 

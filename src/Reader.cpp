@@ -9,7 +9,7 @@ Reader::~Reader()
 	//dtor
 }
 
-void Reader::lire(string filename) {
+bool Reader::lire(string filename) {
 	fstream file (filename.c_str());
 	if (file) {
 		// get length of file
@@ -28,8 +28,10 @@ void Reader::lire(string filename) {
 		replace( filetext.begin(), filetext.end(), '\r', ' ');
 		replace( filetext.begin(), filetext.end(), '\t', ' ');
 		cout << "file read correctly" << endl;
+		return true;
 	}else{
 		cout << "file error : " << filename << endl;
+		return false;
 	}
 }
 

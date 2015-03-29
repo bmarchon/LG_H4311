@@ -121,10 +121,14 @@ bool Automate::analyse(){
             Identifiant * id  = (Identifiant*) next;
             if(identifiants.find(id->valeur()) != identifiants.end())
             {
+
+                //TODO delete next?
+
                 //use existing id if it exists
                 next = identifiants[id->valeur()];
                 //reset id role (could have been used as T or F before)
                 next->setType(ID);
+
             }else{
                 //insert new id
                 identifiants.insert(make_pair(id->valeur(),id));
