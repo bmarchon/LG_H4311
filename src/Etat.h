@@ -8,8 +8,6 @@ class Automate;
 
 class Etat
 {
-	protected:
-        int num;
 	public:
         Etat();
         Etat(int num);
@@ -17,6 +15,8 @@ class Etat
 		virtual ~Etat();
 		void print() const;
 		virtual bool transition(Automate & automate, Symbole * s) = 0;
+	protected:
+        int num;
 	private:
 };
 
