@@ -62,6 +62,7 @@ Expression * Transformation::simplifier(Expression * exp)
 {
     ExprBinaire * exprBin = (ExprBinaire *) exp;
     // both sides are values, can be simplified by evaluating
+
     if (exprBin->getGauche()->getExprType() == VALEUR && exprBin->getDroite()->getExprType() == VALEUR)
     {
         return (Expression* ) new Val(exprBin->eval());
@@ -77,6 +78,7 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getDroite();
                 }
+                return exp;
                 break;
             case '*':
             case '/':
@@ -84,9 +86,11 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getDroite();
                 }
+                return exp;
                 break;
             default:
                 cout << "ERROR: Found operator not expecting: " << exprBin->operateur() << endl;
+                return exp;
         }
     }
     // right side is value, possibility of netral element
@@ -100,6 +104,7 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getGauche();
                 }
+                return exp;
                 break;
             case '*':
             case '/':
@@ -107,9 +112,11 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getGauche();
                 }
+                return exp;
                 break;
             default:
                 cout << "ERROR: Found operator not expecting: " << exprBin->operateur() << endl;
+                return exp;
         }
     } else {
         return exp;
