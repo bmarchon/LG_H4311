@@ -14,6 +14,7 @@ Automate::Automate()
 Automate::Automate(AnalyseurLexical *aL)
 {
     aLexical = aL;
+    nouveauIdentifiant = true;
 }
 
 void Automate::analyseStatique()
@@ -150,14 +151,9 @@ bool Automate::analyse(){
         
         //cout << next->afficherType() << endl;
 
+
         //if the next symbol is an id, we have to make sure it has not been created before
-        try
-        {
-            accepte = etats.top()->transition(*this, next);
-        }catch(std::logic_error ex)
-        {
-            throw ex;
-        }
+
         if(next->getType() == ID)
         {
             Identifiant * id  = (Identifiant*) next;
@@ -170,12 +166,22 @@ bool Automate::analyse(){
                 next = identifiants[id->valeur()];
                 //reset id role (could have been used as T or F before)
                 next->setType(ID);
+                nouveauIdentifiant = false;
 
             }else{
                 //insert new id
 
                 identifiants.insert(make_pair(id->valeur(),id));
+                nouveauIdentifiant = true;
             }
+
+        }
+        try
+        {
+            accepte = etats.top()->transition(*this, next);
+        }catch(std::logic_error ex)
+        {
+            throw ex;
         }
 
      }while(!accepte);

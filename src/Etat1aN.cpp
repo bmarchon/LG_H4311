@@ -150,8 +150,9 @@ bool Etat3::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  ID:
-            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()))
+            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
             {
+                 cout << automate.isNouveauIdentifiant() << endl;
                 throw std::logic_error("Double declaration");
             }
             automate.decalage(s, new Etat40());
@@ -184,8 +185,9 @@ bool Etat4::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  ID:
-            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()))
+            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
             {
+                 cout << automate.isNouveauIdentifiant() << endl;
                 throw std::logic_error("Double declaration");
             }
             automate.decalage(s, new Etat29());
@@ -1075,8 +1077,9 @@ bool Etat32::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  ID: //d33
-            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()))
+            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
             {
+                cout << automate.isNouveauIdentifiant() << endl;
                 throw std::logic_error("Double declaration");
             }
             automate.decalage(s, new Etat33());
@@ -1187,8 +1190,9 @@ bool Etat36::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  ID: //d37
-            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()))
+            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
             {
+                 cout << automate.isNouveauIdentifiant() << endl;
                 throw std::logic_error("Double declaration");
             }
             automate.decalage(s, new Etat37());
