@@ -34,6 +34,7 @@ void Automate::analyseStatique()
                         //cout << "constante: " << (*itConstantes)->afficherType() << endl;
                         if (tableauAnalyseStatique.find((*itConstantes)->valeur()) != tableauAnalyseStatique.end())
                         {
+
                             cout << "constant " << (*itConstantes)->valeur() << " has already been declared" << endl;
                         }
                         else
@@ -52,6 +53,7 @@ void Automate::analyseStatique()
                     {
                         //cout << "variable: " << (*itVariables)->afficherType() << endl;
                         if (tableauAnalyseStatique.find((*itVariables)->valeur()) != tableauAnalyseStatique.end()) {
+
                             cout << "variable " << (*itVariables)->valeur() << " has already been declared" << endl;
                         } else {
                             tableauAnalyseStatique.insert(make_pair((*itVariables)->valeur(),analyseSymbole(*itVariables, false)));
@@ -62,6 +64,7 @@ void Automate::analyseStatique()
                 break;
             // should never be the case when no fault in grammar
             default:
+
                 cout << "error: declaration was a :" <<  (*itDeclaration)->getContenu()->afficherType() << endl;
         }
     }
@@ -242,7 +245,7 @@ void Automate::checkIdent(Identifiant * id, bool isExpression)
 {
     if (id->getExprType() != IDENT)
     {
-        cout << "error: expression type of identifier to use is " << id->afficherExprType() << endl;
+              cout << "error: expression type of identifier to use is " << id->afficherExprType() << endl;
     }
     else
     {
@@ -254,17 +257,20 @@ void Automate::checkIdent(Identifiant * id, bool isExpression)
         }*/
         if (tableauAnalyseStatique.find(id->valeur()) == tableauAnalyseStatique.end())
         {
-            cout << "identifier " << id->valeur() << " has not been declared" << endl;
+                     cout << "identifier " << id->valeur() << " has not been declared" << endl;
         }
         else
         {
             if (!isExpression && tableauAnalyseStatique.at(id->valeur()).isConstante)
             {
+               
                 cout << "attempt to modify constant " << id->valeur() << endl;
             }
-            else if (isExpression && !(id->isInitialized()))
+            else if (isExpression && !(tableauAnalyseStatique.at(id->valeur()).affecte))
             {
+                
                 cout << "variable " << id->valeur() << " has not been initialized" << endl;
+                tableauAnalyseStatique.at(id->valeur()).utilise = true;
             }
             else
             {

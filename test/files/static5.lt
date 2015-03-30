@@ -1,8 +1,7 @@
 var x;
 var b;
 const c = 4;
-const d = 5;
-c := 3;
+b := 7;
 ecrire c;
 ecrire b;
 ecrire x;
