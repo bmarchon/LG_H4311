@@ -78,6 +78,7 @@ void Automate::analyseStatique()
                 {
                     InstructionAffectation * instrAff = (InstructionAffectation*) *it;
                     Identifiant* id = instrAff->getIdentifiant();
+                    tableauAnalyseStatique.at(id->valeur()).affecte = true;
                     checkIdent(id, false);
                     Expression* expr = instrAff->getExpression();
                     checkExpression(expr);
