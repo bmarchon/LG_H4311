@@ -67,7 +67,7 @@ void Transformation::transformer()
 //Fonction appelée récursivement
 Expression * Transformation::simplifier(Expression * exp)
 {	
-
+	// TODO : Pour moi il manque des returns dans cette methode 
 	Expression * res;
 	Expressions type = exp->getExprType();
 
@@ -97,6 +97,46 @@ Expression * Transformation::simplifier(Expression * exp)
 			{
 				res = simplifier(gauche);
 			}
+		}
+		else if (op == '-') {
+			ExprMult* expAdd = (ExprMult*) exp;
+			Expression * gauche = expAdd->getGauche();
+			Expression * droite = expAdd->getDroite();
+
+			if(is0Const(gauche)) {
+				// res = new Val (0 - simplifier(droite));
+				// Quelque chose du genre, mais pas ça :v
+			} else if(is0Const(droite)) {
+				res = simplifier(gauche);
+			}
+		}
+		else if (op == '*') {
+			ExprMult* expAdd = (ExprMult*) exp;
+			Expression * gauche = expAdd->getGauche();
+			Expression * droite = expAdd->getDroite();
+
+			if(is1Const(gauche)) {
+				res = simplifier(droite);
+			} else if(is1Const(droite)) {
+				res = simplifier(gauche);
+			}
+		}
+		else if (op == '/') {
+			ExprMult* expAdd = (ExprMult*) exp;
+			Expression * gauche = expAdd->getGauche();
+			Expression * droite = expAdd->getDroite();
+
+			if(is1Const(gauche)) {
+				
+				// ICI que faire :v
+			} else if(is1Const(droite)) {
+				res = simplifier(gauche);
+			} else if (is0Const(droite)) {
+				// DIVISION PAR 0 
+				// res = new Val(0.0);
+				// Ou throw new exception
+			}
+
 		}
 		else
 		{
