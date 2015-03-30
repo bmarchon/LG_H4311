@@ -98,7 +98,8 @@ int main( int argc, const char* argv[] )
             automate->analyseStatique();
         }
         if(optionO) //transform
-        {
+        {   
+            cout << "program transformation enabled" << endl;
            Programme leProgramme = automate->getProgramme();
            Transformation * transformation = new Transformation(&leProgramme);
            transformation->transformer();

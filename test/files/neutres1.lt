@@ -1,5 +1,7 @@
-var x,y,z;
-x := 3 + 0;
-y := 0 + x;
-z := (x + y) + 0;
-ecrire z;
+var x,y,z,t;
+x := 3 + 0.0;
+y := x + x;
+t := (y + 0);
+z := ((x + y) + 0) + 0;
+t := ((y + 0) + 0) + x;
+ecrire 0 + z;

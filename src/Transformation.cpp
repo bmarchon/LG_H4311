@@ -80,7 +80,7 @@ void Transformation::transformer()
 		else if(type == PAR)
 		{
 			ExprPar * expPar = (ExprPar*) exp;
-			res = expPar->getExpression();
+			res = simplifier(expPar->getExpression());
 		}
 		else if(type == BIN)
 		{
@@ -100,12 +100,12 @@ void Transformation::transformer()
 				}else if(is0Const(droite))
 				{
 					res = simplifier(gauche);
+				}else
+				{	
+					expAdd->setGauche(simplifier(gauche));
+					expAdd->setDroite(simplifier(droite));
+					res = expAdd;
 				}
-				cout << "simplification d'une addition : ";
-				expAdd->afficher(); 
-				cout << " => " ;
-				res->afficher();
-				cout << endl;
 			}
 			else
 			{

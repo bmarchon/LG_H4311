@@ -16,6 +16,8 @@ class ExprBinaire : public Expression
     	virtual void afficher(); // Display the value for the representation
 		Expression* getGauche();
 		Expression* getDroite();
+        void setGauche(Expression * g);
+        void setDroite(Expression * d);
 
 	protected:
         Expression * exprGauche;
