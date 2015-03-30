@@ -150,6 +150,7 @@ bool Automate::analyse(){
         
         //cout << next->afficherType() << endl;
 
+
         //if the next symbol is an id, we have to make sure it has not been created before
         if(next->getType() == ID)
         {
