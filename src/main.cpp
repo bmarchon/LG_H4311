@@ -100,10 +100,10 @@ int main( int argc, const char* argv[] )
         if(optionO) //transform
         {
            cout << "program transformation enabled" << endl;
-           automate->getProgramme().afficher();
+           //automate->getProgramme().afficher();
            Programme p = automate->getProgramme();
            Transformation::transformer(p);
-           automate->getProgramme().afficher();
+           //automate->getProgramme().afficher();
         }
 
         if(optionP) //display
