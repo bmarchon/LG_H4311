@@ -1,0 +1,5 @@
+var x,y,z;
+x := 3 + 0;
+y := 0 + x;
+z := (x + y) + 0;
+ecrire z;

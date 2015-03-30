@@ -10,7 +10,7 @@ class ExprPar : public Expression
         	ExprPar(Expression *expr, Symboles type);
 			virtual ~ExprPar();
         	double eval();
-    		void afficher(); // Display the value for the representation
+    		virtual void afficher(); // Display the value for the representation
 			Expression* getExpression(); 
 	protected:
 	private:

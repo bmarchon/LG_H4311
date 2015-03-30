@@ -11,7 +11,7 @@ class ExprMult : public ExprBinaire
         	ExprMult(Symboles type, Expression *expressionGauche,OperateurMultiplicatif *opMult, Expression *expressionDroite);
 			virtual ~ExprMult();
         	double eval();
-    		void afficher(); // Display the value for the representation
+    		virtual void afficher(); // Display the value for the representation
     		virtual char operateur();
 
 	protected:

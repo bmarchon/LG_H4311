@@ -29,12 +29,14 @@ void Transformation::transformer()
 		if ((*it)->getInstType() == ECR)
 		{
 			InstructionEcriture* inst = (InstructionEcriture*) (*it);
-			inst->setExpression(simplifier(inst->getExpression()));
+			Expression  * expSimplifiee = simplifier(inst->getExpression());
+			inst->setExpression(expSimplifiee);
 		}
 		else if ((*it)->getInstType() == AFF)
 		{
 			InstructionAffectation* inst = (InstructionAffectation*) (*it);
-			inst->setExpression(simplifier(inst->getExpression()));
+			Expression  * expSimplifiee = simplifier(inst->getExpression());
+			inst->setExpression(expSimplifiee);
 		}
 	}
 
@@ -62,65 +64,73 @@ void Transformation::transformer()
 	for(unsigned int i=0; i<instructions.size(); i++) {
 		instructions[i]->afficher();
 	}*/
-}
+	}
 
 //Fonction appelée récursivement
-Expression * Transformation::simplifier(Expression * exp)
-{	
+	Expression * Transformation::simplifier(Expression * exp)
+	{	
 
-	Expression * res;
-	Expressions type = exp->getExprType();
+		Expression * res;
+		Expressions type = exp->getExprType();
 
-	if(type == VALEUR || type == IDENT)
-	{
-		res = exp;
-	}
-	else if(type == PAR)
-	{
-		ExprPar * expPar = (ExprPar*) exp;
-		res = expPar->getExpression();
-	}
-	else if(type == BIN)
-	{
-		ExprBinaire * expBin = (ExprBinaire*) exp;
-		char op = expBin->operateur();
-		if (op == '+')
+		if(type == VALEUR || type == IDENT)
 		{
-			ExprAdd* expAdd = (ExprAdd*) exp;
-			Expression * gauche = expAdd->getGauche();
-			Expression * droite = expAdd->getDroite();
+			res = exp;
+		}
+		else if(type == PAR)
+		{
+			ExprPar * expPar = (ExprPar*) exp;
+			res = expPar->getExpression();
+		}
+		else if(type == BIN)
+		{
+			ExprBinaire * expBin = (ExprBinaire*) exp;
+			char op = expBin->operateur();
+			if (op == '+')
+			{
+				ExprAdd* expAdd = (ExprAdd*) exp;
+				Expression * gauche = expAdd->getGauche();
+				Expression * droite = expAdd->getDroite();
 
-			if(is0Const(gauche))
+				if(is0Const(gauche))
+				{
+					
+					res = simplifier(droite);
+
+				}else if(is0Const(droite))
+				{
+					res = simplifier(gauche);
+				}
+				cout << "simplification d'une addition : ";
+				expAdd->afficher(); 
+				cout << " => " ;
+				res->afficher();
+				cout << endl;
+			}
+			else
 			{
-				res = simplifier(droite);
-			}else if(is0Const(droite))
-			{
-				res = simplifier(gauche);
+
+			//TODO - , * , /
+				cout << "error : unexpected operator in transformation : " << op << endl;
 			}
 		}
 		else
 		{
-
-			//TODO - , * , /
-			cout << "error : unexpected operator in transformation : " << op << endl;
+			cout << "error : unexpected expression type in transformation : " << type << endl;
+			res = NULL;
 		}
+		return res;
 	}
-	else
+
+	bool Transformation::is0Const(Expression * exp)
 	{
-		cout << "error : unexpected expression type in transformation : " << type << endl;
-		res = NULL;
+		return ((exp->getExprType() == VALEUR) && (exp->eval() == 0.0));
 	}
-}
 
-bool Transformation::is0Const(Expression * exp)
-{
-	return ((exp->getExprType() == VALEUR) && (exp->eval() == 0.0));
-}
-
-bool Transformation::is1Const(Expression * exp)
-{
-	return ((exp->getExprType() == VALEUR) && (exp->eval() == 1.0));
-}
+	bool Transformation::is1Const(Expression * exp)
+	{
+		return ((exp->getExprType() == VALEUR) && (exp->eval() == 1.0));
+	}
 
 /*
 	//cout <<"dans anaExpr"<<endl;

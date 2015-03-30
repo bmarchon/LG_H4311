@@ -13,7 +13,7 @@ class ExprBinaire : public Expression
 		virtual ~ExprBinaire();
         virtual double eval() = 0;
         virtual char operateur() = 0;
-    	void afficher(); // Display the value for the representation
+    	virtual void afficher(); // Display the value for the representation
 		Expression* getGauche();
 		Expression* getDroite();
 

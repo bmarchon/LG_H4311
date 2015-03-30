@@ -9,9 +9,9 @@ class InstructionAffectation : public Instruction
     public:
         InstructionAffectation(Identifiant *id, Expression *expr);
         ~InstructionAffectation();
-        void executer();
+        virtual void executer();
         Instructions getType();
-        void afficher(); // Display the value for the representation
+        virtual void afficher(); // Display the value for the representation
         Expressions getExpressionType();
         Expression * getExpression();
         Identifiant * getIdentifiant();
