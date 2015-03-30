@@ -26,13 +26,9 @@ Expression * Transformation::searchTransformations(Expression * exp)
         case PAR:
             {
                 Expression * parExpr = ((ExprPar*)exp)->getExpression();
-                cout << "im there  ";
-                parExpr->afficher();
-                cout << "what" << endl;
                 exp = searchTransformations(parExpr);
                 if (parExpr->getExprType() == VALEUR || parExpr->getExprType() == IDENT)
                 {
-                cout << "im here" << endl;
                     exp = parExpr;
                 }
                 return exp;
@@ -53,7 +49,7 @@ Expression * Transformation::searchTransformations(Expression * exp)
                     droite = searchTransformations(droite);
                     expBin->setDroite(droite);
                 }
-                return exp;
+                return simplifier(exp);
             }
             break;
         default:
@@ -71,7 +67,7 @@ Expression * Transformation::simplifier(Expression * exp)
         return (Expression* ) new Val(exprBin->eval());
     }
     // left side is value, possibility of netral element
-    else if (exprBin->getGauche()->getExprType() == VALEUR && exprBin->getDroite()->getExprType() == IDENT)
+    else if (exprBin->getGauche()->getExprType() == VALEUR)
     {
         switch(exprBin->operateur())
         {
@@ -94,7 +90,7 @@ Expression * Transformation::simplifier(Expression * exp)
         }
     }
     // right side is value, possibility of netral element
-    else if (exprBin->getGauche()->getExprType() == IDENT && exprBin->getDroite()->getExprType() == VALEUR)
+    else if (exprBin->getDroite()->getExprType() == VALEUR)
     {
         switch(exprBin->operateur())
         {
@@ -115,5 +111,7 @@ Expression * Transformation::simplifier(Expression * exp)
             default:
                 cout << "ERROR: Found operator not expecting: " << exprBin->operateur() << endl;
         }
+    } else {
+        return exp;
     }
 }
