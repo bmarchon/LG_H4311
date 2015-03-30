@@ -67,60 +67,113 @@ void Transformation::transformer()
 	}
 
 //Fonction appelée récursivement
-	Expression * Transformation::simplifier(Expression * exp)
-	{	
+Expression * Transformation::simplifier(Expression * exp)
+{	
 
-		Expression * res;
-		Expressions type = exp->getExprType();
+	Expression * res;
+	Expressions type = exp->getExprType();
 
-		if(type == VALEUR || type == IDENT)
+	if(type == VALEUR || type == IDENT)
+	{
+		res = exp;
+	}
+	else if(type == PAR)
+	{
+		ExprPar * expPar = (ExprPar*) exp;
+		res = simplifier(expPar->getExpression());
+	}
+	else if(type == BIN)
+	{
+		ExprBinaire * expBin = (ExprBinaire*) exp;
+		char op = expBin->operateur();
+		if (op == '+')
 		{
-			res = exp;
-		}
-		else if(type == PAR)
-		{
-			ExprPar * expPar = (ExprPar*) exp;
-			res = simplifier(expPar->getExpression());
-		}
-		else if(type == BIN)
-		{
-			ExprBinaire * expBin = (ExprBinaire*) exp;
-			char op = expBin->operateur();
-			if (op == '+')
+			ExprAdd* expAdd = (ExprAdd*) exp;
+			Expression * gauche = expAdd->getGauche();
+			Expression * droite = expAdd->getDroite();
+
+			if(is0Const(gauche))
 			{
-				ExprAdd* expAdd = (ExprAdd*) exp;
-				Expression * gauche = expAdd->getGauche();
-				Expression * droite = expAdd->getDroite();
+				
+				res = simplifier(droite);
 
-				if(is0Const(gauche))
-				{
-					
-					res = simplifier(droite);
-
-				}else if(is0Const(droite))
-				{
-					res = simplifier(gauche);
-				}else
-				{	
-					expAdd->setGauche(simplifier(gauche));
-					expAdd->setDroite(simplifier(droite));
-					res = expAdd;
-				}
+			}else if(is0Const(droite))
+			{
+				res = simplifier(gauche);
+			}else
+			{	
+				expAdd->setGauche(simplifier(gauche));
+				expAdd->setDroite(simplifier(droite));
+				res = expAdd;
 			}
-			else
-			{
+		}
+		else if(op == '-')
+		{
 
-			//TODO - , * , /
-				cout << "error : unexpected operator in transformation : " << op << endl;
+			ExprAdd* expAdd = (ExprAdd*) exp;
+			Expression * gauche = expAdd->getGauche();
+			Expression * droite = expAdd->getDroite();
+
+			if(is0Const(droite))
+			{
+				res = simplifier(gauche);
+			}else
+			{	
+				expAdd->setGauche(simplifier(gauche));
+				expAdd->setDroite(simplifier(droite));
+				res = expAdd;
+			}
+
+		}
+		else if(op == '*')
+		{
+			ExprMult* expMult = (ExprMult*) exp;
+			Expression * gauche = expMult->getGauche();
+			Expression * droite = expMult->getDroite();
+
+			if(is1Const(gauche))
+			{
+				
+				res = simplifier(droite);
+
+			}else if(is1Const(droite))
+			{
+				res = simplifier(gauche);
+			}else
+			{	
+				expMult->setGauche(simplifier(gauche));
+				expMult->setDroite(simplifier(droite));
+				res = expMult;
+			}
+		}
+		else if(op == '/')
+		{
+			ExprMult* expMult = (ExprMult*) exp;
+			Expression * gauche = expMult->getGauche();
+			Expression * droite = expMult->getDroite();
+
+			if(is1Const(droite))
+			{
+				res = simplifier(gauche);
+			}else
+			{	
+				expMult->setGauche(simplifier(gauche));
+				expMult->setDroite(simplifier(droite));
+				res = expMult;
 			}
 		}
 		else
 		{
-			cout << "error : unexpected expression type in transformation : " << type << endl;
-			res = NULL;
+			cout << "error : unexpected operator in transformation : " << op << endl;
 		}
-		return res;
 	}
+	else
+	{
+		cout << "error : unexpected expression type in transformation : " << type << endl;
+		res = NULL;
+	}
+	return res;
+}
 
 	bool Transformation::is0Const(Expression * exp)
 	{
