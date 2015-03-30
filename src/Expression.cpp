@@ -21,9 +21,11 @@ Expression::~Expression()
 	//dtor
 }
 
-void Expression::afficher(){
-	
+void Expression::afficher()
+{
+	cout << "error : call to Expression::afficher()" << endl; 	
 }
+
 Expression * Expression::getExpression()
 {
 	return this->expression;

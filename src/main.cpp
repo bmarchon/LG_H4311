@@ -99,6 +99,7 @@ int main( int argc, const char* argv[] )
         }
         if(optionO) //transform
         {
+           cout << "program transformation enabled" << endl;
            Programme p = automate->getProgramme();
            Transformation::transformer(p);
            automate->getProgramme().afficher();

@@ -11,14 +11,14 @@ class Expression : public Symbole
 {
 	public:
       Expression();
-		  Expression(Expressions typeExp, Symboles type);
-		  void setExpression(Expression *expr);
-		  virtual ~Expression();
-      virtual double eval() = 0;
-      void afficher(); // Display the value for the representation
-		  Expressions getExprType();
-		  Expression * getExpression();
-		  virtual string afficherExprType();
+		Expression(Expressions typeExp, Symboles type);
+		void setExpression(Expression *expr);
+		virtual ~Expression();
+      	virtual double eval() = 0;
+      	virtual void afficher(); // Display the value for the representation
+		Expressions getExprType();
+		Expression * getExpression();
+		virtual string afficherExprType();
 	protected:
 		Expressions typeExp;
       	Expression *expression;

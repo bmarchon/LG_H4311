@@ -3,11 +3,11 @@
 Instruction::Instruction(Instructions instructionType): Symbole(I)
 {
     this->instructionType = instructionType;
-	instruction = NULL;
+	//instruction = NULL;
 }
 Instruction::Instruction(): Symbole(I)
 {
-    this->instruction = NULL;
+    //this->instruction = NULL;
 }
 
 Instructions Instruction::getInstType()
@@ -44,5 +44,5 @@ void Instruction::executer()
 
 void Instruction::afficher()
 {
-	//nothing to do here
+	cout << "error trying to print expression that should be abstract" << endl;
 }

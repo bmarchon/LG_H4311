@@ -24,3 +24,13 @@ Expression* ExprBinaire::getDroite()
 {
 	return this->exprDroite;
 }
+
+
+void ExprBinaire::setGauche(Expression * g) 
+{
+	this->exprGauche = g;
+}
+void ExprBinaire::setDroite(Expression * d) 
+{
+	this->exprDroite = d;
+}
