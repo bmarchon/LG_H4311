@@ -41,8 +41,10 @@ class Automate
         void ajouter(Instruction* instr);
 
         void analyseStatique();
-
+        bool doubleDeclaration(string nomIdentifiant);
         void executer();
+        bool isNouveauIdentifiant(){return nouveauIdentifiant;}
+
     protected:
         AnalyseurLexical *aLexical;
         stack<Etat *> etats;
@@ -63,6 +65,7 @@ class Automate
             bool isConstante;
         };
         map<string,analyseSymbole> tableauAnalyseStatique;
+        bool nouveauIdentifiant;
     private:
         Programme programme;
         map<string,Identifiant*> identifiants;

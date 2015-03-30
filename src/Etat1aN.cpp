@@ -150,6 +150,11 @@ bool Etat3::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  ID:
+            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
+            {
+                 cout << automate.isNouveauIdentifiant() << endl;
+                throw std::logic_error("Double declaration");
+            }
             automate.decalage(s, new Etat40());
             automate.consommer();
 			break;
@@ -180,6 +185,11 @@ bool Etat4::transition(Automate &automate, Symbole *s)
     switch (s->getType())
 	{
         case  ID:
+            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
+            {
+                 cout << automate.isNouveauIdentifiant() << endl;
+                throw std::logic_error("Double declaration");
+            }
             automate.decalage(s, new Etat29());
             automate.consommer();
 			break;
@@ -1067,6 +1077,11 @@ bool Etat32::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  ID: //d33
+            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
+            {
+                cout << automate.isNouveauIdentifiant() << endl;
+                throw std::logic_error("Double declaration");
+            }
             automate.decalage(s, new Etat33());
             automate.consommer();
             break;
@@ -1175,6 +1190,11 @@ bool Etat36::transition(Automate &automate, Symbole *s)
     switch(s->getType())
     {
         case  ID: //d37
+            if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
+            {
+                 cout << automate.isNouveauIdentifiant() << endl;
+                throw std::logic_error("Double declaration");
+            }
             automate.decalage(s, new Etat37());
             automate.consommer();
             break;

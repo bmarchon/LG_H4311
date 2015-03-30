@@ -14,6 +14,7 @@ Automate::Automate()
 Automate::Automate(AnalyseurLexical *aL)
 {
     aLexical = aL;
+    nouveauIdentifiant = true;
 }
 
 void Automate::analyseStatique()
@@ -64,10 +65,10 @@ void Automate::analyseStatique()
                 cout << "Something went wrong, declaration was a :" <<  (*itDeclaration)->getContenu()->afficherType() << endl;
         }
     }
-      for (auto it = tableauAnalyseStatique.begin(); it != tableauAnalyseStatique.end(); it++)
+/*    for (auto it = tableauAnalyseStatique.begin(); it != tableauAnalyseStatique.end(); it++)
       {
-          cout << it->first << " " << it->second.affecte << endl;
-      }
+          cout << it->first << endl;
+      }*/
 
     for (auto it = instructions.begin() ; it != instructions.end(); ++it)
     {
@@ -152,6 +153,7 @@ bool Automate::analyse(){
 
 
         //if the next symbol is an id, we have to make sure it has not been created before
+
         if(next->getType() == ID)
         {
             Identifiant * id  = (Identifiant*) next;
@@ -164,11 +166,15 @@ bool Automate::analyse(){
                 next = identifiants[id->valeur()];
                 //reset id role (could have been used as T or F before)
                 next->setType(ID);
+                nouveauIdentifiant = false;
 
             }else{
                 //insert new id
+
                 identifiants.insert(make_pair(id->valeur(),id));
+                nouveauIdentifiant = true;
             }
+
         }
         try
         {
@@ -177,6 +183,7 @@ bool Automate::analyse(){
         {
             throw ex;
         }
+
      }while(!accepte);
 
     
@@ -255,10 +262,9 @@ void Automate::checkIdent(Identifiant * id, bool isExpression)
             {
                 cout << "ERROR: Constante " << id->valeur() << " used in variable context" << endl;
             }
-            else if (isExpression && !(tableauAnalyseStatique.at(id->valeur()).affecte))
+            else if (isExpression && !(id->isInitialized()))
             {
                 cout << "ERROR: Variable " << id->valeur() << " has not been initialised" << endl;
-                tableauAnalyseStatique.at(id->valeur()).utilise = true;
             }
             else
             {
@@ -283,4 +289,14 @@ void Automate::checkExpression(Expression * expr)
         checkExpression(((ExprBinaire*)expr)->getGauche());
         checkExpression(((ExprBinaire*)expr)->getDroite());
     }
+}
+
+
+bool Automate::doubleDeclaration(string nomIdentifiant)
+{
+     if(identifiants.find(nomIdentifiant) != identifiants.end())
+     {
+         return true;
+     }
+     return false;
 }
