@@ -94,7 +94,8 @@ int main( int argc, const char* argv[] )
 
         if(optionA) //static error analysis
         {
-            //TODO
+            cout << "analyse statique:" << endl;
+            automate->analyseStatique();
         }
         if(optionO) //transform
         {

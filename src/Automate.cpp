@@ -16,7 +16,8 @@ Automate::Automate(AnalyseurLexical *aL)
     aLexical = aL;
 }
 
-void Automate::analyseStatique(){
+void Automate::analyseStatique()
+{
     vector<Declaration*> declarations = programme.getDeclarations();
     vector<Instruction*> instructions = programme.getInstructions();
 
@@ -29,7 +30,7 @@ void Automate::analyseStatique(){
                     vector<Identifiant *> constantes = ((DecConstante*)(*itDeclaration))->getConstantes();
                     for (auto itConstantes = constantes.begin(); itConstantes != constantes.end(); ++itConstantes)
                     {
-                        cout << "constante: " << (*itConstantes)->afficherType() << endl;
+                        //cout << "constante: " << (*itConstantes)->afficherType() << endl;
                         if (tableauAnalyseStatique.find((*itConstantes)->valeur()) != tableauAnalyseStatique.end())
                         {
                             cout << "ERROR: The Constant " << (*itConstantes)->valeur() << " has already been declared" << endl;
@@ -48,7 +49,7 @@ void Automate::analyseStatique(){
                     vector<Identifiant *> variables = ((DecVariable*)(*itDeclaration))->getVariables();
                     for (auto itVariables = variables.begin(); itVariables != variables.end(); ++itVariables)
                     {
-                        cout << "variable: " << (*itVariables)->afficherType() << endl;
+                        //cout << "variable: " << (*itVariables)->afficherType() << endl;
                         if (tableauAnalyseStatique.find((*itVariables)->valeur()) != tableauAnalyseStatique.end()) {
                             cout << "ERROR: The Variable " << (*itVariables)->valeur() << " has already been declared" << endl;
                         } else {
