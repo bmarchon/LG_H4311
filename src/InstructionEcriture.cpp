@@ -10,6 +10,9 @@ InstructionEcriture::InstructionEcriture(Expression *exp) : Instruction(ECR)
 {
 	if(exp->getType() != EXPR)
 	{
+	cout << "Test: ";
+	exp->afficher();
+	cout << endl;
 		expression = NULL;
 		cout << "error : trying to instantiate InstructionEcriture with non-expression type: " << exp->afficherType() << endl;
 	}else{

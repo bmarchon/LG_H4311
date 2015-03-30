@@ -494,9 +494,7 @@ Etat13::~Etat13() {}
 // fonction de transition Etat 13
 bool Etat13::transition(Automate &automate, Symbole *s)
 {
-    Identifiant *identifiant = (Identifiant *)automate.getDernierSymbole();
-    identifiant->setType(F);
-    automate.reduction(1,identifiant);
+    automate.reduction(1, new Identifiant(F, (Identifiant *)automate.getDernierSymbole()));
 
 	return false;
 }
@@ -515,9 +513,7 @@ Etat14::~Etat14() {}
 // fonction de transition Etat 14
 bool Etat14::transition(Automate &automate, Symbole *s)
 {
-    Val *valeur = (Val *) automate.getDernierSymbole();
-    valeur->setType(F);
-    automate.reduction(1,valeur);
+    automate.reduction(1,new Val(F, (Val *) automate.getDernierSymbole()));
 
 	return false;
 }

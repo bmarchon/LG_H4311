@@ -23,12 +23,13 @@ class Identifiant : public Expression
     Val *getValeurNum();
     double eval();
     void afficher(); // Display the value for the representation
-    bool isInitialized();
+    bool *isInitialized();
 	protected:
 	private:
     string idVal;
     Val * valNum;
-    bool isInit;
+    // could be done smarter?
+    bool * isInit = new bool(false);
 };
 
 #endif // IDENTIFIANT_H
