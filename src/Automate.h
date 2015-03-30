@@ -41,7 +41,7 @@ class Automate
         void ajouter(Instruction* instr);
 
         void analyseStatique();
-
+        bool doubleDeclaration(string nomIdentifiant);
         void executer();
     protected:
         AnalyseurLexical *aLexical;
