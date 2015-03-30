@@ -12,12 +12,10 @@ using namespace std;
 class Identifiant : public Expression
 {
 	public:
-	Identifiant(string idVal);
+  	Identifiant(string idVal);
     Identifiant(Symboles type, Identifiant *ident);
-
-
-	virtual ~Identifiant();
-	string valeur();
+  	virtual ~Identifiant();
+  	string valeur();
     void setValeurNum(double valeur);
     void setValeurNum(Val * valeur);
     Val *getValeurNum();

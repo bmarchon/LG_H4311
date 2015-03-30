@@ -12,22 +12,14 @@
 
 using namespace std;
 
-
 class Transformation
 {
 	public:
-		Transformation(Programme * prog);
-		virtual ~Transformation();
-		void transformer();
-		Programme * getProgramme();
-		
+		static void transformer(Programme &programme);
 	protected:
-		Programme * programme;
-		Expression * simplifier(Expression* exp);
-		bool is0Const(Expression * exp);
-		bool is1Const(Expression * exp);
-
 	private:
+		static Expression * searchTransformations(Expression * exp);
+		static Expression * simplifier(Expression * exp);
 };
 
 #endif // TRANSFORMATION_H

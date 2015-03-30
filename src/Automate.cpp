@@ -274,7 +274,7 @@ void Automate::checkExpression(Expression * expr)
     }
     else if (expr->getExprType() == PAR)
     {
-        checkExpression(expr->getExpression());
+        checkExpression(((ExprPar*)expr)->getExpression());
     }
     else if (expr->getExprType() == BIN)
     {

@@ -513,6 +513,7 @@ Etat14::~Etat14() {}
 // fonction de transition Etat 14
 bool Etat14::transition(Automate &automate, Symbole *s)
 {
+
     automate.reduction(1,new Val(F, (Val *) automate.getDernierSymbole()));
 
 	return false;

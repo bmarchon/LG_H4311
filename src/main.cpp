@@ -99,9 +99,9 @@ int main( int argc, const char* argv[] )
         }
         if(optionO) //transform
         {
-           Programme leProgramme = automate->getProgramme();
-           Transformation * transformation = new Transformation(&leProgramme);
-           transformation->transformer();
+           Programme p = automate->getProgramme();
+           Transformation::transformer(p);
+           automate->getProgramme().afficher();
         }
 
         if(optionP) //display

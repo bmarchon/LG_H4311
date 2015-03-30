@@ -5,7 +5,7 @@ Identifiant::Identifiant(string idVal) : Expression(IDENT,ID)
 	 //ctor
 	this->idVal = idVal;
 	this->valNum = new Val();
-	//*this->isInit = false;
+	*this->isInit = false;
     //cout << "call to Identifiant-ctor1 : " << idVal << " " << "NULL" << endl;
 }
 
@@ -13,7 +13,7 @@ Identifiant::Identifiant(Symboles type, Identifiant *ident): Expression(IDENT,ty
 {
     this->idVal = ident->valeur();
     this->valNum = ident->getValeurNum();
-    //this->isInit = ident->isInitialized();
+    this->isInit = ident->isInitialized();
     //cout << "call to Identifiant-ctor2 : " << this->idVal << " " << this->valNum << endl;
 }
 
@@ -30,7 +30,7 @@ string Identifiant::valeur()
 
 double Identifiant::eval()
 {
-    if(this->valNum != NULL)
+    if(*this->isInit)
     {
     	return this->valNum->eval();
     }
@@ -44,13 +44,13 @@ double Identifiant::eval()
 void Identifiant::setValeurNum(double valeur)
 {
     this->valNum->setValeur(valeur);
-    //*this->isInit = true;
+    *this->isInit = true;
 }
 
 void Identifiant::setValeurNum(Val * valeur)
 {
     this->valNum = valeur;
-    //*this->isInit = true;
+    *this->isInit = true;
 }
 
 Val *Identifiant::getValeurNum()
@@ -63,6 +63,7 @@ bool *Identifiant::isInitialized()
     return this->isInit;
 }
 
-void Identifiant::afficher(){
+void Identifiant::afficher()
+{
 	cout << this->idVal;
 }

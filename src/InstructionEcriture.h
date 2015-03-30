@@ -1,5 +1,6 @@
 #ifndef INSTRUCTIONECRITURE_H
 #define INSTRUCTIONECRITURE_H
+
 #include "Instruction.h"
 #include "Expression.h"
 
@@ -9,20 +10,17 @@ using namespace std;
 
 class InstructionEcriture : public Instruction
 {
-public:
-    
-	InstructionEcriture();
-    InstructionEcriture(Expression *exp);
-    ~InstructionEcriture();
-	Expressions getExpressionType();
-    void executer();
-    void afficher(); // Display the value for the representation
-	Expression * getExpression();
-	void setExpression(Expression *);
-
-protected:
-  
-    Expression * expression;
+    public:
+	      InstructionEcriture();
+        InstructionEcriture(Expression *exp);
+        ~InstructionEcriture();
+	      Expressions getExpressionType();
+        void executer();
+        void afficher(); // Display the value for the representation
+	      Expression * getExpression();
+	      void setExpression(Expression *);
+    protected:
+        Expression * expression;
 };
 
 #endif // INSTRUCTIONECRITURE_H
