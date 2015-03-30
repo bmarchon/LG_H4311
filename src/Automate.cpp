@@ -64,10 +64,10 @@ void Automate::analyseStatique()
                 cout << "Something went wrong, declaration was a :" <<  (*itDeclaration)->getContenu()->afficherType() << endl;
         }
     }
-/*    for (auto it = tableauAnalyseStatique.begin(); it != tableauAnalyseStatique.end(); it++)
+      for (auto it = tableauAnalyseStatique.begin(); it != tableauAnalyseStatique.end(); it++)
       {
-          cout << it->first << endl;
-      }*/
+          cout << it->first << " " << it->second.affecte << endl;
+      }
 
     for (auto it = instructions.begin() ; it != instructions.end(); ++it)
     {
@@ -256,9 +256,10 @@ void Automate::checkIdent(Identifiant * id, bool isExpression)
             {
                 cout << "ERROR: Constante " << id->valeur() << " used in variable context" << endl;
             }
-            else if (isExpression && !(id->isInitialized()))
+            else if (isExpression && !(tableauAnalyseStatique.at(id->valeur()).affecte))
             {
                 cout << "ERROR: Variable " << id->valeur() << " has not been initialised" << endl;
+                tableauAnalyseStatique.at(id->valeur()).utilise = true;
             }
             else
             {
