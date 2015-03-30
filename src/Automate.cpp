@@ -262,9 +262,10 @@ void Automate::checkIdent(Identifiant * id, bool isExpression)
             {
                 cout << "ERROR: Constante " << id->valeur() << " used in variable context" << endl;
             }
-            else if (isExpression && !(id->isInitialized()))
+            else if (isExpression && !(tableauAnalyseStatique.at(id->valeur()).affecte))
             {
                 cout << "ERROR: Variable " << id->valeur() << " has not been initialised" << endl;
+                tableauAnalyseStatique.at(id->valeur()).utilise = true;
             }
             else
             {
