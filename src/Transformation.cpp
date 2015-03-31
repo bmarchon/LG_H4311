@@ -1,21 +1,37 @@
 #include "Transformation.h"
 
+map<string,double> Transformation::constantes;
+
 void Transformation::transformer(Programme &programme)
 {
-	vector<Instruction*> instructions = programme.getInstructions();
-	for(auto it = instructions.begin(); it != instructions.end(); ++it)
-	{
-		if ((*it)->getInstType() == ECR)
-		{
-			InstructionEcriture* inst = (InstructionEcriture*) (*it);
-			inst->setExpression(searchTransformations(inst->getExpression()));
-		}
-		else if ((*it)->getInstType() == AFF)
-		{
-			InstructionAffectation* inst = (InstructionAffectation*) (*it);
-			inst->setExpression(searchTransformations(inst->getExpression()));
-		}
-	}
+    // get map with all constantes and their values for propagation
+    vector<Declaration*> declarations = programme.getDeclarations();
+    for (auto itDeclaration = declarations.begin() ; itDeclaration != declarations.end(); ++itDeclaration)
+    {
+        if ((*itDeclaration)->getContenu()->getType() == LC)
+        {
+            vector<Identifiant *> listeConstante = ((DecConstante*)(*itDeclaration))->getConstantes();
+            for (auto itConstantes = listeConstante.begin(); itConstantes != listeConstante.end(); ++itConstantes)
+            {
+                constantes.insert(make_pair((*itConstantes)->valeur(), (*itConstantes)->eval()));
+            }
+        }
+    }
+
+	  vector<Instruction*> instructions = programme.getInstructions();
+	  for(auto it = instructions.begin(); it != instructions.end(); ++it)
+	  {
+		    if ((*it)->getInstType() == ECR)
+		    {
+			      InstructionEcriture* inst = (InstructionEcriture*) (*it);
+			      inst->setExpression(searchTransformations(inst->getExpression()));
+		    }
+		    else if ((*it)->getInstType() == AFF)
+		    {
+			      InstructionAffectation* inst = (InstructionAffectation*) (*it);
+			      inst->setExpression(searchTransformations(inst->getExpression()));
+		    }
+	  }
 }
 
 //Fonction appelée récursivement
@@ -78,6 +94,10 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getDroite();
                 }
+                else if (exprBin->getDroite()->getExprType() == IDENT && (constantes.find(((Identifiant*)exprBin->getDroite())->valeur()) != constantes.end()))
+                {
+                    return (Expression* ) new Val(exprBin->eval());
+                }
                 return exp;
                 break;
             case '*':
@@ -85,6 +105,10 @@ Expression * Transformation::simplifier(Expression * exp)
                 if (exprBin->getGauche()->eval() == 1.0)
                 {
                     return exprBin->getDroite();
+                }
+                else if (exprBin->getDroite()->getExprType() == IDENT && (constantes.find(((Identifiant*)exprBin->getDroite())->valeur()) != constantes.end()))
+                {
+                    return (Expression* ) new Val(exprBin->eval());
                 }
                 return exp;
                 break;
@@ -100,9 +124,24 @@ Expression * Transformation::simplifier(Expression * exp)
         {
             case '+':
             case '-':
+            cout << "Eval" << endl;
                 if (exprBin->getDroite()->eval() == 0.0)
                 {
                     return exprBin->getGauche();
+                }
+                else if (exprBin->getGauche()->getExprType() == BIN
+                    && ((ExprBinaire*)exprBin->getGauche())->getDroite()->getExprType() == VALEUR)
+                {
+                    ExprBinaire * exprBinGauche = (ExprBinaire*)exprBin->getGauche();
+
+                    ExprAdd * exprToEval = new ExprAdd(exprBinGauche->getDroite(), new OperateurAdditif(exprBin->operateur()), exprBin->getDroite());
+                    Expression * newExpression = (Expression* ) new Val(exprToEval->eval());
+                    exprBinGauche->setDroite(newExpression);
+                    return exprBinGauche;
+                }
+                else if (exprBin->getGauche()->getExprType() == IDENT && (constantes.find(((Identifiant*)exprBin->getGauche())->valeur()) != constantes.end()))
+                {
+                    return (Expression* ) new Val(exprBin->eval());
                 }
                 return exp;
                 break;
@@ -112,12 +151,27 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getGauche();
                 }
+                else if (exprBin->getGauche()->getExprType() == BIN
+                    && ((ExprBinaire*)exprBin->getGauche())->getDroite()->getExprType() == VALEUR)
+                {
+                    ExprBinaire * exprBinGauche = (ExprBinaire*)exprBin->getGauche();
+
+                    ExprMult * exprToEval = new ExprMult(exprBinGauche->getDroite(), new OperateurMultiplicatif(exprBin->operateur()), exprBin->getDroite());
+                    Expression * newExpression = (Expression* ) new Val(exprToEval->eval());
+                    exprBinGauche->setDroite(newExpression);
+                    return exprBinGauche;
+                }
+                else if (exprBin->getGauche()->getExprType() == IDENT && (constantes.find(((Identifiant*)exprBin->getGauche())->valeur()) != constantes.end()))
+                {
+                    return (Expression* ) new Val(exprBin->eval());
+                }
                 return exp;
                 break;
             default:
                 cout << "ERROR: Found operator not expecting: " << exprBin->operateur() << endl;
                 return exp;
         }
+        // only Identifier found, propagation possible
     } else {
         return exp;
     }
