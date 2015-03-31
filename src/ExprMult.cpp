@@ -6,6 +6,11 @@ ExprMult::ExprMult(Symboles type, Expression *exprGauche,OperateurMultiplicatif 
     this->opMult = opMult;
 }
 
+ExprMult::ExprMult(Expression *exprGauche, OperateurMultiplicatif *opMult, Expression *exprDroite):ExprBinaire(EXPR, exprGauche, exprDroite)
+{
+    this->opMult = opMult;
+}
+
 
 ExprMult::~ExprMult()
 {

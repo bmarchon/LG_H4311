@@ -10,6 +10,7 @@ class ExprMult : public ExprBinaire
 {
 	public:
      	ExprMult(Symboles type, Expression *expressionGauche,OperateurMultiplicatif *opMult, Expression *expressionDroite);
+     	ExprMult(Expression *exprGauche, OperateurMultiplicatif *opMult, Expression *exprDroite);
 			virtual ~ExprMult();
      	double eval();
   		void afficher(); // Display the value for the representation
