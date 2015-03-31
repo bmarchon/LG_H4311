@@ -124,7 +124,6 @@ Expression * Transformation::simplifier(Expression * exp)
         {
             case '+':
             case '-':
-            cout << "Eval" << endl;
                 if (exprBin->getDroite()->eval() == 0.0)
                 {
                     return exprBin->getGauche();
