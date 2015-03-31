@@ -173,6 +173,10 @@ Expression * Transformation::simplifier(Expression * exp)
         }
         // only Identifier found, propagation possible
     } else {
+        if (exprBin->getGauche()->getExprType() == IDENT && (constantes.find(((Identifiant*)exprBin->getGauche())->valeur()) != constantes.end()) && exprBin->getDroite()->getExprType() == IDENT && (constantes.find(((Identifiant*)exprBin->getDroite())->valeur()) != constantes.end()))
+        {
+            return (Expression* ) new Val(exprBin->eval());
+        }
         return exp;
     }
 }
