@@ -17,6 +17,10 @@ RMFLAGS=-f
 LIBS=-lboost_regex #libs/libtp.a -lncurses -ltcl 
 LIBPATH=#-L
 INCPATH=#-I libs/
+TEST = test
+TESTPATH = ../test
+TESTFILE = mktest.sh
+SRCPATH = ../src
 
 $(EXE):$(OBJ)
 	$(ECHO) "Edition des liens"
@@ -38,3 +42,6 @@ $(CLEAN):
 $(CLEANO):
 	$(ECHO) "Nettoyage"
 	$(RM) $(RMFLAGS) $(OBJ) core $(EXE)*stackdump
+
+$(TEST) :
+	cd $(TESTPATH) ; ./$(TESTFILE) ; cd $(SRCPATH)
