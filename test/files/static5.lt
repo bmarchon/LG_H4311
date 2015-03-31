@@ -1,0 +1,7 @@
+var x;
+var b;
+const c = 4;
+b := 7;
+ecrire c;
+ecrire b;
+ecrire x;

@@ -1,2 +1,6 @@
+var x,y;
 const c = 4;
 ecrire c;
+x := c + 0;
+y := 2*x;
+ecrire y;

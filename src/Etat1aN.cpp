@@ -152,8 +152,8 @@ bool Etat3::transition(Automate &automate, Symbole *s)
         case  ID:
             if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
             {
-                 cout << automate.isNouveauIdentifiant() << endl;
-                throw std::logic_error("Double declaration");
+                //cout << automate.isNouveauIdentifiant() << endl;
+                throw std::logic_error("double declaration of " + ((Identifiant*)s)->valeur());
             }
             automate.decalage(s, new Etat40());
             automate.consommer();
@@ -187,8 +187,8 @@ bool Etat4::transition(Automate &automate, Symbole *s)
         case  ID:
             if(automate.doubleDeclaration(((Identifiant *)s)->valeur()) && !automate.isNouveauIdentifiant())
             {
-                 cout << automate.isNouveauIdentifiant() << endl;
-                throw std::logic_error("Double declaration");
+                //cout << automate.isNouveauIdentifiant() << endl;
+                throw std::logic_error("double declaration of " + ((Identifiant*)s)->valeur());
             }
             automate.decalage(s, new Etat29());
             automate.consommer();
