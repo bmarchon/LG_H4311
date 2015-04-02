@@ -1359,7 +1359,7 @@ bool Etat42::transition(Automate &automate, Symbole *s)
     Val * valeur = (Val *) automate.getDernierSymbole();
     automate.popSymbole(); //eg
     Identifiant *id = (Identifiant *)automate.getDernierSymbole();
-    
+
     id->setValeurNum(valeur);
     automate.reduction(3, new ListeConstantes(id));
 
