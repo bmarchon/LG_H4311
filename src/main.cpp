@@ -79,10 +79,13 @@ int main( int argc, const char* argv[] )
         
     }
 
-    AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
-
-    if(!aLexical->isFileOK())
+    try
     {
+        AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
+    }
+    catch (const char* msg)
+    {
+        cerr << msg << endl;
         return FILE_ERROR;
     }
 
@@ -119,7 +122,10 @@ int main( int argc, const char* argv[] )
             automate->executer();
         }
 
-    }catch(std::logic_error ex){ //syntax error
+    }
+    //syntax error
+    catch(std::logic_error ex)
+    {
         cout << "syntax error : ";
         cout << ex.what() << endl;
         syntaxError = true;

@@ -1,19 +1,14 @@
 #include "Expression.h"
 
-Expression::Expression(Expressions typeExp, Symboles type):Symbole(type)
+Expression::Expression() : Symbol(type)
 {
-	this->typeExp=typeExp;
-	expression = NULL;
+	this->expression = NULL;
 }
 
-Expression::Expression():Symbole(type)
+Expression::Expression(Expressions type, Symbols type) : Symbol(type)
 {
-	expression = NULL;
-}
-
-Expressions Expression::getExprType()
-{
-	return this->typeExp;
+	this->type = type;
+	this->expression = NULL;
 }
 
 Expression::~Expression()
@@ -21,22 +16,24 @@ Expression::~Expression()
 	//dtor
 }
 
-void Expression::afficher()
-{
-	cout << "error : call to Expression::afficher()" << endl; 	
-}
+//TO-DO getter and setter realy needed or could be done without?
 
 Expression * Expression::getExpression()
 {
 	return this->expression;
 }
 
-void Expression::setExpression(Expression *expr)
+void Expression::setExpression(Expression *expression)
 {
-	this->expression=expr;
+	this->expression = expression;
 }
 
-string Expression::afficherExprType()
+Expressions Expression::getExpressionType()
 {
-    return exprTypes[this->typeExp];
+	return this->type;
+}
+
+void Expression::printType()
+{
+    cout << exprTypes[this->type];
 }
