@@ -80,7 +80,7 @@ int main( int argc, const char* argv[] )
     }
     catch (string msg)
     {
-        cerr << msg << endl;
+        cout << msg << endl;
         return FILE_ERROR;
     }
 

@@ -17,10 +17,8 @@ void DecVariable::addVariable(Identifier *id)
 
 void DecVariable::print()
 {
-    cout << "var ";
-    for (int i = 0; i < this->constants.size() - 1; i++)
+    for (int i = 0; i < this->constants.size(); i++)
     {
-         cout << this->constants[i]->getName() << ", ";
+         cout << "var " << this->constants[i]->getName() << ";" << endl;
     }
-    cout << this->constants[this->constants.size() - 1]->getName() << ";" << endl;
 }
