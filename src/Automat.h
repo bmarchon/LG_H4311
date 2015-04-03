@@ -51,12 +51,14 @@ class Automat
             idProperties(Identifier *id)
             {
                 this->id = id;
+                this->isDeclared = false;
                 this->initialized = false;
                 this->used = false;
                 this->isConstant = false;
             }
 
             Identifier * id;
+            bool isDeclared;
             bool initialized;
             bool used;
             bool isConstant;

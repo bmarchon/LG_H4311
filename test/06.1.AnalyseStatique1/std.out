@@ -10,4 +10,4 @@ file read correctly
 program is valid
 
 static analysis:
-variable x has not been initialized
+Variable x has not been initialized

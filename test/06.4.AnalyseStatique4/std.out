@@ -10,4 +10,4 @@ file read correctly
 program is valid
 
 static analysis:
-identifier x has not been declared
+Identifier x has not been declared

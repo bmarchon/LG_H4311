@@ -165,7 +165,6 @@ void Automat::lexicalAnalysis()
 void Automat::staticAnalysis()
 {
     vector<Declaration*> declarations = this->program.getDeclarations();
-    vector<Instruction*> instructions = this->program.getInstructions();
 
     for (auto itDeclarations = declarations.begin() ; itDeclarations != declarations.end(); ++itDeclarations)
     {
@@ -176,38 +175,44 @@ void Automat::staticAnalysis()
                     vector<Identifier *> constants = ((DecConstant*)(*itDeclarations))->getConstants();
                     for (auto itConstants = constants.begin(); itConstants != constants.end(); ++itConstants)
                     {
-                        if (this->identifiers.find((*itConstants)->getName()) != this->identifiers.end())
+                        if ( !(this->identifiers.find((*itConstants)->getName()) != this->identifiers.end()) )
                         {
-                            cout << "Constant " << (*itConstants)->getName() << " has already been declared" << endl;
+                            cout << (*itConstants)->getName() << " has not been found while doing lexical analysis" << endl;
                         }
                         else
                         {
+                            this->identifiers.at((*itConstants)->getName()).isDeclared = true;
                             this->identifiers.at((*itConstants)->getName()).isConstant = true;
                             this->identifiers.at((*itConstants)->getName()).initialized = true;
                         }
                     }
                 }
                 break;
-
             case LV:
                 {
-                    vector<Identifier *> variables = ((DecVariable*)(*itDeclarations))->getVariables();
+                    vector<Identifier *> variables = ((DecConstant*)(*itDeclarations))->getConstants();
                     for (auto itVariables = variables.begin(); itVariables != variables.end(); ++itVariables)
                     {
-                        if (this->identifiers.find((*itVariables)->getName()) != this->identifiers.end())
+                        if ( !(this->identifiers.find((*itVariables)->getName()) != this->identifiers.end()) )
                         {
-                            cout << "variable " << (*itVariables)->getName() << " has already been declared" << endl;
+                            cout << (*itVariables)->getName() << " has not been found while doing lexical analysis" << endl;
+                        }
+                        else
+                        {
+                            this->identifiers.at((*itVariables)->getName()).isDeclared = true;
                         }
                     }
                 }
                 break;
             // should never be the case when no fault in grammar
             default:
-                cout << "Error: Declaration was a :";
+                cout << "Error: Declaration was a : ";
                 (*itDeclarations)->printType();
                 cout << endl;
         }
     }
+
+    vector<Instruction*> instructions = this->program.getInstructions();
 
     for (auto it = instructions.begin() ; it != instructions.end(); ++it)
     {
@@ -242,7 +247,7 @@ void Automat::staticAnalysis()
     
     for (auto itIdentifiers = this->identifiers.begin(); itIdentifiers != this->identifiers.end(); ++itIdentifiers)
     {
-        if (itIdentifiers->second.used == false)
+        if (itIdentifiers->second.isDeclared && !itIdentifiers->second.used)
         {
             cout << "Identifier " << itIdentifiers->first << " is never used" << endl;
         }
@@ -253,7 +258,7 @@ void Automat::checkIdent(Identifier * id, bool isExpression)
 {
     if (id->getExpressionType() != IDENT)
     {
-        cout << "Error: Expression type of identifier to use is ";
+        cout << "Expression type of identifier to use is ";
         id->printExpressionType();
         cout << endl;
     }
@@ -266,7 +271,7 @@ void Automat::checkIdent(Identifier * id, bool isExpression)
             cout << "ERROR: Symbol type of identifier to use is " << id->afficherType() << endl;
         }*/
         
-        if (this->identifiers.find(id->getName()) == this->identifiers.end())
+        if (this->identifiers.find(id->getName()) == this->identifiers.end() || !this->identifiers.at(id->getName()).isDeclared)
         {
                      cout << "Identifier " << id->getName() << " has not been declared" << endl;
         }
@@ -275,12 +280,12 @@ void Automat::checkIdent(Identifier * id, bool isExpression)
             if (!isExpression && this->identifiers.at(id->getName()).isConstant)
             {
                
-                cout << "Error: Attempt to modify constant " << id->getName() << endl;
+                cout << "Attempt to modify constant " << id->getName() << endl;
             }
-            else if (isExpression && !(this->identifiers.at(id->getName()).initialized))
+            else if (isExpression && (this->identifiers.find(id->getName()) == this->identifiers.end() || !this->identifiers.at(id->getName()).initialized))
             {
                 
-                cout << "Error: Variable " << id->getName() << " has not been initialized" << endl;
+                cout << "Variable " << id->getName() << " has not been initialized" << endl;
                 this->identifiers.at(id->getName()).used = true;
             }
             else
