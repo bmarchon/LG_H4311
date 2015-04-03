@@ -78,7 +78,7 @@ int main( int argc, const char* argv[] )
     {
         aLexical = new LexicalAnalyzer(filename(argc,argv));
     }
-    catch (const char* msg)
+    catch (string msg)
     {
         cerr << msg << endl;
         return FILE_ERROR;
