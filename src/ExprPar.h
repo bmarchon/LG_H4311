@@ -13,6 +13,8 @@ class ExprPar : public Expression
 	public:
         ExprPar(Expression *expr, Symbols type);
         virtual ~ExprPar() {}
+        Expression * getExpression();
+        void setExpression(Expression *expr);
         double eval();
         void print(); // Display the value for the representation
 	protected:

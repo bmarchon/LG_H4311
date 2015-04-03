@@ -1,6 +1,6 @@
 #include "DecVariable.h"
 
-DecVariable::DecVariable(Identifier id) : Declaration(LV)
+DecVariable::DecVariable(Identifier *id) : Declaration(LV)
 {
     this->constants.push_back(id);
 }
@@ -20,7 +20,7 @@ void DecVariable::print()
     cout << "var ";
     for (int i = 0; i < this->constants.size() - 1; i++)
     {
-         this->constants[i]->getName() + ", ";
+         cout << this->constants[i]->getName() << ", " << endl;
     }
-    cout << this->constants[i]->getName() + ";";
+    cout << this->constants[this->constants.size() - 1]->getName() << ";" << endl;
 }

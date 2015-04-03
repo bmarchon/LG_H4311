@@ -1,6 +1,6 @@
 #include "Instruction.h"
 
-Instruction::Instruction(Instructions instructionType) : Symbole(I)
+Instruction::Instruction(Instructions instructionType) : Symbol(I)
 {
     this->instructionType = instructionType;
 }
@@ -10,12 +10,12 @@ Instructions Instruction::getInstType()
     return this->instructionType;
 }
 
-void Instruction::executer()
+void Instruction::execute()
 {
 	// instruction I cannot be executed
 }
 
-void Instruction::afficher()
+void Instruction::print()
 {
 	// instruction I has no string representation
 }

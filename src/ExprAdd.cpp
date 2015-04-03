@@ -1,5 +1,4 @@
 #include "ExprAdd.h"
-#include "Operators.h"
 
 double ExprAdd::eval()
 {
@@ -14,7 +13,7 @@ double ExprAdd::eval()
 			break;
 		default :
 			res = 0.0;
-			cout << "error in evaluating additive expression : " << this->opAdd->getChar() << endl;
+			cout << "error in evaluating additive expression : " << getOperator()->getChar() << endl;
 	}
 	return res;
 }

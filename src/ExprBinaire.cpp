@@ -1,6 +1,6 @@
 #include "ExprBinaire.h"
 
-ExprBinaire::ExprBinaire(Symboles type, Expression *exprLeft, Operator *op, Expression *exprRight) : Expression(BIN, type)
+ExprBinaire::ExprBinaire(Symbols type, Expression *exprLeft, Operator *op, Expression *exprRight) : Expression(BIN, type)
 {
     this->exprLeft = exprLeft;
     this->exprRight = exprRight;

@@ -16,7 +16,7 @@ class Expression : public Symbol
         virtual double eval() = 0;
         virtual void print() = 0; // Display the value for the representation
         Expressions getExpressionType();
-        string printExpressionType();
+        void printExpressionType();
     protected:
         Expressions exprType;
     private:

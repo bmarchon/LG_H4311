@@ -13,10 +13,10 @@ void Transformation::transform(Program &program)
     {
         if ((*itDeclaration)->getType() == LC)
         {
-            vector<Identifier *> decConstants = ((DecConstante*)(*itDeclaration))->getConstants();
+            vector<Identifier *> decConstants = ((DecConstant*)(*itDeclaration))->getConstants();
             for (auto itconstants = decConstants.begin(); itconstants != decConstants.end(); ++itconstants)
             {
-                this->constants.insert(make_pair((*itconstants)->getName(), (*itconstants)->eval()));
+                constants.insert(make_pair((*itconstants)->getName(), (*itconstants)->eval()));
             }
         }
     }
@@ -40,13 +40,13 @@ void Transformation::transform(Program &program)
 //Fonction appelée récursivement
 Expression * Transformation::searchTransformations(Expression * exp)
 {
-    switch(exp->getExprType())
+    switch(exp->getExpressionType())
     {
         case PAR:
             {
                 Expression * parExpr = ((ExprPar*)exp)->getExpression();
                 exp = searchTransformations(parExpr);
-                if (parExpr->getExprType() == VALEUR || parExpr->getExprType() == IDENT)
+                if (parExpr->getExpressionType() == VALEUR || parExpr->getExpressionType() == IDENT)
                 {
                     exp = parExpr;
                 }
@@ -58,17 +58,17 @@ Expression * Transformation::searchTransformations(Expression * exp)
                 ExprBinaire * expBin = (ExprBinaire*) exp;
                 Expression * gauche = expBin->getLeft();
 			          Expression * droite = expBin->getRight();
-                if (gauche->getExprType() != VALEUR && gauche->getExprType() != IDENT)
+                if (gauche->getExpressionType() != VALEUR && gauche->getExpressionType() != IDENT)
                 {
                     gauche = searchTransformations(gauche);
                     expBin->setLeft(gauche);
                 }
-                if (droite->getExprType() != VALEUR && droite->getExprType() != IDENT)
+                if (droite->getExpressionType() != VALEUR && droite->getExpressionType() != IDENT)
                 {
                     droite = searchTransformations(droite);
                     expBin->setRight(droite);
                 }
-                return simplifier(exp);
+                return simplify(exp);
             }
             break;
         default:
@@ -77,19 +77,19 @@ Expression * Transformation::searchTransformations(Expression * exp)
 }
 
 // should work as void, no idea why it doesnt ...
-Expression * Transformation::simplifier(Expression * exp)
+Expression * Transformation::simplify(Expression * exp)
 {
     ExprBinaire * exprBin = (ExprBinaire *) exp;
     // both sides are values, can be simplified by evaluating
 
-    if (exprBin->getLeft()->getExprType() == VALEUR && exprBin->getRight()->getExprType() == VALEUR)
+    if (exprBin->getLeft()->getExpressionType() == VALEUR && exprBin->getRight()->getExpressionType() == VALEUR)
     {
         return (Expression* ) new Val(exprBin->eval());
     }
     // left side is value, possibility of netral element
-    else if (exprBin->getLeft()->getExprType() == VALEUR)
+    else if (exprBin->getLeft()->getExpressionType() == VALEUR)
     {
-        switch(exprBin->getOperator())
+        switch(exprBin->getOperator()->getChar())
         {
             case '+':
             case '-':
@@ -97,7 +97,7 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getRight();
                 }
-                else if (exprBin->getRight()->getExprType() == IDENT && (constants.find(((Identifier*)exprBin->getRight())->valeur()) != constants.end()))
+                else if (exprBin->getRight()->getExpressionType() == IDENT && (constants.find(((Identifier*)exprBin->getRight())->getName()) != constants.end()))
                 {
                     return (Expression* ) new Val(exprBin->eval());
                 }
@@ -109,21 +109,21 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getRight();
                 }
-                else if (exprBin->getRight()->getExprType() == IDENT && (constants.find(((Identifier*)exprBin->getRight())->valeur()) != constants.end()))
+                else if (exprBin->getRight()->getExpressionType() == IDENT && (constants.find(((Identifier*)exprBin->getRight())->getName()) != constants.end()))
                 {
                     return (Expression* ) new Val(exprBin->eval());
                 }
                 return exp;
                 break;
             default:
-                cout << "ERROR: Found operator not expecting: " << exprBin->getOperator() << endl;
+                cout << "ERROR: Found operator not expecting: " << exprBin->getOperator()->getChar() << endl;
                 return exp;
         }
     }
     // right side is value, possibility of netral element
-    else if (exprBin->getRight()->getExprType() == VALEUR)
+    else if (exprBin->getRight()->getExpressionType() == VALEUR)
     {
-        switch(exprBin->getOperator())
+        switch(exprBin->getOperator()->getChar())
         {
             case '+':
             case '-':
@@ -131,17 +131,17 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getLeft();
                 }
-                else if (exprBin->getLeft()->getExprType() == BIN
-                    && ((ExprBinaire*)exprBin->getLeft())->getRight()->getExprType() == VALEUR)
+                else if (exprBin->getLeft()->getExpressionType() == BIN
+                    && ((ExprBinaire*)exprBin->getLeft())->getRight()->getExpressionType() == VALEUR)
                 {
                     ExprBinaire * exprBinLeft = (ExprBinaire*)exprBin->getLeft();
 
-                    ExprAdd * exprToEval = new ExprAdd(exprBinGauche->getRight(), new OperateurAdditif(exprBin->getOperator()), exprBin->getRight());
+                    ExprAdd * exprToEval = new ExprAdd(exprBinLeft->getRight(), new AddOperator(exprBin->getOperator()->getChar()), exprBin->getRight());
                     Expression * newExpression = (Expression* ) new Val(exprToEval->eval());
                     exprBinLeft->setRight(newExpression);
                     return exprBinLeft;
                 }
-                else if (exprBin->getLeft()->getExprType() == IDENT && (constants.find(((Identifier*)exprBin->getLeft())->valeur()) != constants.end()))
+                else if (exprBin->getLeft()->getExpressionType() == IDENT && (constants.find(((Identifier*)exprBin->getLeft())->getName()) != constants.end()))
                 {
                     return (Expression* ) new Val(exprBin->eval());
                 }
@@ -153,29 +153,29 @@ Expression * Transformation::simplifier(Expression * exp)
                 {
                     return exprBin->getLeft();
                 }
-                else if (exprBin->getLeft()->getExprType() == BIN
-                    && ((ExprBinaire*)exprBin->getLeft())->getRight()->getExprType() == VALEUR)
+                else if (exprBin->getLeft()->getExpressionType() == BIN
+                    && ((ExprBinaire*)exprBin->getLeft())->getRight()->getExpressionType() == VALEUR)
                 {
                     ExprBinaire * exprBinLeft = (ExprBinaire*)exprBin->getLeft();
 
-                    ExprMult * exprToEval = new ExprMult(exprBinGauche->getRight(), new OperateurMultiplicatif(exprBin->getOperator()), exprBin->getRight());
+                    ExprMult * exprToEval = new ExprMult(exprBinLeft->getRight(), new MultOperator(exprBin->getOperator()->getChar()), exprBin->getRight());
                     Expression * newExpression = (Expression* ) new Val(exprToEval->eval());
                     exprBinLeft->setRight(newExpression);
                     return exprBinLeft;
                 }
-                else if (exprBin->getLeft()->getExprType() == IDENT && (constants.find(((Identifier*)exprBin->getLeft())->valeur()) != constants.end()))
+                else if (exprBin->getLeft()->getExpressionType() == IDENT && (constants.find(((Identifier*)exprBin->getLeft())->getName()) != constants.end()))
                 {
                     return (Expression* ) new Val(exprBin->eval());
                 }
                 return exp;
                 break;
             default:
-                cout << "ERROR: Found operator not expecting: " << exprBin->getOperator() << endl;
+                cout << "ERROR: Found operator not expecting: " << exprBin->getOperator()->getChar() << endl;
                 return exp;
         }
         // only Identifier found, propagation possible
     } else {
-        if (exprBin->getLeft()->getExprType() == IDENT && (constants.find(((Identifier*)exprBin->getLeft())->valeur()) != constants.end()) && exprBin->getRight()->getExprType() == IDENT && (constants.find(((Identifier*)exprBin->getRight())->valeur()) != constants.end()))
+        if (exprBin->getLeft()->getExpressionType() == IDENT && (constants.find(((Identifier*)exprBin->getLeft())->getName()) != constants.end()) && exprBin->getRight()->getExpressionType() == IDENT && (constants.find(((Identifier*)exprBin->getRight())->getName()) != constants.end()))
         {
             return (Expression* ) new Val(exprBin->eval());
         }

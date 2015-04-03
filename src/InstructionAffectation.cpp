@@ -22,7 +22,7 @@ void InstructionAffectation::print() {
 }
 Expressions InstructionAffectation::getExpressionType()
 {
-	return this->expression->getExprType();
+	return this->expression->getExpressionType();
 }
 
 

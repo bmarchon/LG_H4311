@@ -85,7 +85,6 @@ int main( int argc, const char* argv[] )
     }
 
     Automat * automat = new Automat(aLexical);  
-
     try{
         automat->lexicalAnalysis();
     }
@@ -96,7 +95,7 @@ int main( int argc, const char* argv[] )
         cout << ex.what() << endl;
         syntaxError = true;
     }
-    
+
     if(optionA) //static error analysis
     {
         cout << endl << "static analysis:" << endl;

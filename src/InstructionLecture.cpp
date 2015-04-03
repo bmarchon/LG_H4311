@@ -9,8 +9,7 @@ void InstructionLecture::execute()
 {
 	double inputValue = 0.0;
 	string input;
- 
- 	cout << "enter value for " << this->identifiant->valeur() << endl;
+ 	cout << "enter value for " << this->identifier->getName() << endl;
   	getline (cin,input);
   	stringstream(input) >> inputValue;
 

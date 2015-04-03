@@ -5,6 +5,7 @@
 #include "Identifier.h"
 
 #include <iostream>
+#include <sstream>
 
 class InstructionLecture : public Instruction
 {

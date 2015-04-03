@@ -2,13 +2,13 @@
 #define EXPRMULT_H
 
 #include "ExprBinaire.h"
-//#include "Operators.h"
+#include "Operator.h"
 
 class ExprMult : public ExprBinaire
 {
 	public:
-        ExprMult(Symbols type, Expression *exprLeft, MultOperator *opMult, Expression *exprRight) : ExprBinaire(type, exprLeft, opMult, exprRight) {}
-        ExprMult(Expression *exprLeft, MultOperator *opMult, Expression *exprRight) : ExprBinaire(EXPR, exprLeft, opMult, exprRight) {}
+        ExprMult(Symbols type, Expression *exprLeft, Operator *opMult, Expression *exprRight) : ExprBinaire(type, exprLeft, opMult, exprRight) {}
+        ExprMult(Expression *exprLeft, Operator *opMult, Expression *exprRight) : ExprBinaire(EXPR, exprLeft, opMult, exprRight) {}
         virtual ~ExprMult() {}
         double eval();
         void print(); // Display the value for the representation

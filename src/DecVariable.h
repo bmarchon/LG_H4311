@@ -5,6 +5,8 @@
 #include "Identifier.h"
 #include "Symbol.h"
 
+#include <vector>
+
 using namespace std;
 
 class DecVariable : public Declaration

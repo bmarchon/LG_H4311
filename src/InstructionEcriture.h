@@ -13,8 +13,8 @@ class InstructionEcriture : public Instruction
         InstructionEcriture(Expression *exp);
         virtual ~InstructionEcriture() {}
         Expressions getExpressionType();
-        void executer();
-        void afficher(); // Display the value for the representation
+        void execute();
+        void print(); // Display the value for the representation
         Expression * getExpression();
         void setExpression(Expression *);
     protected:

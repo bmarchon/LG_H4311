@@ -6,12 +6,12 @@ double ExprMult::eval()
     switch(getOperator()->getChar())	
 	{
 		case '*':
-			res = getLeft->eval() * getRight->eval();
+			res = getLeft()->eval() * getRight()->eval();
 			break;
 		case '/':
-			if(getRight->eval() != 0.0)
+			if(getRight()->eval() != 0.0)
 			{
-				res = getLeft->eval() / getRight->eval();
+				res = getLeft()->eval() / getRight()->eval();
 			}
 			else
 			{

@@ -11,7 +11,9 @@ InstructionEcriture::InstructionEcriture(Expression *exp) : Instruction(ECR)
 	if(exp->getType() != EXPR)
 	{
 		this->expression = NULL;
-		cout << "error : trying to instantiate InstructionEcriture with non-expression type: " << exp->printType() << endl;
+		cout << "error : trying to instantiate InstructionEcriture with non-expression type: ";
+		exp->printType();
+		cout << endl;
 	}else{
 		this->expression = exp;
 	}	
@@ -19,7 +21,7 @@ InstructionEcriture::InstructionEcriture(Expression *exp) : Instruction(ECR)
 
 Expressions InstructionEcriture::getExpressionType()
 {
-	return this->expression->getExprType();
+	return this->expression->getExpressionType();
 }
 
 Expression * InstructionEcriture::getExpression()
@@ -32,7 +34,7 @@ void InstructionEcriture::setExpression(Expression* exp)
     this->expression = exp;
 }
 
-void InstructionEcriture::executer()
+void InstructionEcriture::execute()
 {
 	if(expression != NULL)
 	{

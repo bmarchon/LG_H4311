@@ -1,13 +1,13 @@
 #include "Val.h"
 
-Val::Val(double valeur) : Expression(VALEUR, VAL)
+Val::Val(double value) : Expression(VALEUR, VAL)
 {
-	this->doubleVal = valeur;
+	this->value = value;
 }
 
 Val::Val(Symbols type, Val *v) : Expression(VALEUR, type)
 {
-	this->doubleVal = v->doubleVal;
+	this->value = v->value;
 }
 
 void Val::setValue(double value)
