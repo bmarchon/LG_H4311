@@ -1,9 +1,4 @@
-
 #include "main.h"
-#include <iostream>
-#include <stdio.h>
-#include "Automate.h"
-#include "Transformation.h"
 
 //options activation
 static bool optionP = false;
@@ -43,7 +38,6 @@ static string filename(int argc, const char* argv[])
 {
     if(argc < 2)
     {
-
         return string(NO_FILE);
     }
     else
@@ -78,10 +72,11 @@ int main( int argc, const char* argv[] )
         }
         
     }
-
+    
+    LexicalAnalyzer * aLexical;
     try
     {
-        AnalyseurLexical * aLexical = new AnalyseurLexical(filename(argc,argv));
+        aLexical = new LexicalAnalyzer(filename(argc,argv));
     }
     catch (const char* msg)
     {
@@ -89,39 +84,10 @@ int main( int argc, const char* argv[] )
         return FILE_ERROR;
     }
 
-    Automate * automate = new Automate(aLexical);  
+    Automat * automat = new Automat(aLexical);  
 
     try{
-         automate->analyse();
-         
-
-        if(optionA) //static error analysis
-        {
-            cout << endl << "static analysis:" << endl;
-            automate->analyseStatique();
-        }
-        if(optionO) //transform
-        {
-           cout << "program transformation enabled" << endl;
-           //automate->getProgramme().afficher();
-           Programme p = automate->getProgramme();
-           Transformation::transformer(p);
-           //automate->getProgramme().afficher();
-        }
-
-        if(optionP) //display
-        {   
-            cout << endl << "program : " << endl << endl;
-            automate->getProgramme().afficher();
-            cout << endl;
-        }
-
-        if(optionE) //execute
-        {
-            cout << "execution" << endl;
-            automate->executer();
-        }
-
+        automat->lexicalAnalysis();
     }
     //syntax error
     catch(std::logic_error ex)
@@ -130,15 +96,40 @@ int main( int argc, const char* argv[] )
         cout << ex.what() << endl;
         syntaxError = true;
     }
+    
+    if(optionA) //static error analysis
+    {
+        cout << endl << "static analysis:" << endl;
+        automat->staticAnalysis();
+    }
+    if(optionO) //transform
+    {
+       cout << "program transformation enabled" << endl;
+       //automat->getProgramme().afficher();
+       Program p = automat->getProgram();
+       Transformation::transform(p);
+       //automat->getProgramme().afficher();
+    }
 
-    delete automate;
-    delete aLexical; //delete after automate (otherwise causes SIGABRT -> why ??)
+    if(optionP) //display
+    {   
+        cout << endl << "program : " << endl << endl;
+        automat->getProgram().print();
+        cout << endl;
+    }
 
+    if(optionE) //execute
+    {
+        cout << "execution" << endl;
+        automat->execute();
+    }
+
+    delete automat;
+    delete aLexical; //delete after automat (otherwise causes SIGABRT -> why ??)
 
     if(syntaxError)
     {
         return SYNTAX_ERROR;
     }
-
     return OK;
 }

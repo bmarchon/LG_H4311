@@ -1,42 +1,26 @@
 #include "Val.h"
 
-Val::Val():Expression(VALEUR, VAL){}
 Val::Val(double valeur) : Expression(VALEUR, VAL)
 {
-	 //ctor
 	this->doubleVal = valeur;
 }
 
-Val::Val(Symboles type, Val *v) : Expression(VALEUR, type)
+Val::Val(Symbols type, Val *v) : Expression(VALEUR, type)
 {
-	 //ctor
 	this->doubleVal = v->doubleVal;
 }
 
-Val::~Val()
+void Val::setValue(double value)
 {
-	//dtor
+    this->value = value;
 }
 
 double Val::eval()
 {
-	return this->doubleVal;
+	return this->value;
 }
 
-void Val::setValeur(double valeur)
+void Val::print()
 {
-    this->doubleVal = valeur;
+    cout << this->value;
 }
-
-void Val::afficher()
-{
-    cout << doubleVal;
-}
-
-/*
-Val& Val::operator = (const Val &valeur)
-{
-    this->doubleVal = valeur->valeur();
-    return *this;
-}
-*/

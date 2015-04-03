@@ -1,25 +1,17 @@
 #include "ExprPar.h"
- ExprPar::ExprPar(Expression *expr, Symboles type): Expression(PAR, type)
- {
-     expression = expr;
- }
-ExprPar::~ExprPar()
+
+ExprPar::ExprPar(Expression *expr, Symboles type) : Expression(PAR, type)
 {
-	//dtor
+    this->expression = expr;
 }
 
 double ExprPar::eval()
 {
-	return expression->eval();
+	return this->expression->eval();
 }
 
-void ExprPar::afficher() {
+void ExprPar::print() {
     cout << "(";
-	this->expression->afficher();
+	this->expression->print();
     cout << ")";
 }
-/*
-Expression * ExprPar::getExpression()
-{
-	return this->expression;
-}*/

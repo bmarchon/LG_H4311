@@ -1,8 +1,13 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include "Automat.h"
+#include "Transformation.h"
+#include "LexicalAnalyzer.h"
+
 #include <string>
-#include "AnalyseurLexical.h"
+#include <iostream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -21,7 +26,5 @@ const int INPUT_PARAMETER_ERROR = 2;
 const int SYNTAX_ERROR = 3;
 
 const string NO_FILE = "no input file name specified";
-
-
 
 #endif // MAIN_H

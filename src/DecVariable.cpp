@@ -1,23 +1,26 @@
 #include "DecVariable.h"
 
-
-DecVariable::DecVariable(ListeVariables *lv):Declaration(lv)
+DecVariable::DecVariable(Identifier id) : Declaration(LV)
 {
-    listeVariables = lv;
+    this->constants.push_back(id);
 }
 
-DecVariable::~DecVariable()
+vector<Identifier *> DecVariable::getVariables()
 {
-	//dtor
+    return this->constants;
 }
 
-void DecVariable::afficher() {
-
-	this->listeVariables->afficher();
-
+void DecVariable::addVariable(Identifier *id)
+{
+    this->constants.push_back(id);
 }
 
-vector<Identifiant *> DecVariable::getVariables()
+void DecVariable::print()
 {
-	return this->listeVariables->getListID();
+    cout << "var ";
+    for (int i = 0; i < this->constants.size() - 1; i++)
+    {
+         this->constants[i]->getName() + ", ";
+    }
+    cout << this->constants[i]->getName() + ";";
 }

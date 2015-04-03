@@ -1,38 +1,21 @@
 #include "InstructionEcriture.h"
-#include "Symbole.h"
 
-InstructionEcriture::InstructionEcriture(): Instruction()
+InstructionEcriture::InstructionEcriture() : Instruction()
 {
-	expression = NULL;
+// TO-DO: when necessary here, perhaps elsewhere too!
+	this->expression = NULL;
 }
 
 InstructionEcriture::InstructionEcriture(Expression *exp) : Instruction(ECR)
 {
 	if(exp->getType() != EXPR)
 	{
-		expression = NULL;
-		cout << "error : trying to instantiate InstructionEcriture with non-expression type: " << exp->afficherType() << endl;
+		this->expression = NULL;
+		cout << "error : trying to instantiate InstructionEcriture with non-expression type: " << exp->printType() << endl;
 	}else{
-		expression = exp;
-	}
-	
+		this->expression = exp;
+	}	
 }
-
-InstructionEcriture::~InstructionEcriture()
-{
-
-}
-
-void InstructionEcriture::executer()
-{
-	if(expression != NULL)
-	{
-		cout << expression->eval() << endl;
-	}else{
-		cout << "error while trying to print expression" << endl;
-	}
-}
-
 
 Expressions InstructionEcriture::getExpressionType()
 {
@@ -49,9 +32,21 @@ void InstructionEcriture::setExpression(Expression* exp)
     this->expression = exp;
 }
 
-void InstructionEcriture::afficher()
+void InstructionEcriture::executer()
+{
+	if(expression != NULL)
+	{
+		cout << expression->eval() << endl;
+	}
+	else
+	{
+		cout << "error while trying to print expression" << endl;
+	}
+}
+
+void InstructionEcriture::print()
 {
 	cout << "ecrire ";
-	this->expression->afficher();
+	this->expression->print();
     cout << ";" << endl;
 }

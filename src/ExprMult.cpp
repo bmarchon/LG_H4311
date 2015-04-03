@@ -1,41 +1,24 @@
 #include "ExprMult.h"
 
-
-ExprMult::ExprMult(Symboles type, Expression *exprGauche,OperateurMultiplicatif *opMult, Expression *exprDroite):ExprBinaire(type, exprGauche, exprDroite)
-{
-    this->opMult = opMult;
-}
-
-ExprMult::ExprMult(Expression *exprGauche, OperateurMultiplicatif *opMult, Expression *exprDroite):ExprBinaire(EXPR, exprGauche, exprDroite)
-{
-    this->opMult = opMult;
-}
-
-
-ExprMult::~ExprMult()
-{
-	//dtor
-}
-
 double ExprMult::eval()
 {
     double res;
-    switch(opMult->getChar())	
+    switch(getOperator()->getChar())	
 	{
 		case '*':
-			res = exprGauche->eval() * exprDroite->eval();
+			res = getLeft->eval() * getRight->eval();
 			break;
-
 		case '/':
-			if(exprDroite->eval() != 0.0)
+			if(getRight->eval() != 0.0)
 			{
-				res = exprGauche->eval() / exprDroite->eval();
-			}else{
+				res = getLeft->eval() / getRight->eval();
+			}
+			else
+			{
 				res = 0.0;
 				cout << "division by 0, result has been set to 0" << endl;
 			}
 			break;
-
 		default :
 			res = 0.0;
 			cout << "error in evaluating multiplicative expression" << endl;
@@ -43,14 +26,9 @@ double ExprMult::eval()
 	return res;
 }
 
-void ExprMult::afficher() {
-    exprGauche->afficher();
-	this->opMult->afficher();
-    exprDroite->afficher();
-}
-
-char ExprMult::operateur()
+void ExprMult::print()
 {
-	return opMult->getChar();
+    getLeft()->print();
+	getOperator()->print();
+    getRight()->print();
 }
-

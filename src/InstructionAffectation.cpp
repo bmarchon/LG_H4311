@@ -1,28 +1,22 @@
 #include "InstructionAffectation.h"
-#include "ExprBinaire.h"
 
-InstructionAffectation::InstructionAffectation(Identifiant *id, Expression *expr):Instruction(AFF)
+InstructionAffectation::InstructionAffectation(Identifier *id, Expression *expr) : Instruction(AFF)
 {
-    this->identifiant = id;
+    this->identifier = id;
     this->expression = expr;
 }
 
-InstructionAffectation::~InstructionAffectation()
+void InstructionAffectation::execute()
 {
-
-}
-
-void InstructionAffectation::executer()
-{
-	identifiant->setValeurNum(expression->eval());
+	this->identifier->setValue(expression->eval());
 	// TODO delete previous expression?
 }
 
-void InstructionAffectation::afficher() {
+void InstructionAffectation::print() {
 
-    this->identifiant->afficher();
+    this->identifier->print();
     cout << " := ";
-    this->expression->afficher();
+    this->expression->print();
     cout << ";" << endl;
 
 }
@@ -37,13 +31,12 @@ Expression * InstructionAffectation::getExpression()
 	return this->expression;
 }
 
-
-Identifiant * InstructionAffectation::getIdentifiant()
-{
-    return this->identifiant;
-}
-
 void InstructionAffectation::setExpression(Expression* exp)
 {
     this->expression = exp;
+}
+
+Identifier * InstructionAffectation::getIdentifier()
+{
+    return this->identifier;
 }

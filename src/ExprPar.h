@@ -1,20 +1,23 @@
 #ifndef EXPRPAR_H
 #define EXPRPAR_H
+
 #include "Expression.h"
+#include "Symbol.h"
+
+#include <iostream>
 
 using namespace std;
 
 class ExprPar : public Expression
 {
 	public:
-        	ExprPar(Expression *expr, Symboles type);
-			virtual ~ExprPar();
-        	double eval();
-    		virtual void afficher(); // Display the value for the representation
-			//Expression* getExpression(); 
+        ExprPar(Expression *expr, Symbols type);
+        virtual ~ExprPar() {}
+        double eval();
+        void print(); // Display the value for the representation
 	protected:
 	private:
-		//Expression * expression;
+		Expression * expression;
 };
 
 #endif // EXPRPAR_H

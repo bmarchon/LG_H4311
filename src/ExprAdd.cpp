@@ -1,43 +1,29 @@
 #include "ExprAdd.h"
-
-
-ExprAdd::ExprAdd(Expression *exprGauche, OperateurAdditif *opAdd, Expression *exprDroite):ExprBinaire(EXPR, exprGauche, exprDroite)
-{
-    opAdditif = opAdd;
-}
-
-
-ExprAdd::~ExprAdd()
-{
-	//dtor
-}
+#include "Operators.h"
 
 double ExprAdd::eval()
 {
 	double res;
-	switch(opAdditif->getChar())	
+	switch(getOperator()->getChar())	
 	{
 		case '+':
-			res = exprGauche->eval() + exprDroite->eval();
+			res = getLeft()->eval() + getRight()->eval();
 			break;
 		case '-':
-			res = exprGauche->eval() - exprDroite->eval();
+			res = getLeft()->eval() - getRight()->eval();
 			break;
 		default :
 			res = 0.0;
-			cout << "error in evaluating additive expression : " << opAdditif->getChar() << endl;
+			cout << "error in evaluating additive expression : " << this->opAdd->getChar() << endl;
 	}
 	return res;
 }
 
-void ExprAdd::afficher() {
+void ExprAdd::print() {
 
-	this->exprGauche->afficher();
-    cout << " " << opAdditif->getChar() << " ";
-    this->exprDroite->afficher();
-}
-
-char ExprAdd::operateur()
-{
-	return opAdditif->getChar();
+	getLeft()->print();
+    cout << " ";
+    getOperator()->print();
+    cout << " ";
+    getRight()->print();
 }

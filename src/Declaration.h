@@ -1,19 +1,15 @@
 #ifndef DECLARATION_H
 #define DECLARATION_H
-#include "Symbole.h"
 
-class Declaration : public Symbole
+#include "Symbol.h"
+
+class Declaration : public Symbol
 {
 	public:
-        Declaration(): Symbole(D){}
-        Declaration(Symbole * s);
-		virtual ~Declaration();
-		Symbole * getContenu();
-		void afficher(); // Display the value for the representation
-	protected:
-        //Declaration *declaration;
-        Symbole * contenu;
-	private:
+        Declaration() : Symbol(D) {}
+        Declaration(Symbols type) : Symbol(type) {}
+		virtual ~Declaration() {}
+		virtual void print(); // Display the value for the representation
 };
 
 #endif // DECLARATION_H

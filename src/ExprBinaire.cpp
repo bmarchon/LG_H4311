@@ -1,36 +1,38 @@
 #include "ExprBinaire.h"
-ExprBinaire::ExprBinaire(Symboles type, Expression *exprGauche, Expression *exprDroite):Expression(BIN, type)
+
+ExprBinaire::ExprBinaire(Symboles type, Expression *exprLeft, Operator *op, Expression *exprRight) : Expression(BIN, type)
 {
-    this->exprGauche = exprGauche;
-    this->exprDroite = exprDroite;
+    this->exprLeft = exprLeft;
+    this->exprRight = exprRight;
+    this->op = op;
 }
 
-ExprBinaire::~ExprBinaire()
+Expression* ExprBinaire::getLeft() 
 {
-	//dtor
+	return this->exprLeft;
 }
 
-
-void ExprBinaire::afficher() {
-	cout << "ExprBin ";
-	this->exprGauche->afficher();
-	this->exprDroite->afficher();
-}
-Expression* ExprBinaire::getGauche() 
+void ExprBinaire::setLeft(Expression * g) 
 {
-	return this->exprGauche;
-}
-Expression* ExprBinaire::getDroite()
-{
-	return this->exprDroite;
+	this->exprLeft = g;
 }
 
-
-void ExprBinaire::setGauche(Expression * g) 
+Expression* ExprBinaire::getRight()
 {
-	this->exprGauche = g;
+	return this->exprRight;
 }
-void ExprBinaire::setDroite(Expression * d) 
+
+void ExprBinaire::setRight(Expression * d) 
 {
-	this->exprDroite = d;
+	this->exprRight = d;
+}
+
+Operator* ExprBinaire::getOperator()
+{
+    return this->op;
+}
+
+void ExprBinaire::setOperator(Operator * op)
+{
+    this->op = op;
 }

@@ -1,37 +1,30 @@
 #include "InstructionLecture.h"
 
-InstructionLecture::InstructionLecture(Identifiant *identifiant):Instruction(LEC)
+InstructionLecture::InstructionLecture(Identifier *identifier) : Instruction(LEC)
 {
-    this->identifiant = identifiant;
+    this->identifier = identifier;
 }
 
-InstructionLecture::~InstructionLecture()
+void InstructionLecture::execute()
 {
-
-}
-
-void InstructionLecture::executer()
-{
-	string mystr;
 	double inputValue = 0.0;
-	string inputString;
+	string input;
  
- 	cout << "enter value for " << identifiant->valeur() << endl;
-  	getline (cin,inputString);
-  	stringstream(inputString) >> inputValue;
+ 	cout << "enter value for " << this->identifiant->valeur() << endl;
+  	getline (cin,input);
+  	stringstream(input) >> inputValue;
 
-  	identifiant->setValeurNum(inputValue);
+  	this->identifier->setValue(inputValue);
 }
 
-
-void InstructionLecture::afficher()
+void InstructionLecture::print()
 {
     cout << "lire ";
-    this->identifiant->afficher();
+    this->identifier->print();
     cout << ";" << endl;
 }
 
-Identifiant * InstructionLecture::getIdentifiant()
+Identifier * InstructionLecture::getIdentifier()
 {
-    return this->identifiant;
+    return this->identifier;
 }

@@ -2,22 +2,16 @@
 #define EXPRMULT_H
 
 #include "ExprBinaire.h"
-#include "OperateurMultiplicatif.h"
-
-#include <iostream>
+//#include "Operators.h"
 
 class ExprMult : public ExprBinaire
 {
 	public:
-     	ExprMult(Symboles type, Expression *expressionGauche,OperateurMultiplicatif *opMult, Expression *expressionDroite);
-     	ExprMult(Expression *exprGauche, OperateurMultiplicatif *opMult, Expression *exprDroite);
-			virtual ~ExprMult();
-     	double eval();
-  		void afficher(); // Display the value for the representation
-   		virtual char operateur();
-	protected:
-	private:
-      OperateurMultiplicatif *opMult;
+        ExprMult(Symbols type, Expression *exprLeft, MultOperator *opMult, Expression *exprRight) : ExprBinaire(type, exprLeft, opMult, exprRight) {}
+        ExprMult(Expression *exprLeft, MultOperator *opMult, Expression *exprRight) : ExprBinaire(EXPR, exprLeft, opMult, exprRight) {}
+        virtual ~ExprMult() {}
+        double eval();
+        void print(); // Display the value for the representation
 };
 
 #endif // EXPRMULT_H

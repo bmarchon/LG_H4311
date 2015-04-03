@@ -1,29 +1,29 @@
 #ifndef EXPRBINAIRE_H
 #define EXPRBINAIRE_H
-#include "Expression.h"
-#include <iostream>
 
-using namespace std;
+#include "Expression.h"
+#include "Operator.h"
+#include "Symbol.h"
 
 class ExprBinaire : public Expression
 {
 	public:
-      ExprBinaire(Symboles type): Expression(BIN, type){}
-      ExprBinaire(Symboles type, Expression *exprGauche, Expression *exprDroite);
-	    virtual ~ExprBinaire();
-      virtual double eval() = 0;
-      virtual char operateur() = 0;
-	    void afficher(); // Display the value for the representation
-	    Expression* getGauche();
-	    Expression* getDroite();
-
-        void setGauche(Expression * g);
-        void setDroite(Expression * d);
-
+	    // TO-DO: really needed???
+        ExprBinaire(Symbols type): Expression(BIN, type) {}
+        ExprBinaire(Symbols type, Expression *exprLeft, Operator *op, Expression *exprRight);
+        virtual ~ExprBinaire() {}
+        Expression* getLeft();
+        void setLeft(Expression * g);
+        Expression* getRight();
+        void setRight(Expression * d);
+        Operator* getOperator();
+        void setOperator(Operator *op);
+        virtual double eval() = 0;
+        virtual void print() = 0; // Display the value for the representation
 	protected:
-      Expression * exprGauche;
-      Expression * exprDroite;
-	private:
+        Expression * exprLeft;
+        Expression * exprRight;
+        Operator *op;
 };
 
 #endif // EXPRBINAIRE_H

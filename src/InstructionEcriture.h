@@ -6,19 +6,17 @@
 
 #include <iostream>
 
-using namespace std;
-
 class InstructionEcriture : public Instruction
 {
     public:
-	      InstructionEcriture();
+        InstructionEcriture();
         InstructionEcriture(Expression *exp);
-        ~InstructionEcriture();
-	      Expressions getExpressionType();
+        virtual ~InstructionEcriture() {}
+        Expressions getExpressionType();
         void executer();
         void afficher(); // Display the value for the representation
-	      Expression * getExpression();
-	      void setExpression(Expression *);
+        Expression * getExpression();
+        void setExpression(Expression *);
     protected:
         Expression * expression;
 };

@@ -1,25 +1,21 @@
 #ifndef INSTRUCTIONLECTURE_H
 #define INSTRUCTIONLECTURE_H
+
 #include "Instruction.h"
-#include "Identifiant.h"
+#include "Identifier.h"
 
 #include <iostream>
-#include <sstream>
-
-
-using namespace std;
-
 
 class InstructionLecture : public Instruction
 {
 public:
-    InstructionLecture(Identifiant * id);
-    ~InstructionLecture();
-    void executer();
-    void afficher(); // Display the value for the representation
-    Identifiant * getIdentifiant();
+    InstructionLecture(Identifier * id);
+    virtual ~InstructionLecture() {}
+    Identifier * getIdentifier();
+    void execute();
+    void print(); // Display the value for the representation
 private:
-    Identifiant * identifiant;
+    Identifier * identifier;
 };
 
 #endif // INSTRUCTIONLECTURE_H

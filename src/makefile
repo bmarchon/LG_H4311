@@ -4,7 +4,7 @@ EXE=lut
 CLEAN=clean
 CLEANO=cleano
 
-NOM=main Reader Symbole Etat Val Programme ListeDeclaration ListeInstruction Instruction Declaration SymboleSimple DecVariable DecConstante Etat1aN AnalyseurLexical Automate Identifiant ExprBinaire Expression ExprAdd ExprMult ExprPar InstructionLecture ListeConstantes InstructionEcriture ListeVariables OperateurAdditif OperateurMultiplicatif InstructionAffectation Transformation
+NOM=main FileReader Symbol State Val Program Instruction Declaration Operators Operator DecVariable DecConstant State1toN LexicalAnalyser Automat Identifier ExprBinaire Expression ExprAdd ExprMult ExprPar InstructionLecture InstructionEcriture InstructionAffectation Transformation
 INT=$(addsuffix .h, $(NOM))
 REAL=$(addsuffix .cpp, $(NOM))
 OBJ=$(addsuffix .o, $(NOM))

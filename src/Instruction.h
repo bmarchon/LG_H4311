@@ -1,25 +1,20 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
-#include "Symbole.h"
 
-#include <map>
-#include <iostream>
+#include "Symbol.h"
 
 typedef enum {AFF, ECR, LEC} Instructions;
-using namespace std;
 
-class Instruction : public Symbole
+class Instruction : public Symbol
 {
 	public:
-		Instruction();
+		Instruction() : Symbol(I) {}
         Instruction(Instructions instructionType);
-		virtual ~Instruction();
-		//void setInstruction(Instruction *instr);
-		virtual void executer(); //cannot be pure virtual because of instantiation in Etat1aN
+		virtual ~Instruction() {}
 		Instructions getInstType();
-    	virtual void afficher(); // Display the value for the representation
+		virtual void execute(); //cannot be pure virtual because of instantiation in Etat1aN
+    	virtual void print(); // Display the value for the representation
 	protected:
-        //Instruction *instruction;
         Instructions instructionType;
 	private:
 };
